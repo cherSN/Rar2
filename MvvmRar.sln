@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmRar", "MvvmRar\MvvmRar.csproj", "{8481AB3D-4694-4CF7-B45D-D6790CCC0F07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmRarTests", "MvvmRarTests\MvvmRarTests.csproj", "{D4FB672A-9AB5-42E8-8B57-736EC960E118}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8481AB3D-4694-4CF7-B45D-D6790CCC0F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8481AB3D-4694-4CF7-B45D-D6790CCC0F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8481AB3D-4694-4CF7-B45D-D6790CCC0F07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4FB672A-9AB5-42E8-8B57-736EC960E118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4FB672A-9AB5-42E8-8B57-736EC960E118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4FB672A-9AB5-42E8-8B57-736EC960E118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4FB672A-9AB5-42E8-8B57-736EC960E118}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

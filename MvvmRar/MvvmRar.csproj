@@ -79,6 +79,14 @@
     <Compile Include="Model\DataItem.cs" />
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Model\IDataService.cs" />
+    <Compile Include="Rar\RarAdress.cs" />
+    <Compile Include="Rar\RarCompany.cs" />
+    <Compile Include="Rar\RarFIO.cs" />
+    <Compile Include="Rar\RarFormF6.cs" />
+    <Compile Include="Rar\RarLicense.cs" />
+    <Compile Include="Rar\RarOurCompany.cs" />
+    <Compile Include="Rar\RarSubdevision.cs" />
+    <Compile Include="Rar\RarTurnoverData.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">

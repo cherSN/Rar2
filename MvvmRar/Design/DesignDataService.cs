@@ -12,5 +12,10 @@ namespace MvvmRar.Design
             var item = new DataItem("Welcome __ to MVVM Light [design]");
             callback(item, null);
         }
+        public void GetCompanies(Action<DataItem,Exception> callback)
+        {
+            var item = new DataItem("Welcome __ to MVVM Light [design]");
+            callback(item, null);
+        }
     }
 }
