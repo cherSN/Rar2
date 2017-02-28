@@ -1,5 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using MvvmRar.Model;
+using System.Collections.ObjectModel;
+using MvvmRar.Rar;
+using System;
 
 namespace MvvmRar.ViewModel
 {
@@ -13,28 +16,26 @@ namespace MvvmRar.ViewModel
     {
         private readonly IDataService _dataService;
 
-        /// <summary>
-        /// The <see cref="WelcomeTitle" /> property's name.
-        /// </summary>
-        public const string WelcomeTitlePropertyName = "WelcomeTitle";
+        private RarFormF6 _RarFile;
 
-        private string _welcomeTitle = string.Empty;
-
-        /// <summary>
-        /// Gets the WelcomeTitle property.
-        /// Changes to that property's value raise the PropertyChanged event. 
-        /// </summary>
-        public string WelcomeTitle
+        public DateTime DocumentDate
         {
             get
             {
-                return _welcomeTitle;
+                return _RarFile.DocumentDate;
             }
+
             set
             {
-                Set(ref _welcomeTitle, value);
+                _RarFile.DocumentDate = value;
+                RaisePropertyChanged("DocumentDate");
             }
         }
+
+        public ObservableCollection<RarCompany> BuyersList { set; get; }
+
+
+
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -42,8 +43,8 @@ namespace MvvmRar.ViewModel
         public MainViewModel(IDataService dataService)
         {
             _dataService = dataService;
-            _dataService.GetData(
-                (item, error) =>
+            _dataService.GetCompanies(
+                (list, error) =>
                 {
                     if (error != null)
                     {
@@ -51,7 +52,7 @@ namespace MvvmRar.ViewModel
                         return;
                     }
 
-                    WelcomeTitle = item.Title;
+                    BuyersList = new ObservableCollection<RarCompany>(list);
                 });
         }
 
