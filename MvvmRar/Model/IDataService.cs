@@ -8,7 +8,7 @@ namespace MvvmRar.Model
 {
     public interface IDataService
     {
-        void GetData(Action<DataItem, Exception> callback);
-        void GetCompanies(Action<List<RarCompany>, Exception> callback);
+        void GetData(Action<RarFormF6, Exception> callback);
+        //void GetCompanies(Action<List<RarCompany>, Exception> callback);
     }
 }

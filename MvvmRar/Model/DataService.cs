@@ -13,22 +13,14 @@ namespace MvvmRar.Model
             RarFormF6Data = new Rar.RarFormF6();
         }
 
-        public void GetData(Action<DataItem, Exception> callback)
+        public void GetData(Action<RarFormF6, Exception> callback)
         {
-            // Use this to connect to the actual data service
-
-            var item = new DataItem("Welcome to MVVM Light");
-            callback(item, null);
+            callback(RarFormF6Data, null);
         }
-        public void GetCompanies(Action<List<RarCompany>, Exception> callback)
-        {
-            //            List<RarCompany> buyersList = RarFormF6Data.BuyersList;
-            List<RarCompany> buyersList = new List<RarCompany>();
-            buyersList.Add(new RarCompany() { Name = "ООО Одуванчик", CounryID = "643", INN = "7701010101", KPP = "770101011" });
-            buyersList.Add(new RarCompany() { Name = "ООО Ромашка", CounryID = "643", INN = "7701010102", KPP = "770101012" });
-            buyersList.Add(new RarCompany() { Name = "ООО василек", CounryID = "643", INN = "7701010103", KPP = "770101013" });
-
-            callback(buyersList, null);
-        }
+        //public void GetCompanies(Action<List<RarCompany>, Exception> callback)
+        //{
+        //    List<RarCompany> buyersList = RarFormF6Data.BuyersList;
+        //    callback(buyersList, null);
+        //}
     }
 }
