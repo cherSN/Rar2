@@ -108,14 +108,6 @@ namespace MvvmRar.Design
         {
             callback(RarFormF6Data, null);
         }
-        //public void GetCompanies(Action<List<RarCompany>, Exception> callback)
-        //{
-        //    List<RarCompany> buyersList = new List<RarCompany>();
-        //    buyersList.Add(new RarCompany() { Name = "ООО Одуванчик1", CounryID = "643", INN = "7701010101", KPP = "770101011" });
-        //    buyersList.Add(new RarCompany() { Name = "ООО Ромашка1", CounryID = "643", INN = "7701010102", KPP = "770101012" });
-        //    buyersList.Add(new RarCompany() { Name = "ООО Василек1", CounryID = "643", INN = "7701010103", KPP = "770101013" });
-
-        //    callback(buyersList, null);
-        //}
+   
     }
 }

@@ -17,10 +17,6 @@ namespace MvvmRar.Model
         {
             callback(RarFormF6Data, null);
         }
-        //public void GetCompanies(Action<List<RarCompany>, Exception> callback)
-        //{
-        //    List<RarCompany> buyersList = RarFormF6Data.BuyersList;
-        //    callback(buyersList, null);
-        //}
+
     }
 }

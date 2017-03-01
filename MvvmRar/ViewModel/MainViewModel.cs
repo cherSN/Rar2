@@ -10,7 +10,6 @@ using System.Linq;
 
 namespace MvvmRar.ViewModel
 {
-
     public class MainViewModel : ViewModelBase
     {
 
@@ -20,7 +19,7 @@ namespace MvvmRar.ViewModel
 
         private RarFormF6 _RarFile;
         private ObservableCollection<string> alcoCodesList;
-        private ObservableCollection<RarCompany> buyersList;
+        private ObservableCollection<VMRarCompany> buyersList;
         private ObservableCollection<RarCompany> manufacturersList;
         private ObservableCollection<RarTurnoverData> turnoverDataList;
         private ListCollectionView turnoverDataListCollectionView;
@@ -128,7 +127,7 @@ namespace MvvmRar.ViewModel
                 alcoCodesList = value;
             }
         }
-        public ObservableCollection<RarCompany> BuyersList
+        public ObservableCollection<VMRarCompany> BuyersList
         {
             get
             {
@@ -228,17 +227,12 @@ namespace MvvmRar.ViewModel
                     _RarFile = data;
                 });
 
-            //AlcoCodesList = new ObservableCollection<string>(ParserF6.GetAlcoCodesListFromXSD());
-            //TurnoverDataList = new ObservableCollection<RarTurnoverData>(_RarFile.TurnoverDataList);
-            //BuyersList = new ObservableCollection<RarCompany>(_RarFile.BuyersList);
-            //ManufacturersList = new ObservableCollection<RarCompany>(_RarFile.ManufacturersList);
-            //SavingCompaniesList = new ObservableCollection<RarCompany>();
-
             TurnoverDataList = new ObservableCollection<RarTurnoverData>(_RarFile.TurnoverDataList);
             //_RarFile.BuyersList.Sort( (s1, s2) => String.Compare(s1.Name, s2.Name) );
             _RarFile.BuyersList.Sort((s1, s2) => SortStringsAsNumbers(s1.ID, s2.ID));
 
-            BuyersList = new ObservableCollection<RarCompany>(_RarFile.BuyersList);
+            List<VMRarCompany> cmplst = _RarFile.BuyersList.Select(s => new VMRarCompany(s)).ToList();
+            BuyersList = new ObservableCollection<VMRarCompany>(cmplst);
 
             ManufacturersList = new ObservableCollection<RarCompany>(_RarFile.ManufacturersList);
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MvvmRar.Rar
 {
-    public class RarCompany
+    public class RarCompany: IRarCompany
     {
         #region - Public Properties -
         public string ID { set; get; }

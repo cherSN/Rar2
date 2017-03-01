@@ -23,5 +23,19 @@ namespace MvvmRar.Rar.Tests
             //Assert
             Assert.AreEqual("Surname Name Midlename", result);
         }
+
+        [TestMethod()]
+        public void RarFIOTest()
+        {
+            // arrange
+            RarFIO rarFIO = new RarFIO(null, null, null);
+            // act
+
+            //Assert
+
+            Assert.IsNull(rarFIO.Name);
+            Assert.IsNull(rarFIO.Middlename);
+            Assert.IsNull(rarFIO.Name);
+        }
     }
 }
