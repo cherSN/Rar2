@@ -55,6 +55,7 @@
     <Compile Include="Rar\RarAdressTests.cs" />
     <Compile Include="Rar\RarCompanyTests.cs" />
     <Compile Include="Rar\RarFIOTests.cs" />
+    <Compile Include="Rar\RarLicenseTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvvmRar\MvvmRar.csproj">

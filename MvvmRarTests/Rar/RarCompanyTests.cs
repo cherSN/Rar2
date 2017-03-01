@@ -46,6 +46,27 @@ namespace MvvmRar.Rar.Tests
         }
 
         [TestMethod()]
+        public void RarCompanyTestCopyConstructor()
+        {
+            // arrange
+            RarAdress adress = new RarAdress();
+            RarCompany companyOrigin = new RarCompany("ID", "NAME", "INN", "KPP", adress);
+            // act
+            RarCompany company = new RarCompany(companyOrigin);
+
+            //Assert
+            Assert.AreEqual("ID", company.ID, "ID");
+            Assert.AreEqual("NAME", company.Name, "Name");
+            Assert.AreEqual("INN", company.INN, "INN");
+            Assert.AreEqual("KPP", company.KPP, "KPP");
+            Assert.AreEqual(false, company.IsUsed, "Is used");
+            Assert.AreEqual(adress, company.Adress, "Adress");
+            Assert.AreEqual(companyOrigin.LicenseList, company.LicenseList, "LisenceList");
+
+ 
+        }
+
+        [TestMethod()]
         public void ToStringTest()
         {
             // arrange

@@ -51,5 +51,18 @@ namespace MvvmRar.Rar.Tests
             Assert.AreEqual("Name", rarFIO.Name, "Неверно инициализировано Name");
             Assert.AreEqual("Middlename", rarFIO.Middlename, "Неверно инициализировано Middlename");
         }
+        [TestMethod()]
+        public void RarFIOTestCopyConstructor()
+        {
+            // arrange
+            RarFIO rarFioOrigin = new RarFIO("Surname", "Name", "Middlename");
+            // act
+            RarFIO rarFio = new RarFIO(rarFioOrigin);
+            //Assert
+
+            Assert.AreEqual("Surname", rarFio.Surname, "Неверно инициализировано Surname");
+            Assert.AreEqual("Name", rarFio.Name, "Неверно инициализировано Name");
+            Assert.AreEqual("Middlename", rarFio.Middlename, "Неверно инициализировано Middlename");
+        }
     }
 }

@@ -78,6 +78,23 @@ namespace MvvmRar.Rar
             Litera = "";
             Apartment = "";
         }
+
+        public RarAdress(RarAdress adress)
+        {
+            CountryId = adress.CountryId;
+            PostCode = adress.PostCode;
+            RegionId = adress.RegionId;
+            District = adress.District;
+            City = adress.City;
+            Locality = adress.Locality;
+            Street = adress.Street;
+            Building = adress.Building;
+            Block = adress.Block;
+            Litera = adress.Litera;
+            Apartment = adress.Apartment;
+            StrictAdress = adress.StrictAdress;
+            AdressString = adress.AdressString;
+        }
         #endregion
         public override string ToString()
         {

@@ -42,6 +42,15 @@ namespace MvvmRar.Rar
             Adress = adress;
             LicenseList = new List<RarLicense>();
         }
+        public RarCompany(RarCompany company)
+        {
+            ID = company.ID;
+            Name = company.Name;
+            INN = company.INN;
+            KPP = company.KPP;
+            Adress = company.Adress;
+            LicenseList = company.LicenseList;
+        }
         #endregion
 
         public override string ToString() { return Name + " ИНН:" + INN + "; КПП:" + KPP; }

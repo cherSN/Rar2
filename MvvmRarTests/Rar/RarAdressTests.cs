@@ -28,8 +28,37 @@ namespace MvvmRar.Rar.Tests
             // arrange
             RarAdress adress = new RarAdress("Country", "PostCode", "RegionId", "District", 
                 "City", "Locality", "Street", "Building", "Block", "Litera", "Apartment");
+            adress.AdressString = "AdressString";
             // act
 
+            //Assert
+            Assert.AreEqual("Country", adress.CountryId, "Country");
+            Assert.AreEqual("PostCode", adress.PostCode, "PostCode");
+            Assert.AreEqual("RegionId", adress.RegionId, "RegionId");
+            Assert.AreEqual("District", adress.District, "District");
+            Assert.AreEqual("City", adress.City, "City");
+            Assert.AreEqual("Locality", adress.Locality, "Locality");
+            Assert.AreEqual("Street", adress.Street, "Street");
+            Assert.AreEqual("Building", adress.Building, "Building");
+            Assert.AreEqual("Block", adress.Block, "Block");
+            Assert.AreEqual("Litera", adress.Litera, "Litera");
+            Assert.AreEqual("Apartment", adress.Apartment, "Apartment");
+            Assert.IsTrue(adress.StrictAdress, "StrictAdress");
+            Assert.AreEqual("AdressString", adress.AdressString, "AdressString");
+
+
+
+
+        }
+
+        [TestMethod()]
+        public void RarAdressTestCopyConstructor()
+        {
+            // arrange
+            RarAdress adressOrigin = new RarAdress("Country", "PostCode", "RegionId", "District",
+                "City", "Locality", "Street", "Building", "Block", "Litera", "Apartment");
+            // act
+            RarAdress adress = new RarAdress(adressOrigin);
             //Assert
             Assert.AreEqual("Country", adress.CountryId, "Country");
             Assert.AreEqual("PostCode", adress.PostCode, "PostCode");

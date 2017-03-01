@@ -14,12 +14,24 @@ namespace MvvmRar.Rar
         public string Middlename { set; get; }
         #endregion
         #region - Constructors -
-        public RarFIO() { }
+        public RarFIO()
+        {
+            Name = "";
+            Surname = "";
+            Middlename = "";
+        }
         public RarFIO( string surname, string name, string middlename)
         {
             Name = name;
             Surname = surname;
             Middlename = middlename;
+        }
+
+        public RarFIO(RarFIO fio)
+        {
+            Name = fio.Name;
+            Surname = fio.Surname;
+            Middlename = fio.Middlename;
         }
         #endregion
 

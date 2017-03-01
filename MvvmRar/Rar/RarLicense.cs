@@ -19,14 +19,25 @@ namespace MvvmRar.Rar
 
         public RarLicense()
         {
-            ID = "";
-            SeriesNumber = "";
-            Issuer = "";
-            BusinesType = "";
-            DateFrom = DateTime.Now;
-            DateTo = DateTime.Now;
+            //ID = "";
+            //SeriesNumber = "";
+            //Issuer = "";
+            //BusinesType = "";
+            //DateFrom = DateTime.Now;
+            //DateTo = DateTime.Now;
 
         }
+
+        public RarLicense(RarLicense license)
+        {
+            ID = license.ID;
+            SeriesNumber = license.SeriesNumber;
+            Issuer = license.Issuer;
+            BusinesType = license.BusinesType;
+            DateFrom = license.DateFrom;
+            DateTo = license.DateTo;
+        }
+
         public override string ToString()
         {
             return SeriesNumber + "; " + DateFrom.ToShortDateString() + "-" + DateTo.ToShortDateString();
