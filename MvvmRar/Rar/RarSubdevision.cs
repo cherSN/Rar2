@@ -13,15 +13,29 @@ namespace MvvmRar.Rar
         public string KPP { set; get; }
         public RarAdress Adress { set; get; }
         #endregion
+
         #region - Constructor -
         public RarSubdevision()
         {
-            Adress = new RarAdress("");
+            Adress = new RarAdress();
         }
+        public RarSubdevision(string name, string kpp, RarAdress adress)
+        {
+            Name = name;
+            KPP = kpp;
+            Adress = adress;
+        }
+        public RarSubdevision(RarSubdevision subdevision)
+        {
+            Name = subdevision.Name;
+            KPP = subdevision.KPP;
+            Adress = subdevision.Adress;
+        }
+
         #endregion
         public override string ToString()
         {
-            return Name + " КПП: " + KPP + " " + Adress.ToString();
+            return Name + " КПП:" + KPP;
         }
     }
 }

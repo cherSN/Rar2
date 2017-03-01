@@ -17,6 +17,7 @@ namespace MvvmRar.Rar
         public string BusinesType { set; get; }
         #endregion
 
+        #region - Public Constructor - 
         public RarLicense()
         {
             //ID = "";
@@ -25,7 +26,6 @@ namespace MvvmRar.Rar
             //BusinesType = "";
             //DateFrom = DateTime.Now;
             //DateTo = DateTime.Now;
-
         }
 
         public RarLicense(RarLicense license)
@@ -36,7 +36,8 @@ namespace MvvmRar.Rar
             BusinesType = license.BusinesType;
             DateFrom = license.DateFrom;
             DateTo = license.DateTo;
-        }
+        } 
+        #endregion
 
         public override string ToString()
         {
