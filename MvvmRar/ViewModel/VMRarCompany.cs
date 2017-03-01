@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MvvmRar.Rar;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace MvvmRar.ViewModel
 {
@@ -14,9 +15,12 @@ namespace MvvmRar.ViewModel
 
         public VMRarCompany(RarCompany company) : base()
         {
-            Name = company.Name;
-            INN = company.INN;
-            KPP = company.KPP;
+            var properties = GetType().GetProperties().Select(prop => new { prop.Name, Value = prop.GetValue(company) });
+            foreach (var item in properties)
+            {
+                PropertyInfo pi = this.GetType().GetProperty((string)item.Name);
+                pi.SetValue(this, item.Value);
+            }
         }
 
 

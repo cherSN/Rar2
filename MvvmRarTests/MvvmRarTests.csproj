@@ -52,6 +52,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rar\RarAdressTests.cs" />
+    <Compile Include="Rar\RarCompanyTests.cs" />
     <Compile Include="Rar\RarFIOTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -25,19 +25,66 @@ namespace MvvmRar.Rar
         public string AdressString { set; get; }
         #endregion
         #region - Constructors -
-        public RarAdress() { }
+        public RarAdress()
+        {
+            CountryId = "";
+            PostCode = "";
+            RegionId = "";
+            District = "";
+            City = "";
+            Locality = "";
+            Street = "";
+            Building = "";
+            Block = "";
+            Litera = "";
+            Apartment = "";
+            StrictAdress = false;
+            AdressString = "";
+        }
+
+        public RarAdress(string countryId, string postCode, string regionId, string district,
+            string city , string locality, string street, string building,
+            string block, string litera, string apartment)
+        {
+            CountryId = countryId ?? "";
+            PostCode = postCode ?? "";
+            RegionId = regionId ?? "";
+            District = district ?? "";
+            City = city ?? "";
+            Locality = locality ?? "";
+            Street = street ?? "";
+            Building = building ?? "";
+            Block = block ?? "";
+            Litera = litera ?? "";
+            Apartment = apartment ?? "";
+            StrictAdress = true;
+            AdressString = "";
+        }
+
         public RarAdress(string adress)
         {
             StrictAdress = false;
             AdressString = adress;
+
+            CountryId = "";
+            PostCode = "";
+            RegionId = "";
+            District = "";
+            City = "";
+            Locality = "";
+            Street = "";
+            Building = "";
+            Block = "";
+            Litera = "";
+            Apartment = "";
         }
         #endregion
         public override string ToString()
         {
             if (StrictAdress)
             {
-                return CountryId + "," + PostCode + "," + RegionId + "," + District + "," +
-                City + "," + Locality + "," + Street + "," + Building + "," + Block + "," + Litera + "," + Apartment;
+                return CountryId + ", " + PostCode + ", " + RegionId + ", " + District + ", " +
+                City + ", " + Locality + ", " + Street + ", " + Building + ", " + Block + ", " + Litera + ", " + Apartment;
             }
             else
             {

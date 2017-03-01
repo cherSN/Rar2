@@ -17,15 +17,15 @@ namespace MvvmRar.Rar.Tests
         public void ToStringTest()
         {
             // arrange
-            RarFIO rarFIO = new RarFIO("Surname", "Name", "Midlename");
+            RarFIO rarFIO = new RarFIO("Surname", "Name", "Middlename");
             // act
             string result = rarFIO.ToString();
             //Assert
-            Assert.AreEqual("Surname Name Midlename", result);
+            Assert.AreEqual("Surname Name Middlename", result);
         }
 
         [TestMethod()]
-        public void RarFIOTest()
+        public void RarFIOTestNullArguments()
         {
             // arrange
             RarFIO rarFIO = new RarFIO(null, null, null);
@@ -36,6 +36,20 @@ namespace MvvmRar.Rar.Tests
             Assert.IsNull(rarFIO.Name);
             Assert.IsNull(rarFIO.Middlename);
             Assert.IsNull(rarFIO.Name);
+        }
+
+        [TestMethod()]
+        public void RarFIOTest()
+        {
+            // arrange
+            RarFIO rarFIO = new RarFIO("Surname", "Name", "Middlename");
+            // act
+
+            //Assert
+
+            Assert.AreEqual("Surname", rarFIO.Surname,"Неверно инициализировано Surname");
+            Assert.AreEqual("Name", rarFIO.Name, "Неверно инициализировано Name");
+            Assert.AreEqual("Middlename", rarFIO.Middlename, "Неверно инициализировано Middlename");
         }
     }
 }

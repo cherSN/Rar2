@@ -291,7 +291,7 @@ namespace MvvmRar.ViewModel
                 if ((Inn.Length != 10) || (Kpp.Length != 9)) continue;
                 if (IsInnValid(Inn) && IsKppValid(Kpp))
                 {
-                    company.CounryID = "643";
+                    company.Adress.CountryId = "643";
                     company.Adress.RegionId = "77";
                 }
 

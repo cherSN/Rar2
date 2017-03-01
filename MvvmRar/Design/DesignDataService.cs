@@ -22,9 +22,9 @@ namespace MvvmRar.Design
             RarFormF6Data.OurCompany.Name = "Наша фирма";
 
             RarFormF6Data.BuyersList.Clear();
-            RarCompany buyer1 = new RarCompany() { Name = "ООО Одуванчик", CounryID = "643", INN = "7701010101", KPP = "770101011" };
-            RarCompany buyer2 = new RarCompany() { Name = "ООО Ромашка", CounryID = "643", INN = "7701010102", KPP = "770101012" };
-            RarCompany buyer3 = new RarCompany() { Name = "ООО Василек", CounryID = "643", INN = "7701010103", KPP = "770101013" };
+            RarCompany buyer1 = new RarCompany() { Name = "ООО Одуванчик",  INN = "7701010101", KPP = "770101011" };
+            RarCompany buyer2 = new RarCompany() { Name = "ООО Ромашка", INN = "7701010102", KPP = "770101012" };
+            RarCompany buyer3 = new RarCompany() { Name = "ООО Василек",  INN = "7701010103", KPP = "770101013" };
             RarFormF6Data.BuyersList.Add(buyer1);
             RarFormF6Data.BuyersList.Add(buyer2);
             RarFormF6Data.BuyersList.Add(buyer3);

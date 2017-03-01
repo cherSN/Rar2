@@ -16,7 +16,7 @@ namespace MvvmRar.Rar
         #region - Constructor -
         public RarSubdevision()
         {
-            Adress = new RarAdress();
+            Adress = new RarAdress("");
         }
         #endregion
         public override string ToString()
