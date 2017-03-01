@@ -16,6 +16,17 @@ namespace MvvmRar.Rar
         public string Issuer { set; get; }
         public string BusinesType { set; get; }
         #endregion
+
+        public RarLicense()
+        {
+            ID = "";
+            SeriesNumber = "";
+            Issuer = "";
+            BusinesType = "";
+            DateFrom = DateTime.Now;
+            DateTo = DateTime.Now;
+
+        }
         public override string ToString()
         {
             return SeriesNumber + "; " + DateFrom.ToShortDateString() + "-" + DateTo.ToShortDateString();

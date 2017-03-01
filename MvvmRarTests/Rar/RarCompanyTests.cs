@@ -23,7 +23,7 @@ namespace MvvmRar.Rar.Tests
             Assert.IsTrue(company.KPP != null);
             Assert.AreEqual(false, company.IsUsed, "Is used");
             Assert.IsNotNull(company.Adress);
-            Assert.IsNotNull(company.LicensesList);
+            Assert.IsNotNull(company.LicenseList);
 
         }
 
@@ -42,7 +42,7 @@ namespace MvvmRar.Rar.Tests
             Assert.AreEqual("KPP", company.KPP, "KPP");
             Assert.AreEqual(false, company.IsUsed, "Is used");
             Assert.IsNotNull(company.Adress,"Adress");
-            Assert.IsNotNull(company.LicensesList, "LicensesList");
+            Assert.IsNotNull(company.LicenseList, "LicensesList");
         }
 
         [TestMethod()]

@@ -17,7 +17,7 @@ namespace MvvmRar.Rar
         public bool IsUsed { set; get; }
 
         public RarAdress Adress { set; get; }
-        public List<RarLicense> LicensesList { set; get; }
+        public List<RarLicense> LicenseList { set; get; }
         #endregion
 
         #region - Constructors -
@@ -30,7 +30,7 @@ namespace MvvmRar.Rar
             IsUsed = false;
 
             Adress = new RarAdress();
-            LicensesList = new List<RarLicense>();
+            LicenseList = new List<RarLicense>();
         }
         public RarCompany(string id, string name, string inn, string kpp, RarAdress adress) 
         {
@@ -40,7 +40,7 @@ namespace MvvmRar.Rar
             KPP = kpp;
             IsUsed = false;
             Adress = adress;
-            LicensesList = new List<RarLicense>();
+            LicenseList = new List<RarLicense>();
         }
         #endregion
 
