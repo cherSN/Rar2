@@ -19,7 +19,7 @@ namespace MvvmRar.ViewModel
 
         private RarFormF6 _RarFile;
         private ObservableCollection<string> alcoCodesList;
-        private ObservableCollection<VMRarCompany> buyersList;
+        private ObservableCollection<RarCompany> buyersList;
         private ObservableCollection<RarCompany> manufacturersList;
         private ObservableCollection<RarTurnoverData> turnoverDataList;
         private ListCollectionView turnoverDataListCollectionView;
@@ -127,7 +127,7 @@ namespace MvvmRar.ViewModel
                 alcoCodesList = value;
             }
         }
-        public ObservableCollection<VMRarCompany> BuyersList
+        public ObservableCollection<RarCompany> BuyersList
         {
             get
             {
@@ -231,8 +231,9 @@ namespace MvvmRar.ViewModel
             //_RarFile.BuyersList.Sort( (s1, s2) => String.Compare(s1.Name, s2.Name) );
             _RarFile.BuyerList.Sort((s1, s2) => SortStringsAsNumbers(s1.ID, s2.ID));
 
-            List<VMRarCompany> cmplst = _RarFile.BuyerList.Select(s => new VMRarCompany(s)).ToList();
-            BuyersList = new ObservableCollection<VMRarCompany>(cmplst);
+            //List<VMRarCompany> cmplst = _RarFile.BuyerList.Select(s => new VMRarCompany(s)).ToList();
+            //BuyersList = new ObservableCollection<VMRarCompany>(cmplst);
+            BuyersList = new ObservableCollection<RarCompany>(_RarFile.BuyerList);
 
             ManufacturersList = new ObservableCollection<RarCompany>(_RarFile.ManufacturerList);
 
