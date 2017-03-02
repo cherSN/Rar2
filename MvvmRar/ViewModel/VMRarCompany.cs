@@ -13,14 +13,14 @@ namespace MvvmRar.ViewModel
     {
         public VMRarCompany() : base() { }
 
-        public VMRarCompany(RarCompany company) : base()
+        public VMRarCompany(RarCompany company) : base(company)
         {
-            var properties = GetType().GetProperties().Select(prop => new { prop.Name, Value = prop.GetValue(company) });
-            foreach (var item in properties)
-            {
-                PropertyInfo pi = this.GetType().GetProperty((string)item.Name);
-                pi.SetValue(this, item.Value);
-            }
+            //var properties = GetType().GetProperties().Select(prop => new { prop.Name, Value = prop.GetValue(company) });
+            //foreach (var item in properties)
+            //{
+            //    PropertyInfo pi = this.GetType().GetProperty((string)item.Name);
+            //    pi.SetValue(this, item.Value);
+            //}
         }
 
 

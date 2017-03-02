@@ -23,6 +23,7 @@ namespace MvvmRar.Rar
             Accountant = new RarFIO();
             SubdevisionList = new List<RarSubdevision>();
         }
+
         #endregion
     }
 }

@@ -17,25 +17,17 @@ namespace MvvmRar.Rar
         public string YearReport { set; get; }
         public string CorrectionNumber { set; get; }
         public RarOurCompany OurCompany { set; get; }
-        public List<RarCompany> BuyersList { set; get; }
-        public List<RarCompany> ManufacturersList { set; get; }
+        public List<RarCompany> BuyerList { set; get; }
+        public List<RarCompany> ManufacturerList { set; get; }
         public List<RarTurnoverData> TurnoverDataList { set; get; }
         #endregion
         #region - Constructor -
         public RarFormF6()
         {
             OurCompany = new RarOurCompany();
-            BuyersList = new List<RarCompany>();
-            ManufacturersList = new List<RarCompany>();
+            BuyerList = new List<RarCompany>();
+            ManufacturerList = new List<RarCompany>();
             TurnoverDataList = new List<RarTurnoverData>();
-
-            DocumentDate = DateTime.Now;
-            Version = "NoVersion";
-            ProgramName = "NoProgramName";
-            FormNumber = "NoFormNumber";
-            ReportPeriod = "No";
-            YearReport = "No";
-            CorrectionNumber = "";
         }
         #endregion
 

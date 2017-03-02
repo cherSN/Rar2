@@ -30,6 +30,22 @@ namespace MvvmRar.Rar
             Buyer = new RarCompany();
             License = new RarLicense();
         }
+
+        public RarTurnoverData(RarTurnoverData turnoverData)
+        {
+            AlcoCode = turnoverData.AlcoCode;
+            NotificationDate = turnoverData.NotificationDate;
+            NotificationNumber = turnoverData.NotificationNumber;
+            NotificationTurnover = turnoverData.NotificationTurnover;
+            DocumentDate = turnoverData.DocumentDate;
+            DocumentNumber = turnoverData.DocumentNumber;
+            CustomsDeclarationNumber = turnoverData.CustomsDeclarationNumber;
+            Turnover = turnoverData.Turnover;
+            Subdevision = turnoverData.Subdevision;
+            Manufacturer = turnoverData.Manufacturer;
+            Buyer = turnoverData.Buyer;
+            License = turnoverData.License;
+        }
         #endregion
     }
 }

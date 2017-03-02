@@ -51,12 +51,17 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Model\DataServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rar\RarAdressTests.cs" />
     <Compile Include="Rar\RarCompanyTests.cs" />
     <Compile Include="Rar\RarFIOTests.cs" />
+    <Compile Include="Rar\RarFormF6Tests.cs" />
     <Compile Include="Rar\RarLicenseTests.cs" />
+    <Compile Include="Rar\RarOurCompanyTests.cs" />
     <Compile Include="Rar\RarSubdevisionTests.cs" />
+    <Compile Include="Rar\RarTurnoverDataTests.cs" />
+    <Compile Include="ViewModel\VMRarCompanyTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvvmRar\MvvmRar.csproj">

@@ -229,12 +229,12 @@ namespace MvvmRar.ViewModel
 
             TurnoverDataList = new ObservableCollection<RarTurnoverData>(_RarFile.TurnoverDataList);
             //_RarFile.BuyersList.Sort( (s1, s2) => String.Compare(s1.Name, s2.Name) );
-            _RarFile.BuyersList.Sort((s1, s2) => SortStringsAsNumbers(s1.ID, s2.ID));
+            _RarFile.BuyerList.Sort((s1, s2) => SortStringsAsNumbers(s1.ID, s2.ID));
 
-            List<VMRarCompany> cmplst = _RarFile.BuyersList.Select(s => new VMRarCompany(s)).ToList();
+            List<VMRarCompany> cmplst = _RarFile.BuyerList.Select(s => new VMRarCompany(s)).ToList();
             BuyersList = new ObservableCollection<VMRarCompany>(cmplst);
 
-            ManufacturersList = new ObservableCollection<RarCompany>(_RarFile.ManufacturersList);
+            ManufacturersList = new ObservableCollection<RarCompany>(_RarFile.ManufacturerList);
 
             TurnoverDataListCollectionView = new ListCollectionView(TurnoverDataList);
             //TurnoverDataListCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Subdevision"));
