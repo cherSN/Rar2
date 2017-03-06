@@ -20,14 +20,13 @@ namespace MvvmRar.Rar.Tests
         public RarFormF6FormatterTests()
         {
             Type type = Type.GetType("MvvmRar.Rar.Tests.RarFormF6FormatterTests", false);
-            XDocument xdoc;
-            using (Stream str = type.Assembly.GetManifestResourceStream("MvvmRar.Rar.Resources.D6_Test.xml"))
+            using (Stream str = type.Assembly.GetManifestResourceStream("MvvmRar.Rar.Tests.Resources.D6_Test.xml"))
             {
-                //using (XmlReader reader = new XmlTextReader(str))
-                //{
-                //    //string xsdForm6 = Rar.Model.Properties.Resources.xsd_F6_010117;
-                //    xdoc = XDocument.Load(reader);
-                //}
+                using (XmlReader reader = new XmlTextReader(str))
+                {
+                    //string xsdForm6 = Rar.Model.Properties.Resources.xsd_F6_010117;
+                    xdoc = XDocument.Load(reader);
+                }
             }
 
         }
