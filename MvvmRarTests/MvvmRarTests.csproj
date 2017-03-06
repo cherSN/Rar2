@@ -44,7 +44,9 @@
       <HintPath>..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -64,6 +66,7 @@
     <Compile Include="Rar\RarAdressTests.cs" />
     <Compile Include="Rar\RarCompanyTests.cs" />
     <Compile Include="Rar\RarFIOTests.cs" />
+    <Compile Include="Rar\RarFormF6FormatterTests.cs" />
     <Compile Include="Rar\RarFormF6Tests.cs" />
     <Compile Include="Rar\RarLicenseTests.cs" />
     <Compile Include="Rar\RarOurCompanyTests.cs" />
@@ -79,6 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Rar\Resources\D6_Test.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

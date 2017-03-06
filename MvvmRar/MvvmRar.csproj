@@ -82,6 +82,7 @@
     <Compile Include="Rar\RarCompany.cs" />
     <Compile Include="Rar\RarFIO.cs" />
     <Compile Include="Rar\RarFormF6.cs" />
+    <Compile Include="Rar\RarFormF6Formatter.cs" />
     <Compile Include="Rar\RarLicense.cs" />
     <Compile Include="Rar\RarOurCompany.cs" />
     <Compile Include="Rar\RarSubdevision.cs" />
@@ -124,6 +125,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Model\Resources\f6_010117.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Model\Resources\import_contr.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Model\Resources\import_decl_11.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
