@@ -50,11 +50,13 @@ namespace MvvmRar.Model.Tests
         //public void GetDataTest1()
         //{
 
-
-
+        //    // arrange
+        //    RarFormF6 f6 = new RarFormF6();
 
         //    Mock<IDataService> mockDataService = new Mock<IDataService>();
+
         //    mockDataService.Setup(m => m.GetData(It.IsAny<Action<RarFormF6, Exception>>()));
+        //    //mock.Setup(foo => foo.Name).Returns("bar");
         //    //mock.Setup(m => m.ApplyDiscount(It.IsAny<decimal>())).Returns<decimal>(total => total);
 
         //    RarFormF6 result1 = new RarFormF6();
@@ -66,10 +68,10 @@ namespace MvvmRar.Model.Tests
         //              result1 = data;
         //              result2 = error;
         //          });
-            
+
         //    //Assert
         //    //Assert.AreSame(mockDataService.RarFormF6Data, result1, "RarFormF6");
         //    //Assert.IsNull(result2, "Exception");
-        //}
+        //    //}
+        }
     }
-}
