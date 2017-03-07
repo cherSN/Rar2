@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -19,6 +20,10 @@ namespace MvvmRar.Rar.Tests
 
         public RarFormF6FormatterTests()
         {
+            Assembly assembly= Assembly.GetExecutingAssembly();
+            Stream st = assembly.GetManifestResourceStream("MvvmRarTest.Rar.Resources.D6_Test.xml");
+
+
             Type type = Type.GetType("MvvmRar.Rar.Tests.RarFormF6FormatterTests", false);
             using (Stream str = type.Assembly.GetManifestResourceStream("MvvmRar.Rar.Tests.Resources.D6_Test.xml"))
             {
