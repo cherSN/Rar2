@@ -79,6 +79,7 @@
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Model\IDataService.cs" />
     <Compile Include="Rar\RarAdress.cs" />
+    <Compile Include="Rar\RarCompaniesFormatter.cs" />
     <Compile Include="Rar\RarCompany.cs" />
     <Compile Include="Rar\RarFIO.cs" />
     <Compile Include="Rar\RarFormF6.cs" />

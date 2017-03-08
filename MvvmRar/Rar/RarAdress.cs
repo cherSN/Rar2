@@ -41,7 +41,24 @@ namespace MvvmRar.Rar
             StrictAdress = false;
             AdressString = "";
         }
-
+        public RarAdress(string countryId, string postCode, string regionId, string district,
+            string city, string locality, string street, string building,
+            string block, string litera, string apartment)
+        {
+            CountryId = countryId ?? "";
+            PostCode = postCode ?? "";
+            RegionId = regionId ?? "";
+            District = district ?? "";
+            City = city ?? "";
+            Locality = locality ?? "";
+            Street = street ?? "";
+            Building = building ?? "";
+            Block = block ?? "";
+            Litera = litera ?? "";
+            Apartment = apartment ?? "";
+            StrictAdress = true;
+            AdressString = "";
+        }
         public RarAdress(string adress)
         {
             StrictAdress = false;

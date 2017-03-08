@@ -45,15 +45,12 @@ namespace MvvmRar.Rar.Tests
                         new XAttribute("НомФорм", "6.1"),
                         new XAttribute("ПризПериодОтч", "0"),
                         new XAttribute("ГодПериодОтч", "2015")
-                    
                     )
-
-                
                 );
             RarFormF6 formF6 = new RarFormF6();
-            privateObject.Invoke("SetupHeader", el, formF6);
+            privateObject.Invoke("SetupRootAttribute", el, formF6);
 
-            Assert.Fail();
+            Assert.AreEqual("1СProgram", formF6.ProgramName, "ProgrameName");
         }
         [TestMethod()]
         public void RarFormF6FormatterTestSetupHeader()
