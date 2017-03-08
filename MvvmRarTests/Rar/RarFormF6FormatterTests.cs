@@ -21,20 +21,13 @@ namespace MvvmRar.Rar.Tests
         public RarFormF6FormatterTests()
         {
             Assembly assembly= Assembly.GetExecutingAssembly();
-            Stream st = assembly.GetManifestResourceStream("MvvmRarTest.Rar.Resources.D6_Test.xml");
-
-
-            Type type = Type.GetType("MvvmRar.Rar.Tests.RarFormF6FormatterTests", false);
-            using (Stream str = type.Assembly.GetManifestResourceStream("MvvmRar.Rar.Tests.Resources.D6_Test.xml"))
+            using (Stream str = assembly.GetManifestResourceStream("MvvmRarTests.Resources.D6_Test2.xml")) //Должен быть внедренным
             {
-                using (XmlReader reader = new XmlTextReader(str))
-                {
-                    //string xsdForm6 = Rar.Model.Properties.Resources.xsd_F6_010117;
-                    xdoc = XDocument.Load(reader);
-                }
+                xdoc = XDocument.Load(str);
             }
 
         }
+
 
         [TestMethod()]
         public void RarFormF6FormatterTest()
@@ -59,6 +52,13 @@ namespace MvvmRar.Rar.Tests
                 );
             RarFormF6 formF6 = new RarFormF6();
             privateObject.Invoke("SetupHeader", el, formF6);
+
+            Assert.Fail();
+        }
+        [TestMethod()]
+        public void RarFormF6FormatterTestSetupHeader()
+        {
+
 
             Assert.Fail();
         }
