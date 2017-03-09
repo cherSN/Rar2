@@ -84,10 +84,10 @@ namespace MvvmRar.ViewModel
         }
         public string YearReport
         {
-            get { return _RarFile.YearReport; }
+            get { return _RarFile.ReportYear; }
             set
             {
-                _RarFile.YearReport = value;
+                _RarFile.ReportYear = value;
                 RaisePropertyChanged("YearReport");
             }
         }

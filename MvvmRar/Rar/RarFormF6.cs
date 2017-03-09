@@ -14,7 +14,7 @@ namespace MvvmRar.Rar
         public string ProgramName { set; get; }
         public string FormNumber { set; get; }
         public string ReportPeriod { set; get; }
-        public string YearReport { set; get; }
+        public string ReportYear { set; get; }
         public string CorrectionNumber { set; get; }
         public RarOurCompany OurCompany { set; get; }
         public List<RarCompany> BuyerList { set; get; }

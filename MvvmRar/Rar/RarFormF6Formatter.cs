@@ -75,7 +75,7 @@ namespace MvvmRar.Rar
             //ФормаОтч
             formF6.FormNumber = (string)elm.Attribute("НомФорм");
             formF6.ReportPeriod = (string)elm.Attribute("ПризПериодОтч");
-            formF6.YearReport = (string)elm.Attribute("ГодПериодОтч");
+            formF6.ReportYear = (string)elm.Attribute("ГодПериодОтч");
 
             XElement corrections = elm.Element("Корректирующая");
             if (corrections == null) formF6.CorrectionNumber = "";
