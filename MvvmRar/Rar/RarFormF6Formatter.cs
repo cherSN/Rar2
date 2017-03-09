@@ -78,7 +78,7 @@ namespace MvvmRar.Rar
             formF6.ReportYear = (string)elm.Attribute("ГодПериодОтч");
 
             XElement corrections = elm.Element("Корректирующая");
-            if (corrections == null) formF6.CorrectionNumber = "";
+            if (corrections == null) formF6.CorrectionNumber = "0";
             else formF6.CorrectionNumber = (string)corrections.Attribute("НомерКорр");
         }
         private RarAdress SetupAdress(XElement adress)

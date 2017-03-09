@@ -30,7 +30,7 @@ namespace MvvmRar.Rar.Tests
 
 
         [TestMethod()]
-        public void RarFormF6FormatterTestSetupRootAttribute()
+        public void RarFormF6FormatterTest_SetupRootAttribute()
         {
             // arrange
             string str = 
@@ -49,17 +49,67 @@ namespace MvvmRar.Rar.Tests
             string resultProgramName = formF6.ProgramName;
  
             //assert
-            Assert.AreEqual(DateTime.Parse("23.01.2017"), resultDateDoc, "resultDateDoc");
-            Assert.AreEqual("4.31", resultVersion, "resultVersion");
+            Assert.AreEqual(DateTime.Parse("23.01.2017"), resultDateDoc, "DateDoc");
+            Assert.AreEqual("4.31", resultVersion, "Version");
             Assert.AreEqual("1С: ПРЕДПРИЯТИЕ 8.3 УТ 11.2.3.203", resultProgramName, "ProgrameName");
 
         }
         [TestMethod()]
-        public void RarFormF6FormatterTestSetupHeader()
+        public void RarFormF6FormatterTest_SetupReportParametersPrimary()
         {
+            // arrange
+            string str =
+            @"<ФормаОтч НомФорм=""06"" ПризПериодОтч=""0"" ГодПериодОтч=""2016"">
+                  <Первичная/>
+              </ФормаОтч>";
+            XElement el = XDocument.Parse(str).Root;
 
+            RarFormF6Formatter f6formatter = new RarFormF6Formatter();
+            var privateObject = new PrivateObject(f6formatter);
 
-            Assert.Fail();
+            RarFormF6 formF6 = new RarFormF6();
+            //act
+            privateObject.Invoke("SetupReportParameters", el, formF6);
+
+            string resultFormNumber = formF6.FormNumber;
+            string resultReportPeriod = formF6.ReportPeriod;
+            string resultReportYear = formF6.ReportYear;
+            string resultCorrectionNumber = formF6.CorrectionNumber;
+
+            //assert
+            Assert.AreEqual("06", resultFormNumber, "FormNumber");
+            Assert.AreEqual("0", resultReportPeriod, "ReportPeriod");
+            Assert.AreEqual("2016", resultReportYear, "ReportYear");
+            Assert.AreEqual("0", resultCorrectionNumber, "CorrectionNumber");
+        }
+        [TestMethod()]
+        public void RarFormF6FormatterTest_SetupReportParametersAdjustment()
+        {
+            // arrange
+            string str =
+            @"<ФормаОтч НомФорм=""06"" ПризПериодОтч=""0"" ГодПериодОтч=""2016"">
+                  <Корректирующая НомерКорр=""21""/>
+              </ФормаОтч>";
+            XElement el = XDocument.Parse(str).Root;
+
+            RarFormF6Formatter f6formatter = new RarFormF6Formatter();
+            var privateObject = new PrivateObject(f6formatter);
+
+            RarFormF6 formF6 = new RarFormF6();
+            //act
+            privateObject.Invoke("SetupReportParameters", el, formF6);
+
+            string resultFormNumber = formF6.FormNumber;
+            string resultReportPeriod = formF6.ReportPeriod;
+            string resultReportYear = formF6.ReportYear;
+            string resultCorrectionNumber = formF6.CorrectionNumber;
+
+            //assert
+            Assert.AreEqual("06", resultFormNumber, "FormNumber");
+            Assert.AreEqual("0", resultReportPeriod, "ReportPeriod");
+            Assert.AreEqual("2016", resultReportYear, "ReportYear");
+            Assert.AreEqual("21", resultCorrectionNumber, "CorrectionNumber");
+
         }
 
         [TestMethod()]
