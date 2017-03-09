@@ -118,17 +118,6 @@ namespace MvvmRar.Rar.Tests
             Assert.Fail();
         }
 
-        [TestMethod()]
-        public void DeserializeTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void SaveCompaniesTest()
-        {
-            Assert.Fail();
-        }
 
         [TestMethod()]
         public void SaveTurnoverDataTest()
