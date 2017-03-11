@@ -85,17 +85,17 @@ namespace MvvmRar.Rar
         {
             RarAdress adr = new RarAdress();
             adr.StrictAdress = true;
-            adr.CountryId = (string)adress.Element("КодСтраны");
-            adr.PostCode = (string)adress.Element("Индекс");
-            adr.RegionId = (string)adress.Element("КодРегион");
-            adr.District = (string)adress.Element("Район");
-            adr.City = (string)adress.Element("Город");
-            adr.Locality = (string)adress.Element("НаселПункт");
-            adr.Street = (string)adress.Element("Улица");
-            adr.Building = (string)adress.Element("Дом");
-            adr.Block = (string)adress.Element("Корпус");
-            adr.Litera = (string)adress.Element("Литера");
-            adr.Apartment = (string)adress.Element("Кварт");
+            adr.CountryId = ((string)adress.Element("КодСтраны")).Trim();
+            adr.PostCode = ((string)adress.Element("Индекс")).Trim();
+            adr.RegionId = ((string)adress.Element("КодРегион")).Trim();
+            adr.District = ((string)adress.Element("Район")).Trim();
+            adr.City = ((string)adress.Element("Город")).Trim();
+            adr.Locality = ((string)adress.Element("НаселПункт")).Trim();
+            adr.Street = ((string)adress.Element("Улица")).Trim();
+            adr.Building = ((string)adress.Element("Дом")).Trim();
+            adr.Block = ((string)adress.Element("Корпус")).Trim();
+            adr.Litera = ((string)adress.Element("Литера")).Trim();
+            adr.Apartment = ((string)adress.Element("Кварт")).Trim();
             adr.AdressString =
                 adr.CountryId + "," +
                 adr.PostCode + "," +
@@ -122,7 +122,6 @@ namespace MvvmRar.Rar
                 license.DateTo = DateTime.Parse(el.Attribute("П000000000013").Value);
                 license.Issuer = (string)el.Attribute("П000000000014");
                 rc.LicenseList.Add(license);
-
             }
         }
         private void SetupBuyers(XElement references, RarFormF6 formF6)
@@ -291,31 +290,33 @@ namespace MvvmRar.Rar
 
         private bool IsDocumentValid(XDocument xdoc)
         {
-            Type type = Type.GetType("Rar.Model.ParserF6", false);
-            using (Stream str = type.Assembly.GetManifestResourceStream("Rar.Model.Resources.f6_010117.xsd"))
-            {
-                using (XmlReader reader = new XmlTextReader(str))
-                {
-                    XmlSchemaSet schemas = new XmlSchemaSet();
-                    schemas.Add("", reader);
+            //Type type = Type.GetType("Rar.Model.ParserF6", false);
+            //using (Stream str = type.Assembly.GetManifestResourceStream("Rar.Model.Resources.f6_010117.xsd"))
+            //{
+            //    using (XmlReader reader = new XmlTextReader(str))
+            //    {
+            //        XmlSchemaSet schemas = new XmlSchemaSet();
+            //        schemas.Add("", reader);
 
-                    bool errors = false;
-                    List<string> errNodes = new List<string>();
-                    xdoc.Validate(schemas, (o, ee) =>
-                    {
-                        string errNode = ee.Message;
-                        errNodes.Add(errNode);
-                        errors = true;
-                    });
-                    if (errors)
-                    {
-                        string mess = "Не соответствует схеме: " + "\n";
-                        foreach (string item in errNodes) mess = mess + item + "\n";
-                        return false;
-                    }
-                    else return true;
-                }
-            }
+            //        bool errors = false;
+            //        List<string> errNodes = new List<string>();
+            //        xdoc.Validate(schemas, (o, ee) =>
+            //        {
+            //            string errNode = ee.Message;
+            //            errNodes.Add(errNode);
+            //            errors = true;
+            //        });
+            //        if (errors)
+            //        {
+            //            string mess = "Не соответствует схеме: " + "\n";
+            //            foreach (string item in errNodes) mess = mess + item + "\n";
+            //            return false;
+            //        }
+            //        else return true;
+            //    }
+            //}
+
+            return true;
         }
 
     }

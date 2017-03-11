@@ -12,13 +12,13 @@ namespace MvvmRar.Rar.Tests
     public class RarLicenseTests
     {
         [TestMethod()]
-        public void RarLicenseTestDefault()
+        public void RarLicenseTest_DefaultConstructor()
         {
             Assert.IsTrue(true);
         }
 
         [TestMethod()]
-        public void RarLicenseTestCopyConstructor()
+        public void RarLicenseTest_CopyConstructor()
         {
             // arrange
             DateTime date1 = DateTime.Parse("01.01.2015");
@@ -45,7 +45,7 @@ namespace MvvmRar.Rar.Tests
         }
 
         [TestMethod()]
-        public void ToStringTest()
+        public void RarLicenseTest_ToString()
         {
             // arrange
             DateTime date1 = DateTime.Parse("01.01.2015");

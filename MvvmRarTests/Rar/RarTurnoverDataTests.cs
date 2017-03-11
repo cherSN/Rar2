@@ -12,7 +12,7 @@ namespace MvvmRar.Rar.Tests
     public class RarTurnoverDataTests
     {
         [TestMethod()]
-        public void RarTurnoverDataTestDefaultConstructor()
+        public void RarTurnoverDataTest_DefaultConstructor()
         {
             // arrange
             RarTurnoverData data = new RarTurnoverData();
@@ -27,7 +27,7 @@ namespace MvvmRar.Rar.Tests
         }
 
         [TestMethod()]
-        public void RarTurnoverDataTestCopyConstructor()
+        public void RarTurnoverDataTest_CopyConstructor()
         {
             // arrange
             DateTime date1 = DateTime.Parse("01.01.2016");

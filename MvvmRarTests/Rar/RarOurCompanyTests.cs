@@ -12,7 +12,7 @@ namespace MvvmRar.Rar.Tests
     public class RarOurCompanyTests
     {
         [TestMethod()]
-        public void RarOurCompanyTest()
+        public void RarOurCompanyTest_DefaultConstructor()
         {
             // arrange
             RarOurCompany company = new RarOurCompany();

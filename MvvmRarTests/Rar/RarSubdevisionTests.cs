@@ -12,7 +12,7 @@ namespace MvvmRar.Rar.Tests
     public class RarSubdevisionTests
     {
         [TestMethod()]
-        public void RarSubdevisionTestDefault()
+        public void RarSubdevisionTest_DefaultConstructor()
         {
             // arrange
             RarSubdevision subdevision = new RarSubdevision();
@@ -23,7 +23,7 @@ namespace MvvmRar.Rar.Tests
         }
 
         [TestMethod()]
-        public void RarSubdevisionTestWithArgs()
+        public void RarSubdevisionTest_ConstructorWithArgs()
         {
             // arrange
             RarAdress adress = new RarAdress();
@@ -37,7 +37,7 @@ namespace MvvmRar.Rar.Tests
         }
 
         [TestMethod()]
-        public void RarSubdevisionTestCopyConstructor()
+        public void RarSubdevisionTest_CopyConstructor()
         {
             // arrange
             RarAdress adress = new RarAdress();
@@ -51,7 +51,7 @@ namespace MvvmRar.Rar.Tests
         }
 
         [TestMethod()]
-        public void ToStringTest()
+        public void RarSubdevisionTest_ToStringTest()
         {
             // arrange
             RarAdress adress = new RarAdress();

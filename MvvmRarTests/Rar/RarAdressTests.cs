@@ -12,7 +12,7 @@ namespace MvvmRar.Rar.Tests
     public class RarAdressTests
     {
         [TestMethod()]
-        public void RarAdressTestStrictAdress()
+        public void RarAdressTest_ConstructorStrictAdress()
         {
             // arrange
             RarAdress adress = new RarAdress("Strict adress");
@@ -23,7 +23,7 @@ namespace MvvmRar.Rar.Tests
         }
 
         [TestMethod()]
-        public void RarAdressTestNonStrictAdress()
+        public void RarAdressTest_ConstructorNonStrictAdress()
         {
             // arrange
             RarAdress adress = new RarAdress("Country", "PostCode", "RegionId", "District", 
@@ -45,14 +45,10 @@ namespace MvvmRar.Rar.Tests
             Assert.AreEqual("Apartment", adress.Apartment, "Apartment");
             Assert.IsTrue(adress.StrictAdress, "StrictAdress");
             Assert.AreEqual("AdressString", adress.AdressString, "AdressString");
-
-
-
-
         }
 
         [TestMethod()]
-        public void RarAdressTestCopyConstructor()
+        public void RarAdressTest_CopyConstructor()
         {
             // arrange
             RarAdress adressOrigin = new RarAdress("Country", "PostCode", "RegionId", "District",
@@ -76,7 +72,7 @@ namespace MvvmRar.Rar.Tests
         }
 
         [TestMethod()]
-        public void RarAdressTestNullProperties()
+        public void RarAdressTest_ConstructorWithNullProperties()
         {
             // arrange
             RarAdress adress = new RarAdress(null,null,null,null,null,null,null,null,null,null,null);
@@ -97,7 +93,7 @@ namespace MvvmRar.Rar.Tests
         }
 
         [TestMethod()]
-        public void ToStringTestNonStrictAdress()
+        public void RarAdressTest_ToStringNonStrictAdress()
         {
             // arrange
             RarAdress adress = new RarAdress("Country", "PostCode", "RegionId", "District",
@@ -112,7 +108,7 @@ namespace MvvmRar.Rar.Tests
 
 
         [TestMethod()]
-        public void ToStringTestStrictAdress()
+        public void RarAdressTest_ToStringStrictAdress()
         {
             // arrange
             RarAdress adress = new RarAdress("Strict adress");

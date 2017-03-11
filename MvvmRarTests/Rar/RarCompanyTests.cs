@@ -12,7 +12,7 @@ namespace MvvmRar.Rar.Tests
     public class RarCompanyTests
     {
         [TestMethod()]
-        public void RarCompanyTestDefault()
+        public void RarCompanyTest_DefaultConstructor()
         {
             // arrange
             RarCompany company = new RarCompany();
@@ -28,7 +28,7 @@ namespace MvvmRar.Rar.Tests
         }
 
         [TestMethod()]
-        public void RarCompanyTestWithArgs()
+        public void RarCompanyTest_ConstructorWithArgs()
         {
             // arrange
             RarAdress adress = new RarAdress();
@@ -46,7 +46,7 @@ namespace MvvmRar.Rar.Tests
         }
 
         [TestMethod()]
-        public void RarCompanyTestCopyConstructor()
+        public void RarCompanyTest_CopyConstructor()
         {
             // arrange
             RarAdress adress = new RarAdress();
@@ -67,7 +67,7 @@ namespace MvvmRar.Rar.Tests
         }
 
         [TestMethod()]
-        public void ToStringTest()
+        public void RarCompanyTests_ToString()
         {
             // arrange
             RarAdress adress = new RarAdress();

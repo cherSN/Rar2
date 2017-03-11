@@ -109,20 +109,108 @@ namespace MvvmRar.Rar.Tests
             Assert.AreEqual("0", resultReportPeriod, "ReportPeriod");
             Assert.AreEqual("2016", resultReportYear, "ReportYear");
             Assert.AreEqual("21", resultCorrectionNumber, "CorrectionNumber");
-
         }
-
         [TestMethod()]
-        public void SerializeTest()
+        public void RarFormF6FormatterTest_SetupAdress()
         {
-            Assert.Fail();
+            // arrange
+            string str =
+            @"<АдрОрг>
+                    <КодСтраны> 643 </КодСтраны>
+                    <Индекс> 124460 </Индекс>
+                    <КодРегион> 77 </КодРегион>
+                    <Район> Московский </Район>
+                    <Город> Зеленоград г </Город>
+                    <НаселПункт> Пункт </НаселПункт>
+                    <Улица> Западный 2-й проезд </Улица>
+                    <Дом> 8 </Дом>
+                    <Корпус> 12 </Корпус>
+                    <Литера> Б </Литера>
+                    <Кварт> 2 </Кварт>
+              </АдрОрг>";
+
+            XElement el = XDocument.Parse(str).Root;
+
+            RarFormF6Formatter f6formatter = new RarFormF6Formatter();
+            var privateObject = new PrivateObject(f6formatter);
+
+            RarFormF6 formF6 = new RarFormF6();
+            //act
+            RarAdress adress = (RarAdress)privateObject.Invoke("SetupAdress", el);
+
+            string resultCountryId = adress.CountryId;
+            string resultPostCode = adress.PostCode;
+            string resultRegionId = adress.RegionId;
+            string resultDistrict = adress.District;
+            string resultCity = adress.City;
+            string resultLocality = adress.Locality;
+            string resultStreet = adress.Street;
+            string resultBuilding = adress.Building;
+            string resultBlock = adress.Block;
+            string resultLitera = adress.Litera;
+            string resultApartment = adress.Apartment;
+
+            ////assert
+            Assert.AreEqual("643", resultCountryId, "CountryId");
+            Assert.AreEqual("124460", resultPostCode, "PostCode");
+            Assert.AreEqual("77", resultRegionId, "RegionId");
+            Assert.AreEqual("Московский", resultDistrict, "District");
+            Assert.AreEqual("Зеленоград г", resultCity, "City");
+            Assert.AreEqual("Пункт", resultLocality, "Locality");
+            Assert.AreEqual("Западный 2-й проезд", resultStreet, "Street");
+            Assert.AreEqual("12", resultBlock, "Block");
+            Assert.AreEqual("Б", resultLitera, "Litera");
+            Assert.AreEqual("8", resultBuilding, "Building");
+            Assert.AreEqual("2", resultApartment, "Apartment");
         }
-
-
         [TestMethod()]
-        public void SaveTurnoverDataTest()
+        public void RarFormF6FormatterTest_SetupLisences()
         {
-            Assert.Fail();
+            // arrange
+            string str =
+            @"<Лицензии>
+				<Лицензия ИдЛицензии=""11"" П000000000011=""18РПА0001901"" П000000000012=""31.08.2016"" П000000000013=""31.08.2018"" П000000000014=""Министерство промышленности и торговли""/>
+				<Лицензия ИдЛицензии=""22"" П000000000011=""18РПА0001902"" П000000000012=""31.08.2016"" П000000000013=""31.08.2018"" П000000000014=""Министерство промышленности и торговли""/>
+				<Лицензия ИдЛицензии=""33"" П000000000011=""18РПА0001903"" П000000000012=""31.08.2016"" П000000000013=""31.08.2018"" П000000000014=""Министерство промышленности и торговли""/>
+            </Лицензии>";
+
+            XElement el = XDocument.Parse(str).Root;
+
+            RarFormF6Formatter f6formatter = new RarFormF6Formatter();
+            var privateObject = new PrivateObject(f6formatter);
+
+            RarCompany company = new RarCompany();
+            //act
+            privateObject.Invoke("SetupLisences", el, company);
+            List<RarLicense> lisenceList = company.LicenseList;
+
+            int resultNumberOfLisences      =   lisenceList.Count;
+            string      resultID            =   lisenceList[0].ID;
+            string      resultSeriesNumber  =   lisenceList[0].SeriesNumber;
+            DateTime    resultDateFrom      =   lisenceList[0].DateFrom;
+            DateTime    resultDateTo        =   lisenceList[0].DateTo;
+            string      resultIssuer        =   lisenceList[0].Issuer;
+
+            ////assert
+            Assert.AreEqual(3, resultNumberOfLisences, "NumberOfLisences");
+            Assert.AreEqual("11", resultID, "ID");
+            Assert.AreEqual("18РПА0001901", resultSeriesNumber, "SeriesNumber");
+            Assert.AreEqual(DateTime.Parse("31.08.2016"), resultDateFrom, "DateFrom");
+            Assert.AreEqual(DateTime.Parse("31.08.2018"), resultDateTo, "DateTo");
+            Assert.AreEqual("Министерство промышленности и торговли", resultIssuer, "Issuer");
+
         }
+        //[TestMethod()]
+        //public void SerializeTest()
+        //{
+        //    Assert.Fail();
+        //}
+
+
+        //[TestMethod()]
+        //public void SaveTurnoverDataTest()
+        //{
+        //    Assert.Fail();
+        //}
     }
 }
