@@ -200,6 +200,64 @@ namespace MvvmRar.Rar.Tests
             Assert.AreEqual("Министерство промышленности и торговли", resultIssuer, "Issuer");
 
         }
+        [TestMethod()]
+        public void RarFormF6FormatterTest_SetupOrganization()
+        {
+            // arrange
+            string str =
+      @"<Организация>
+            <Реквизиты Наим = ""Общество с ограниченной ответственностью"" ТелОрг = ""+7 (926) 150-00-01"" EmailОтпр = ""mail@mail.ru"">
+                <АдрОрг>
+                    <КодСтраны> 643 </КодСтраны>
+                    <Индекс> 124460 </Индекс>
+                    <КодРегион> 77 </КодРегион>
+                    <Район/>
+                    <Город> Зеленоград г </Город>
+                    <НаселПункт/>
+                    <Улица> Западный 2 - й проезд </Улица>
+                    <Дом> 1 </Дом>
+                    <Корпус> 2 </Корпус>
+                    <Литера/>
+                    <Кварт> 2 </Кварт>
+                </АдрОрг>
+                <ЮЛ ИННЮЛ = ""7735146496"" КППЮЛ = ""773501001"" />
+            </Реквизиты>
+            <ОтветЛицо>
+                <Руководитель>
+                    <Фамилия> Нехороших </Фамилия>
+                    <Имя> Ольга </Имя>
+                    <Отчество> Юрьевна </Отчество>
+                </Руководитель>
+                <Главбух>
+                    <Фамилия> Галушка </Фамилия>
+                    <Имя> Лариса </Имя>
+                    <Отчество> Леонидовна </Отчество>
+                </Главбух>
+            </ОтветЛицо>
+            <Деятельность> 
+                <Лицензируемая>
+                    <Лицензия ВидДеят = ""03"" СерНомЛиц = ""РА, 003355"" ДатаНачЛиц = ""11.04.2016"" ДатаОконЛиц = ""10.04.2021""/>
+                </Лицензируемая>
+            </Деятельность>
+         </Организация>";
+
+            XElement el = XDocument.Parse(str).Root;
+
+            RarFormF6Formatter f6formatter = new RarFormF6Formatter();
+            var privateObject = new PrivateObject(f6formatter);
+            RarOurCompany company = new RarOurCompany();
+
+            //act
+            privateObject.Invoke("SetupOrganization", el, company);
+
+            string resultName = company.Name;
+
+
+            //assert
+            Assert.AreEqual("Общество с ограниченной ответственностью", resultName, "Name");
+
+        }
+
         //[TestMethod()]
         //public void SerializeTest()
         //{
