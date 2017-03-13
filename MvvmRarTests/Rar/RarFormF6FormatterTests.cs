@@ -206,7 +206,7 @@ namespace MvvmRar.Rar.Tests
             // arrange
             string str =
       @"<Организация>
-            <Реквизиты Наим = ""Общество с ограниченной ответственностью"" ТелОрг = ""+7 (926) 150-00-01"" EmailОтпр = ""mail@mail.ru"">
+            <Реквизиты Наим = ""Общество с ограниченной ответственностью"" ТелОрг = ""+7 (926) 150-01-01"" EmailОтпр = ""mail@mail.ru"">
                 <АдрОрг>
                     <КодСтраны> 643 </КодСтраны>
                     <Индекс> 124460 </Индекс>
@@ -224,14 +224,14 @@ namespace MvvmRar.Rar.Tests
             </Реквизиты>
             <ОтветЛицо>
                 <Руководитель>
-                    <Фамилия> Нехороших </Фамилия>
-                    <Имя> Ольга </Имя>
-                    <Отчество> Юрьевна </Отчество>
+                    <Фамилия> Иванов </Фамилия>
+                    <Имя> Иван </Имя>
+                    <Отчество> Иванович </Отчество>
                 </Руководитель>
                 <Главбух>
-                    <Фамилия> Галушка </Фамилия>
-                    <Имя> Лариса </Имя>
-                    <Отчество> Леонидовна </Отчество>
+                    <Фамилия> Петров </Фамилия>
+                    <Имя> Петр </Имя>
+                    <Отчество> Петрович </Отчество>
                 </Главбух>
             </ОтветЛицо>
             <Деятельность> 
@@ -251,11 +251,33 @@ namespace MvvmRar.Rar.Tests
             privateObject.Invoke("SetupOrganization", el, company);
 
             string resultName = company.Name;
+            string resultPhone = company.Phone;
+            string resultEmail = company.Email;
+            string resultINN = company.INN;
+            string resultKPP = company.KPP;
 
+            string resulDirectorSurname = company.Director.Surname;
+            string resulDirectorName = company.Director.Name;
+            string resulDirectorMiddlename = company.Director.Middlename;
+
+            string resulAccountantSurname = company.Accountant.Surname;
+            string resulAccountantName = company.Accountant.Name;
+            string resulAccountantMiddlename = company.Accountant.Middlename;
 
             //assert
             Assert.AreEqual("Общество с ограниченной ответственностью", resultName, "Name");
+            Assert.AreEqual("+7 (926) 150-01-01", resultPhone, "Phone");
+            Assert.AreEqual("mail@mail.ru", resultEmail, "Email");
+            Assert.AreEqual("7735146496", resultINN, "INN");
+            Assert.AreEqual("773501001", resultKPP, "KPP");
 
+            Assert.AreEqual("Иванов", resulDirectorSurname, "DirectorSurname");
+            Assert.AreEqual("Иван", resulDirectorName, "DirectorName");
+            Assert.AreEqual("Иванович", resulDirectorMiddlename, "DirectorMiddlename");
+
+            Assert.AreEqual("Петров", resulAccountantSurname, "AccountantSurname");
+            Assert.AreEqual("Петр", resulAccountantName, "AccountantName");
+            Assert.AreEqual("Петрович", resulAccountantMiddlename, "AccountantMiddlename");
         }
 
         //[TestMethod()]

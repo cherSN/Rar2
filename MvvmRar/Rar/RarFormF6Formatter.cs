@@ -186,15 +186,16 @@ namespace MvvmRar.Rar
 
 
         }
+        private void SetupBigBoss(XElement bigBoss, RarFIO fio) {
+            fio.Surname = ((string)bigBoss.Element("Фамилия")).Trim();
+            fio.Name = ((string)bigBoss.Element("Имя")).Trim();
+            fio.Middlename = ((string)bigBoss.Element("Отчество")).Trim(); //необязательный
+
+        }
         private void SetupOrganization(XElement organization, RarOurCompany OurCompany)
         {
-            OurCompany.Director.Name = (string)organization.Element("ОтветЛицо").Element("Руководитель").Element("Фамилия");
-            OurCompany.Director.Surname = (string)organization.Element("ОтветЛицо").Element("Руководитель").Element("Имя");
-            OurCompany.Director.Middlename = (string)organization.Element("ОтветЛицо").Element("Руководитель").Element("Отчество"); //необязательный
-
-            OurCompany.Accountant.Name = (string)organization.Element("ОтветЛицо").Element("Главбух").Element("Фамилия");
-            OurCompany.Accountant.Surname = (string)organization.Element("ОтветЛицо").Element("Главбух").Element("Имя");
-            OurCompany.Accountant.Middlename = (string)organization.Element("ОтветЛицо").Element("Главбух").Element("Отчество"); //необязательный
+            SetupBigBoss(organization.Element("ОтветЛицо").Element("Руководитель"), OurCompany.Director);
+            SetupBigBoss(organization.Element("ОтветЛицо").Element("Главбух"), OurCompany.Accountant);
 
             OurCompany.Name = (string)organization.Element("Реквизиты").Attribute("Наим");
             OurCompany.Phone = (string)organization.Element("Реквизиты").Attribute("ТелОрг");
