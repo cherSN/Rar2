@@ -32,7 +32,7 @@
                 <MenuItem Command="{Binding SaveTurnoverFileCommand}" Header="Сохранить форму 11"/>-->
             </MenuItem>
         </Menu>
-        <Border BorderThickness="1" CornerRadius="5" BorderBrush="Black" Padding="5" Margin="5" DockPanel.Dock="Top" >
+        <Border BorderThickness="1" CornerRadius="5" BorderBrush="Black" Padding="5" Margin="5" DockPanel.Dock="Top" Visibility="{Binding WindowIsVisible}" >
             <WrapPanel Orientation="Horizontal">
                 <Label x:Name="labelPartner" Content="Контрагент:" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Padding="3,0,0,0" VerticalContentAlignment="Center" Margin="3"/>
                 <Label Content="Дата:" HorizontalAlignment="Left"  VerticalAlignment="Center" VerticalContentAlignment="Center" Padding="0" Margin="3" />
@@ -51,7 +51,7 @@
                 <TextBox HorizontalAlignment="Left"  Margin="3"  Text="{Binding CorrectionNumber}" VerticalAlignment="Center" MinWidth="60"/>
             </WrapPanel>
         </Border>
-        <Grid DockPanel.Dock="Bottom">
+        <Grid DockPanel.Dock="Bottom" Visibility="{Binding WindowIsVisible}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="4"/>

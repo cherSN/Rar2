@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
+using System.Windows;
 
 namespace MvvmRar.ViewModel
 {
@@ -24,7 +25,23 @@ namespace MvvmRar.ViewModel
         private ListCollectionView turnoverDataListCollectionView;
         private RarCompany selectedBuyer;
         private ObservableCollection<RarCompany> savingCompaniesList;
+
         #endregion
+
+        public Visibility WindowIsVisible {
+            get {
+                if (SelectedPath == null) return System.Windows.Visibility.Hidden;
+                    else return System.Windows.Visibility.Visible;
+            }
+        }
+
+        //public System.Windows.Visibility GetWindowIsVisible()
+        //{
+        //    if (SelectedPath == null) return System.Windows.Visibility.Hidden;
+        //    else return System.Windows.Visibility.Visible;
+        //}
+
+
 
         #region - Public Properties -
         public DateTime DocumentDate
@@ -213,6 +230,7 @@ namespace MvvmRar.ViewModel
 
         public MainViewModel(IDataService dataService)
         {
+            //WindowIsVisible = System.Windows.Visibility.Hidden;
             _dataService = dataService;
             _dataService.GetData(
                 (data, error) =>
@@ -331,6 +349,12 @@ namespace MvvmRar.ViewModel
         public RelayCommand OpenFileCommand { get; set; }
         private void OpenFile()
         {
+            SelectedPath = _ioService.OpenFileDialog(@"c:\Is.txt");
+            if (SelectedPath == null)
+            {
+                SelectedPath = string.Empty;
+            }
+
             //OpenFileDialog openFileDialog = new OpenFileDialog();
             //if (openFileDialog.ShowDialog() == true)
             //{
@@ -353,10 +377,15 @@ namespace MvvmRar.ViewModel
             //}
         }
 
-        public bool CanOpenFile()
+        private string _selectedPath;
+        public string SelectedPath
         {
-            return true;
+            get { return _selectedPath; }
+            set { _selectedPath = value; RaisePropertyChanged("SelectedPath"); }
         }
 
+
+
+        private IOService _ioService;
     }
 }

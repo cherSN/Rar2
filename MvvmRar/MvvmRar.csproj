@@ -88,6 +88,7 @@
     <Compile Include="Rar\RarOurCompany.cs" />
     <Compile Include="Rar\RarSubdevision.cs" />
     <Compile Include="Rar\RarTurnoverData.cs" />
+    <Compile Include="ViewModel\IOService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VMRarCompany.cs" />
