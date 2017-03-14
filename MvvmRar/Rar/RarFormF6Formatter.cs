@@ -47,6 +47,15 @@ namespace MvvmRar.Rar
         { }
 
         #region -- Deserialization --
+        private string GetElementStringValue(XElement elm)
+        {
+          return  (elm==null)? "" : ((string)elm).Trim();
+        }
+        private string GetAttributeStringValue(XAttribute atr)
+        {
+            return (atr == null) ? "" : ((string)atr).Trim();
+        }
+
         public object Deserialize(System.IO.Stream serializationStream)
         {
             RarFormF6 formF6 = new RarFormF6();
@@ -66,36 +75,36 @@ namespace MvvmRar.Rar
         private void SetupRootAttribute(XElement root, RarFormF6 formF6)
         {
             //Атрибуты
-            formF6.ProgramName = (string)root.Attribute("НаимПрог");
-            formF6.Version = (string)root.Attribute("ВерсФорм");
-            formF6.DocumentDate = DateTime.Parse(root.Attribute("ДатаДок").Value);
+            formF6.ProgramName =    GetAttributeStringValue(root.Attribute("НаимПрог"));
+            formF6.Version =        GetAttributeStringValue(root.Attribute("ВерсФорм"));
+            formF6.DocumentDate =   DateTime.Parse(root.Attribute("ДатаДок").Value);
         }
         private void SetupReportParameters(XElement elm, RarFormF6 formF6)
         {
             //ФормаОтч
-            formF6.FormNumber = (string)elm.Attribute("НомФорм");
-            formF6.ReportPeriod = (string)elm.Attribute("ПризПериодОтч");
-            formF6.ReportYear = (string)elm.Attribute("ГодПериодОтч");
+            formF6.FormNumber =     GetAttributeStringValue(elm.Attribute("НомФорм"));
+            formF6.ReportPeriod =   GetAttributeStringValue(elm.Attribute("ПризПериодОтч"));
+            formF6.ReportYear =     GetAttributeStringValue(elm.Attribute("ГодПериодОтч"));
 
             XElement corrections = elm.Element("Корректирующая");
-            if (corrections == null) formF6.CorrectionNumber = "0";
-            else formF6.CorrectionNumber = (string)corrections.Attribute("НомерКорр");
+            if (corrections == null)    formF6.CorrectionNumber = "0";
+            else formF6.CorrectionNumber = GetAttributeStringValue(corrections.Attribute("НомерКорр"));
         }
         private RarAdress SetupAdress(XElement adress)
         {
             RarAdress adr = new RarAdress();
             adr.StrictAdress = true;
-            adr.CountryId = ((string)adress.Element("КодСтраны")).Trim();
-            adr.PostCode = ((string)adress.Element("Индекс")).Trim();
-            adr.RegionId = ((string)adress.Element("КодРегион")).Trim();
-            adr.District = ((string)adress.Element("Район")).Trim();
-            adr.City = ((string)adress.Element("Город")).Trim();
-            adr.Locality = ((string)adress.Element("НаселПункт")).Trim();
-            adr.Street = ((string)adress.Element("Улица")).Trim();
-            adr.Building = ((string)adress.Element("Дом")).Trim();
-            adr.Block = ((string)adress.Element("Корпус")).Trim();
-            adr.Litera = ((string)adress.Element("Литера")).Trim();
-            adr.Apartment = ((string)adress.Element("Кварт")).Trim();
+            adr.CountryId =     GetElementStringValue(adress.Element("КодСтраны"));
+            adr.PostCode =      GetElementStringValue(adress.Element("Индекс"));
+            adr.RegionId =      GetElementStringValue(adress.Element("КодРегион"));
+            adr.District =      GetElementStringValue(adress.Element("Район"));
+            adr.City =          GetElementStringValue(adress.Element("Город"));
+            adr.Locality =      GetElementStringValue(adress.Element("НаселПункт"));
+            adr.Street =        GetElementStringValue(adress.Element("Улица"));
+            adr.Building =      GetElementStringValue(adress.Element("Дом"));
+            adr.Block =         GetElementStringValue(adress.Element("Корпус"));
+            adr.Litera =        GetElementStringValue(adress.Element("Литера"));
+            adr.Apartment =     GetElementStringValue(adress.Element("Кварт"));
             adr.AdressString =
                 adr.CountryId + "," +
                 adr.PostCode + "," +
@@ -116,11 +125,11 @@ namespace MvvmRar.Rar
             {
                 RarLicense license = new RarLicense();
                 XElement el = (XElement)node;
-                license.ID = (string)el.Attribute("ИдЛицензии");
-                license.SeriesNumber = (string)el.Attribute("П000000000011");
-                license.DateFrom = DateTime.Parse(el.Attribute("П000000000012").Value);
-                license.DateTo = DateTime.Parse(el.Attribute("П000000000013").Value);
-                license.Issuer = (string)el.Attribute("П000000000014");
+                license.ID =            GetAttributeStringValue(el.Attribute("ИдЛицензии"));
+                license.SeriesNumber =  GetAttributeStringValue(el.Attribute("П000000000011"));
+                license.DateFrom =      DateTime.Parse(el.Attribute("П000000000012").Value);
+                license.DateTo =        DateTime.Parse(el.Attribute("П000000000013").Value);
+                license.Issuer =        GetAttributeStringValue(el.Attribute("П000000000014"));
                 rc.LicenseList.Add(license);
             }
         }
@@ -130,8 +139,8 @@ namespace MvvmRar.Rar
             {
                 XElement el = (XElement)node;
                 RarCompany rc = new RarCompany();
-                rc.Name = (string)el.Attribute("П000000000007");
-                rc.ID = (string)el.Attribute("ИдКонтр");
+                rc.Name =   GetAttributeStringValue(el.Attribute("П000000000007"));
+                rc.ID =     GetAttributeStringValue(el.Attribute("ИдКонтр"));
 
                 XElement resident = el.Element("Резидент");
                 if (resident != null)
@@ -143,14 +152,14 @@ namespace MvvmRar.Rar
                     XElement company = resident.Element("ЮЛ");
                     if (company != null)
                     {
-                        rc.INN = (string)company.Attribute("П000000000009");
-                        rc.KPP = (string)company.Attribute("П000000000010");
+                        rc.INN = GetAttributeStringValue(company.Attribute("П000000000009"));
+                        rc.KPP = GetAttributeStringValue(company.Attribute("П000000000010"));
                     }
                     else
                     {
                         XElement individual = resident.Element("ФЛ");
                         if (individual != null)
-                            rc.INN = (string)individual.Attribute("П000000000009");
+                            rc.INN = GetAttributeStringValue(individual.Attribute("П000000000009"));
                     }
                 }
                 else
@@ -158,12 +167,12 @@ namespace MvvmRar.Rar
                     XElement foreigner = el.Element("Иностр");
                     if (foreigner != null)
                     {
-                        rc.INN = (string)foreigner.Attribute("Номер"); //Учетный номер
+                        rc.INN = GetAttributeStringValue(foreigner.Attribute("Номер")); //Учетный номер
 
                         rc.Adress = new RarAdress();
                         rc.Adress.StrictAdress = false;
-                        rc.Adress.AdressString = (string)foreigner.Attribute("П000000000082");
-                        rc.Adress.CountryId = (string)foreigner.Attribute("П000000000081");
+                        rc.Adress.AdressString =    GetAttributeStringValue(foreigner.Attribute("П000000000082"));
+                        rc.Adress.CountryId =       GetAttributeStringValue(foreigner.Attribute("П000000000081"));
                     }
                 }
 
@@ -177,42 +186,39 @@ namespace MvvmRar.Rar
             {
                 XElement el = (XElement)node;
                 RarCompany rc = new RarCompany();
-                rc.ID = (string)el.Attribute("ИдПроизвИмп");
-                rc.Name = (string)el.Attribute("П000000000004");
-                rc.INN = (string)el.Attribute("П000000000005");
-                rc.KPP = (string)el.Attribute("П000000000006"); //необязат
+                rc.ID =     GetAttributeStringValue(el.Attribute("ИдПроизвИмп"));
+                rc.Name =   GetAttributeStringValue(el.Attribute("П000000000004"));
+                rc.INN =    GetAttributeStringValue(el.Attribute("П000000000005"));
+                rc.KPP =    GetAttributeStringValue(el.Attribute("П000000000006")); //необязат
                 formF6.ManufacturerList.Add(rc);
             }
-
-
         }
         private void SetupBigBoss(XElement bigBoss, RarFIO fio) {
-            fio.Surname = ((string)bigBoss.Element("Фамилия")).Trim();
-            fio.Name = ((string)bigBoss.Element("Имя")).Trim();
-            fio.Middlename = ((string)bigBoss.Element("Отчество")).Trim(); //необязательный
-
+            fio.Surname =       GetElementStringValue(bigBoss.Element("Фамилия"));
+            fio.Name =          GetElementStringValue(bigBoss.Element("Имя"));
+            fio.Middlename =    GetElementStringValue(bigBoss.Element("Отчество")); //необязательный
         }
         private void SetupOrganization(XElement organization, RarOurCompany OurCompany)
         {
             SetupBigBoss(organization.Element("ОтветЛицо").Element("Руководитель"), OurCompany.Director);
             SetupBigBoss(organization.Element("ОтветЛицо").Element("Главбух"), OurCompany.Accountant);
 
-            OurCompany.Name = (string)organization.Element("Реквизиты").Attribute("Наим");
-            OurCompany.Phone = (string)organization.Element("Реквизиты").Attribute("ТелОрг");
-            OurCompany.Email = (string)organization.Element("Реквизиты").Attribute("EmailОтпр");
+            OurCompany.Name =   GetAttributeStringValue(organization.Element("Реквизиты").Attribute("Наим"));
+            OurCompany.Phone =  GetAttributeStringValue(organization.Element("Реквизиты").Attribute("ТелОрг"));
+            OurCompany.Email =  GetAttributeStringValue(organization.Element("Реквизиты").Attribute("EmailОтпр"));
 
             OurCompany.Adress = SetupAdress(organization.Element("Реквизиты").Element("АдрОрг"));
             XElement company = organization.Element("Реквизиты").Element("ЮЛ");
             if (company != null)
             {
-                OurCompany.INN = (string)company.Attribute("ИННЮЛ"); // GetIntAttribute(company, "ИННЮЛ");
-                OurCompany.KPP = (string)company.Attribute("КППЮЛ"); //GetIntAttribute(company, "КППЮЛ");
+                OurCompany.INN =    GetAttributeStringValue(company.Attribute("ИННЮЛ"));
+                OurCompany.KPP =    GetAttributeStringValue(company.Attribute("КППЮЛ"));
             }
             else
             {
                 XElement individual = organization.Element("Реквизиты").Element("ФЛ");
                 if (individual != null)
-                    OurCompany.INN = (string)individual.Attribute("ИННФЛ"); //GetIntAttribute(individual,"ИННФЛ");
+                    OurCompany.INN = GetAttributeStringValue(individual.Attribute("ИННФЛ")); 
             }
 
             XElement lactivity = organization.Element("Деятельность").Element("Лицензируемая");
@@ -222,10 +228,10 @@ namespace MvvmRar.Rar
                 {
                     RarLicense license = new RarLicense();
                     XElement el = (XElement)node;
-                    license.SeriesNumber = (string)el.Attribute("СерНомЛиц");
-                    license.DateFrom = DateTime.Parse(el.Attribute("ДатаНачЛиц").Value);
-                    license.DateTo = DateTime.Parse(el.Attribute("ДатаОконЛиц").Value);
-                    license.BusinesType = (string)el.Attribute("ВидДеят");
+                    license.SeriesNumber =  GetAttributeStringValue(el.Attribute("СерНомЛиц"));
+                    license.DateFrom =      DateTime.Parse(el.Attribute("ДатаНачЛиц").Value);
+                    license.DateTo =        DateTime.Parse(el.Attribute("ДатаОконЛиц").Value);
+                    license.BusinesType =   GetAttributeStringValue(el.Attribute("ВидДеят"));
                     OurCompany.LicenseList.Add(license);
                 }
             }

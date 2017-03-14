@@ -20,12 +20,11 @@ namespace MvvmRar.Rar.Tests
 
         public RarFormF6FormatterTests()
         {
-            Assembly assembly= Assembly.GetExecutingAssembly();
+            Assembly assembly = Assembly.GetExecutingAssembly();
             using (Stream str = assembly.GetManifestResourceStream("MvvmRarTests.Resources.D6_Test2.xml")) //Должен быть внедренным
             {
                 xdoc = XDocument.Load(str);
             }
-
         }
 
 
@@ -33,7 +32,7 @@ namespace MvvmRar.Rar.Tests
         public void RarFormF6FormatterTest_SetupRootAttribute()
         {
             // arrange
-            string str = 
+            string str =
             @"<Файл ДатаДок=""23.01.2017"" ВерсФорм=""4.31"" НаимПрог=""1С: ПРЕДПРИЯТИЕ 8.3 УТ 11.2.3.203""></Файл >";
             XElement el = XDocument.Parse(str).Root;
 
@@ -47,7 +46,7 @@ namespace MvvmRar.Rar.Tests
             DateTime resultDateDoc = formF6.DocumentDate;  //DateTime.Parse("23.01.2017");
             string resultVersion = formF6.Version;
             string resultProgramName = formF6.ProgramName;
- 
+
             //assert
             Assert.AreEqual(DateTime.Parse("23.01.2017"), resultDateDoc, "DateDoc");
             Assert.AreEqual("4.31", resultVersion, "Version");
@@ -184,12 +183,12 @@ namespace MvvmRar.Rar.Tests
             privateObject.Invoke("SetupLisences", el, company);
             List<RarLicense> lisenceList = company.LicenseList;
 
-            int resultNumberOfLisences      =   lisenceList.Count;
-            string      resultID            =   lisenceList[0].ID;
-            string      resultSeriesNumber  =   lisenceList[0].SeriesNumber;
-            DateTime    resultDateFrom      =   lisenceList[0].DateFrom;
-            DateTime    resultDateTo        =   lisenceList[0].DateTo;
-            string      resultIssuer        =   lisenceList[0].Issuer;
+            int resultNumberOfLisences = lisenceList.Count;
+            string resultID = lisenceList[0].ID;
+            string resultSeriesNumber = lisenceList[0].SeriesNumber;
+            DateTime resultDateFrom = lisenceList[0].DateFrom;
+            DateTime resultDateTo = lisenceList[0].DateTo;
+            string resultIssuer = lisenceList[0].Issuer;
 
             ////assert
             Assert.AreEqual(3, resultNumberOfLisences, "NumberOfLisences");
@@ -200,6 +199,37 @@ namespace MvvmRar.Rar.Tests
             Assert.AreEqual("Министерство промышленности и торговли", resultIssuer, "Issuer");
 
         }
+        [TestMethod()]
+        public void RarFormF6FormatterTest_SetupBigBoss()
+        {
+            // arrange
+            string str =
+            @"<Руководитель>
+                  <Фамилия> Иванов </Фамилия>
+                  <Имя> Иван </Имя>
+                  <Отчество> Иванович </Отчество>
+              </Руководитель>";
+
+            XElement el = XDocument.Parse(str).Root;
+
+            RarFormF6Formatter f6formatter = new RarFormF6Formatter();
+            var privateObject = new PrivateObject(f6formatter);
+
+            RarFIO fio = new RarFIO();
+            //act
+            privateObject.Invoke("SetupBigBoss", el, fio);
+
+            string resultSurname = fio.Surname;
+            string resultName = fio.Name;
+            string resultMiddlename = fio.Middlename;
+
+            ////assert
+            Assert.AreEqual("Иванов", resultSurname, "Surname");
+            Assert.AreEqual("Иван", resultName, "Name");
+            Assert.AreEqual("Иванович", resultMiddlename, "Middlename");
+        }
+
+
         [TestMethod()]
         public void RarFormF6FormatterTest_SetupOrganization()
         {
@@ -256,14 +286,6 @@ namespace MvvmRar.Rar.Tests
             string resultINN = company.INN;
             string resultKPP = company.KPP;
 
-            string resulDirectorSurname = company.Director.Surname;
-            string resulDirectorName = company.Director.Name;
-            string resulDirectorMiddlename = company.Director.Middlename;
-
-            string resulAccountantSurname = company.Accountant.Surname;
-            string resulAccountantName = company.Accountant.Name;
-            string resulAccountantMiddlename = company.Accountant.Middlename;
-
             //assert
             Assert.AreEqual("Общество с ограниченной ответственностью", resultName, "Name");
             Assert.AreEqual("+7 (926) 150-01-01", resultPhone, "Phone");
@@ -271,13 +293,41 @@ namespace MvvmRar.Rar.Tests
             Assert.AreEqual("7735146496", resultINN, "INN");
             Assert.AreEqual("773501001", resultKPP, "KPP");
 
-            Assert.AreEqual("Иванов", resulDirectorSurname, "DirectorSurname");
-            Assert.AreEqual("Иван", resulDirectorName, "DirectorName");
-            Assert.AreEqual("Иванович", resulDirectorMiddlename, "DirectorMiddlename");
+        }
 
-            Assert.AreEqual("Петров", resulAccountantSurname, "AccountantSurname");
-            Assert.AreEqual("Петр", resulAccountantName, "AccountantName");
-            Assert.AreEqual("Петрович", resulAccountantMiddlename, "AccountantMiddlename");
+        [TestMethod()]
+        public void RarFormF6FormatterTest_GetElementStringValue()
+        {
+            // arrange
+            string str = @"<Индекс> 124460 </Индекс>";
+            RarFormF6Formatter f6formatter = new RarFormF6Formatter();
+            var privateObject = new PrivateObject(f6formatter);
+
+
+            XElement el = XDocument.Parse(str).Root;
+
+            //act
+            string result= (string)privateObject.Invoke("GetElementStringValue", el);
+
+            Assert.AreEqual("124460", result, "StringValue");
+        }
+
+        [TestMethod()]
+        public void RarFormF6FormatterTest_GetAttributeStringValue()
+        {
+            // arrange
+            string str = @"<Файл ДатаДок=""23.01.2017"" ВерсФорм=""4.31"" НаимПрог=""1С: ПРЕДПРИЯТИЕ 8.3""></Файл >";
+
+            RarFormF6Formatter f6formatter = new RarFormF6Formatter();
+            var privateObject = new PrivateObject(f6formatter);
+
+
+            XElement el = XDocument.Parse(str).Root;
+
+            //act
+            string result = (string)privateObject.Invoke("GetAttributeStringValue", el.Attribute("НаимПрог"));
+
+            Assert.AreEqual("1С: ПРЕДПРИЯТИЕ 8.3", result, "StringValue");
         }
 
         //[TestMethod()]

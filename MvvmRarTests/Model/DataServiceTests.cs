@@ -14,7 +14,7 @@ namespace MvvmRar.Model.Tests
     public class DataServiceTests
     {
         [TestMethod()]
-        public void DataServiceTest()
+        public void DataServiceTest_DefaultConstructor()
         {
             // arrange
             DataService ds = new DataService();
@@ -27,7 +27,7 @@ namespace MvvmRar.Model.Tests
         }
 
         [TestMethod()]
-        public void GetDataTest()
+        public void DataServiceTests_GetData()
         {
             // arrange
             RarFormF6 result1 = new RarFormF6();
