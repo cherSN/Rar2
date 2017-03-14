@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -325,39 +326,45 @@ namespace MvvmRar.Rar
             }
         }
         #endregion
-
         private bool IsDocumentValid(XDocument xdoc)
         {
-            //Type type = Type.GetType("Rar.Model.ParserF6", false);
-            //using (Stream str = type.Assembly.GetManifestResourceStream("Rar.Model.Resources.f6_010117.xsd"))
+            XmlSchemaSet schemas = new XmlSchemaSet();
+
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            Stream str = assembly.GetManifestResourceStream("Rar.Model.Resources.f6_010117.xsd"); //Должен быть внедренным
+            using (XmlReader reader = new XmlTextReader(str))
+                {
+                    schemas.Add("", reader);
+                }
+
+
+            //using (Stream str = assembly.GetManifestResourceStream("Rar.Model.Resources.f6_010117.xsd")) //Должен быть внедренным
             //{
             //    using (XmlReader reader = new XmlTextReader(str))
             //    {
-            //        XmlSchemaSet schemas = new XmlSchemaSet();
             //        schemas.Add("", reader);
-
-            //        bool errors = false;
-            //        List<string> errNodes = new List<string>();
-            //        xdoc.Validate(schemas, (o, ee) =>
-            //        {
-            //            string errNode = ee.Message;
-            //            errNodes.Add(errNode);
-            //            errors = true;
-            //        });
-            //        if (errors)
-            //        {
-            //            string mess = "Не соответствует схеме: " + "\n";
-            //            foreach (string item in errNodes) mess = mess + item + "\n";
-            //            return false;
-            //        }
-            //        else return true;
             //    }
             //}
 
-            return true;
+            bool errors = false;
+                    List<string> errNodes = new List<string>();
+                    xdoc.Validate(schemas, (o, ee) =>
+                    {
+                        string errNode = ee.Message;
+                        errNodes.Add(errNode);
+                        errors = true;
+                    });
+                    if (errors)
+                    {
+                        string mess = "Не соответствует схеме: " + "\n";
+                        foreach (string item in errNodes) mess = mess + item + "\n";
+                        return false;
+                    }
+                    else return true;
+            //    }
+            //}
+
+            //return true;
         }
-
     }
-
-  
 }
