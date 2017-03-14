@@ -200,7 +200,7 @@ namespace MvvmRar.Rar.Tests
 
         }
         [TestMethod()]
-        public void RarFormF6FormatterTest_SetupBigBoss()
+        public void RarFormF6FormatterTest_SetupOrganizationBigBoss()
         {
             // arrange
             string str =
@@ -217,7 +217,7 @@ namespace MvvmRar.Rar.Tests
 
             RarFIO fio = new RarFIO();
             //act
-            privateObject.Invoke("SetupBigBoss", el, fio);
+            privateObject.Invoke("SetupOrganizationBigBoss", el, fio);
 
             string resultSurname = fio.Surname;
             string resultName = fio.Name;
@@ -229,47 +229,28 @@ namespace MvvmRar.Rar.Tests
             Assert.AreEqual("Иванович", resultMiddlename, "Middlename");
         }
 
-
         [TestMethod()]
-        public void RarFormF6FormatterTest_SetupOrganization()
+        public void RarFormF6FormatterTest_SetupOrganizationDetails()
         {
             // arrange
             string str =
-      @"<Организация>
-            <Реквизиты Наим = ""Общество с ограниченной ответственностью"" ТелОрг = ""+7 (926) 150-01-01"" EmailОтпр = ""mail@mail.ru"">
-                <АдрОрг>
-                    <КодСтраны> 643 </КодСтраны>
-                    <Индекс> 124460 </Индекс>
-                    <КодРегион> 77 </КодРегион>
-                    <Район/>
-                    <Город> Зеленоград г </Город>
-                    <НаселПункт/>
-                    <Улица> Западный 2 - й проезд </Улица>
-                    <Дом> 1 </Дом>
-                    <Корпус> 2 </Корпус>
-                    <Литера/>
-                    <Кварт> 2 </Кварт>
-                </АдрОрг>
-                <ЮЛ ИННЮЛ = ""7735146496"" КППЮЛ = ""773501001"" />
-            </Реквизиты>
-            <ОтветЛицо>
-                <Руководитель>
-                    <Фамилия> Иванов </Фамилия>
-                    <Имя> Иван </Имя>
-                    <Отчество> Иванович </Отчество>
-                </Руководитель>
-                <Главбух>
-                    <Фамилия> Петров </Фамилия>
-                    <Имя> Петр </Имя>
-                    <Отчество> Петрович </Отчество>
-                </Главбух>
-            </ОтветЛицо>
-            <Деятельность> 
-                <Лицензируемая>
-                    <Лицензия ВидДеят = ""03"" СерНомЛиц = ""РА, 003355"" ДатаНачЛиц = ""11.04.2016"" ДатаОконЛиц = ""10.04.2021""/>
-                </Лицензируемая>
-            </Деятельность>
-         </Организация>";
+      @"<Реквизиты Наим = ""Общество с ограниченной ответственностью"" ТелОрг = ""+7 (926) 150-01-01"" EmailОтпр = ""mail@mail.ru"">
+            <АдрОрг>
+                <КодСтраны> 643 </КодСтраны>
+                <Индекс> 124460 </Индекс>
+                <КодРегион> 77 </КодРегион>
+                <Район/>
+                <Город> Зеленоград г </Город>
+                <НаселПункт/>
+                <Улица> Западный 2 - й проезд </Улица>
+                <Дом> 1 </Дом>
+                <Корпус> 2 </Корпус>
+                <Литера/>
+                <Кварт> 2 </Кварт>
+            </АдрОрг>
+            <ЮЛ ИННЮЛ = ""7735146496"" КППЮЛ = ""773501001"" />
+        </Реквизиты>";
+
 
             XElement el = XDocument.Parse(str).Root;
 
@@ -278,7 +259,7 @@ namespace MvvmRar.Rar.Tests
             RarOurCompany company = new RarOurCompany();
 
             //act
-            privateObject.Invoke("SetupOrganization", el, company);
+            privateObject.Invoke("SetupOrganizationDetails", el, company);
 
             string resultName = company.Name;
             string resultPhone = company.Phone;
@@ -292,6 +273,80 @@ namespace MvvmRar.Rar.Tests
             Assert.AreEqual("mail@mail.ru", resultEmail, "Email");
             Assert.AreEqual("7735146496", resultINN, "INN");
             Assert.AreEqual("773501001", resultKPP, "KPP");
+        }
+
+        [TestMethod()]
+        public void RarFormF6FormatterTest_SetupOrganizationActivity()
+        {
+            // arrange
+            string str =
+      @"<Деятельность> 
+            <Лицензируемая>
+                <Лицензия ВидДеят = ""03"" СерНомЛиц = ""РА, 009955"" ДатаНачЛиц = ""11.04.2010"" ДатаОконЛиц = ""16.04.2021""/>
+                <Лицензия ВидДеят = ""03"" СерНомЛиц = ""РА, 009155"" ДатаНачЛиц = ""12.04.2010"" ДатаОконЛиц = ""17.04.2021""/>
+            </Лицензируемая>
+        </Деятельность>";
+
+
+            XElement el = XDocument.Parse(str).Root;
+
+            RarFormF6Formatter f6formatter = new RarFormF6Formatter();
+            var privateObject = new PrivateObject(f6formatter);
+            RarOurCompany company = new RarOurCompany();
+
+            //act
+            privateObject.Invoke("SetupOrganizationActivity", el, company);
+            List<RarLicense> lisenceList = company.LicenseList;
+
+            int resultNumberOfLisences = lisenceList.Count;
+            string resultBusinesType = lisenceList[0].BusinesType;
+            string resultSeriesNumber = lisenceList[0].SeriesNumber;
+            DateTime resultDateFrom = lisenceList[0].DateFrom;
+            DateTime resultDateTo = lisenceList[0].DateTo;
+
+            ////assert
+            Assert.AreEqual(2, resultNumberOfLisences, "NumberOfLisences");
+            Assert.AreEqual("03", resultBusinesType, "BusinesType");
+            Assert.AreEqual("РА, 009955", resultSeriesNumber, "SeriesNumber");
+            Assert.AreEqual(DateTime.Parse("11.04.2010"), resultDateFrom, "DateFrom");
+            Assert.AreEqual(DateTime.Parse("16.04.2021"), resultDateTo, "DateTo");
+        }
+
+        [TestMethod()]
+        public void RarFormF6FormatterTest_SetupOrganization()
+        {
+            // arrange
+            string str =
+      @"<Организация>
+            <Реквизиты />
+            <ОтветЛицо>
+                <Руководитель />
+                <Главбух />
+            </ОтветЛицо>
+            <Деятельность /> 
+         </Организация>";
+
+            XElement el = XDocument.Parse(str).Root;
+
+            RarFormF6Formatter f6formatter = new RarFormF6Formatter();
+            var privateObject = new PrivateObject(f6formatter);
+            RarOurCompany company = new RarOurCompany();
+
+            ////act
+            privateObject.Invoke("SetupOrganization", el, company);
+
+            //string resultName = company.Name;
+            //string resultPhone = company.Phone;
+            //string resultEmail = company.Email;
+            //string resultINN = company.INN;
+            //string resultKPP = company.KPP;
+
+            ////assert
+            //Assert.AreEqual("Общество с ограниченной ответственностью", resultName, "Name");
+            //Assert.AreEqual("+7 (926) 150-01-01", resultPhone, "Phone");
+            //Assert.AreEqual("mail@mail.ru", resultEmail, "Email");
+            //Assert.AreEqual("7735146496", resultINN, "INN");
+            //Assert.AreEqual("773501001", resultKPP, "KPP");
 
         }
 

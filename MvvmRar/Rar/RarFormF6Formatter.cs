@@ -72,16 +72,17 @@ namespace MvvmRar.Rar
             SetupTurnoverData(xdoc.Root.Element("Документ").Element("ОбъемОборота"), formF6);
             return formF6;
         }
-        private void SetupRootAttribute(XElement root, RarFormF6 formF6)
+        private void SetupRootAttribute(XElement elm, RarFormF6 formF6)
         {
-            //Атрибуты
-            formF6.ProgramName =    GetAttributeStringValue(root.Attribute("НаимПрог"));
-            formF6.Version =        GetAttributeStringValue(root.Attribute("ВерсФорм"));
-            formF6.DocumentDate =   DateTime.Parse(root.Attribute("ДатаДок").Value);
+            if (elm == null|| formF6==null) return;
+            formF6.ProgramName =    GetAttributeStringValue(elm.Attribute("НаимПрог"));
+            formF6.Version =        GetAttributeStringValue(elm.Attribute("ВерсФорм"));
+            formF6.DocumentDate =   DateTime.Parse(elm.Attribute("ДатаДок").Value);
         }
         private void SetupReportParameters(XElement elm, RarFormF6 formF6)
         {
             //ФормаОтч
+            if (elm == null || formF6 == null) return;
             formF6.FormNumber =     GetAttributeStringValue(elm.Attribute("НомФорм"));
             formF6.ReportPeriod =   GetAttributeStringValue(elm.Attribute("ПризПериодОтч"));
             formF6.ReportYear =     GetAttributeStringValue(elm.Attribute("ГодПериодОтч"));
@@ -93,34 +94,39 @@ namespace MvvmRar.Rar
         private RarAdress SetupAdress(XElement adress)
         {
             RarAdress adr = new RarAdress();
-            adr.StrictAdress = true;
-            adr.CountryId =     GetElementStringValue(adress.Element("КодСтраны"));
-            adr.PostCode =      GetElementStringValue(adress.Element("Индекс"));
-            adr.RegionId =      GetElementStringValue(adress.Element("КодРегион"));
-            adr.District =      GetElementStringValue(adress.Element("Район"));
-            adr.City =          GetElementStringValue(adress.Element("Город"));
-            adr.Locality =      GetElementStringValue(adress.Element("НаселПункт"));
-            adr.Street =        GetElementStringValue(adress.Element("Улица"));
-            adr.Building =      GetElementStringValue(adress.Element("Дом"));
-            adr.Block =         GetElementStringValue(adress.Element("Корпус"));
-            adr.Litera =        GetElementStringValue(adress.Element("Литера"));
-            adr.Apartment =     GetElementStringValue(adress.Element("Кварт"));
-            adr.AdressString =
-                adr.CountryId + "," +
-                adr.PostCode + "," +
-                adr.RegionId + "," +
-                adr.District + "," +
-                adr.City + "," +
-                adr.Locality + "," +
-                adr.Street + "," +
-                adr.Building + "," +
-                adr.Block + "," +
-                adr.Litera + "," +
-                adr.Apartment + ",";
+            if (adress != null)
+            {
+                adr.StrictAdress = true;
+                adr.CountryId = GetElementStringValue(adress.Element("КодСтраны"));
+                adr.PostCode = GetElementStringValue(adress.Element("Индекс"));
+                adr.RegionId = GetElementStringValue(adress.Element("КодРегион"));
+                adr.District = GetElementStringValue(adress.Element("Район"));
+                adr.City = GetElementStringValue(adress.Element("Город"));
+                adr.Locality = GetElementStringValue(adress.Element("НаселПункт"));
+                adr.Street = GetElementStringValue(adress.Element("Улица"));
+                adr.Building = GetElementStringValue(adress.Element("Дом"));
+                adr.Block = GetElementStringValue(adress.Element("Корпус"));
+                adr.Litera = GetElementStringValue(adress.Element("Литера"));
+                adr.Apartment = GetElementStringValue(adress.Element("Кварт"));
+                adr.AdressString =
+                    adr.CountryId + "," +
+                    adr.PostCode + "," +
+                    adr.RegionId + "," +
+                    adr.District + "," +
+                    adr.City + "," +
+                    adr.Locality + "," +
+                    adr.Street + "," +
+                    adr.Building + "," +
+                    adr.Block + "," +
+                    adr.Litera + "," +
+                    adr.Apartment + ",";
+            }
             return adr;
         }
         private void SetupLisences(XElement lisenses, RarCompany rc)
         {
+            if (lisenses == null || rc == null) return;
+
             foreach (XNode node in lisenses.Elements("Лицензия"))
             {
                 RarLicense license = new RarLicense();
@@ -135,6 +141,7 @@ namespace MvvmRar.Rar
         }
         private void SetupBuyers(XElement references, RarFormF6 formF6)
         {
+            if (references == null || formF6 == null) return;
             foreach (XNode node in references.Elements("Контрагенты"))
             {
                 XElement el = (XElement)node;
@@ -182,6 +189,8 @@ namespace MvvmRar.Rar
         }
         private void SetupManufacturers(XElement references, RarFormF6 formF6)
         {
+            if (references == null || formF6 == null) return;
+
             foreach (XNode node in references.Elements("ПроизводителиИмпортеры"))
             {
                 XElement el = (XElement)node;
@@ -193,54 +202,76 @@ namespace MvvmRar.Rar
                 formF6.ManufacturerList.Add(rc);
             }
         }
-        private void SetupBigBoss(XElement bigBoss, RarFIO fio) {
+        private void SetupOrganizationBigBoss(XElement bigBoss, RarFIO fio) {
+            if (bigBoss == null|| fio==null) return;
+
             fio.Surname =       GetElementStringValue(bigBoss.Element("Фамилия"));
             fio.Name =          GetElementStringValue(bigBoss.Element("Имя"));
             fio.Middlename =    GetElementStringValue(bigBoss.Element("Отчество")); //необязательный
         }
-        private void SetupOrganization(XElement organization, RarOurCompany OurCompany)
+        private void SetupOrganizationDetails(XElement elm, RarOurCompany ourCompany)
         {
-            SetupBigBoss(organization.Element("ОтветЛицо").Element("Руководитель"), OurCompany.Director);
-            SetupBigBoss(organization.Element("ОтветЛицо").Element("Главбух"), OurCompany.Accountant);
+            if (elm == null || ourCompany == null) return;
+            //Реквизиты
+            ourCompany.Name = GetAttributeStringValue(elm.Attribute("Наим"));
+            ourCompany.Phone = GetAttributeStringValue(elm.Attribute("ТелОрг"));
+            ourCompany.Email = GetAttributeStringValue(elm.Attribute("EmailОтпр"));
 
-            OurCompany.Name =   GetAttributeStringValue(organization.Element("Реквизиты").Attribute("Наим"));
-            OurCompany.Phone =  GetAttributeStringValue(organization.Element("Реквизиты").Attribute("ТелОрг"));
-            OurCompany.Email =  GetAttributeStringValue(organization.Element("Реквизиты").Attribute("EmailОтпр"));
+            ourCompany.Adress = SetupAdress(elm.Element("АдрОрг"));
 
-            OurCompany.Adress = SetupAdress(organization.Element("Реквизиты").Element("АдрОрг"));
-            XElement company = organization.Element("Реквизиты").Element("ЮЛ");
+            XElement company = elm.Element("ЮЛ");
             if (company != null)
             {
-                OurCompany.INN =    GetAttributeStringValue(company.Attribute("ИННЮЛ"));
-                OurCompany.KPP =    GetAttributeStringValue(company.Attribute("КППЮЛ"));
+                ourCompany.INN = GetAttributeStringValue(company.Attribute("ИННЮЛ"));
+                ourCompany.KPP = GetAttributeStringValue(company.Attribute("КППЮЛ"));
             }
             else
             {
-                XElement individual = organization.Element("Реквизиты").Element("ФЛ");
-                if (individual != null)
-                    OurCompany.INN = GetAttributeStringValue(individual.Attribute("ИННФЛ")); 
+                XElement individual = elm.Element("ФЛ");
+                if (individual != null) ourCompany.INN = GetAttributeStringValue(individual.Attribute("ИННФЛ"));
             }
 
-            XElement lactivity = organization.Element("Деятельность").Element("Лицензируемая");
-            if (lactivity != null)
+        }
+        private void SetupOrganizationActivity(XElement elm, RarOurCompany ourCompany)
+        {
+            if (elm == null || ourCompany == null) return;
+
+            if (elm.Element("Лицензируемая") != null)
             {
-                foreach (XNode node in lactivity.Elements("Лицензия"))
+                foreach (XNode node in elm.Element("Лицензируемая").Elements("Лицензия"))
                 {
                     RarLicense license = new RarLicense();
                     XElement el = (XElement)node;
-                    license.SeriesNumber =  GetAttributeStringValue(el.Attribute("СерНомЛиц"));
+                    license.SeriesNumber = GetAttributeStringValue(el.Attribute("СерНомЛиц"));
                     license.DateFrom =      DateTime.Parse(el.Attribute("ДатаНачЛиц").Value);
                     license.DateTo =        DateTime.Parse(el.Attribute("ДатаОконЛиц").Value);
                     license.BusinesType =   GetAttributeStringValue(el.Attribute("ВидДеят"));
-                    OurCompany.LicenseList.Add(license);
+                    ourCompany.LicenseList.Add(license);
                 }
             }
-            else
+
+            XElement nolactivity = elm.Element("Нелицензируемая");
+            if (elm.Element("Нелицензируемая") != null)
             {
-                OurCompany.UnLisenseActivity = (string)organization.Element("Деятельность").Element("Нелицензируемая").Attribute("ВидДеят");
+                ourCompany.UnLisenseActivity = GetAttributeStringValue(elm.Element("Нелицензируемая").Attribute("ВидДеят"));
+            }
+        }
+        private void SetupOrganization(XElement organization, RarOurCompany ourCompany)
+        {
+            if (organization == null || ourCompany == null) return;
+
+            //Реквизиты
+            SetupOrganizationDetails(organization.Element("Реквизиты"), ourCompany);
+
+            //ОтветЛицо
+            if(organization.Element("ОтветЛицо") != null)
+            {
+                SetupOrganizationBigBoss(organization.Element("ОтветЛицо").Element("Руководитель"), ourCompany.Director);
+                SetupOrganizationBigBoss(organization.Element("ОтветЛицо").Element("Главбух"), ourCompany.Accountant);
             }
 
-
+            //Деятельность
+            SetupOrganizationActivity(organization.Element("Деятельность"), ourCompany);
         }
         private void SetupTurnoverData(XElement turnoverdata, RarFormF6 formF6)
         {
