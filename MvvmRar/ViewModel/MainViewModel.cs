@@ -7,13 +7,12 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using GalaSoft.MvvmLight.Command;
 
 namespace MvvmRar.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-
-
         #region  - Private Fields -
         private readonly IDataService _dataService;
 
@@ -247,6 +246,8 @@ namespace MvvmRar.ViewModel
 
             //UpdateAll();
 
+            OpenFileCommand = new RelayCommand(OpenFile);
+
         }
 
         private void UpdateAll()
@@ -324,6 +325,37 @@ namespace MvvmRar.ViewModel
 
             }
             return String.Compare(s1, s2);
+        }
+
+
+        public RelayCommand OpenFileCommand { get; set; }
+        private void OpenFile()
+        {
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //if (openFileDialog.ShowDialog() == true)
+            //{
+
+            //    _RarFile.LoadF6(openFileDialog.FileName);
+            //    TurnoverDataList = new ObservableCollection<RarTurnoverData>(_RarFile.TurnoverDataList);
+            //    //_RarFile.BuyersList.Sort( (s1, s2) => String.Compare(s1.Name, s2.Name) );
+            //    _RarFile.BuyersList.Sort((s1, s2) => SortStringsAsNumbers(s1.ID, s2.ID));
+
+            //    BuyersList = new ObservableCollection<RarCompany>(_RarFile.BuyersList);
+
+            //    ManufacturersList = new ObservableCollection<RarCompany>(_RarFile.ManufacturersList);
+
+            //    TurnoverDataListCollectionView = new ListCollectionView(TurnoverDataList);
+            //    //TurnoverDataListCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Subdevision"));
+            //    TurnoverDataListCollectionView.SortDescriptions.Add(new SortDescription("DocumentNumber", ListSortDirection.Ascending));
+            //    TurnoverDataListCollectionView.Filter = Buyer_Filter;
+
+            //    UpdateAll();
+            //}
+        }
+
+        public bool CanOpenFile()
+        {
+            return true;
         }
 
     }
