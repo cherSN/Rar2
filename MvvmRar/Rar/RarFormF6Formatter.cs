@@ -331,20 +331,12 @@ namespace MvvmRar.Rar
             XmlSchemaSet schemas = new XmlSchemaSet();
 
             Assembly assembly = Assembly.GetExecutingAssembly();
-            Stream str = assembly.GetManifestResourceStream("Rar.Model.Resources.f6_010117.xsd"); //Должен быть внедренным
+            Stream str = assembly.GetManifestResourceStream("MvvmRar.Model.Resources.f6_010117.xsd"); //Должен быть внедренным
             using (XmlReader reader = new XmlTextReader(str))
-                {
-                    schemas.Add("", reader);
-                }
+            {
+                schemas.Add("", reader);
+            }
 
-
-            //using (Stream str = assembly.GetManifestResourceStream("Rar.Model.Resources.f6_010117.xsd")) //Должен быть внедренным
-            //{
-            //    using (XmlReader reader = new XmlTextReader(str))
-            //    {
-            //        schemas.Add("", reader);
-            //    }
-            //}
 
             bool errors = false;
                     List<string> errNodes = new List<string>();

@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using System.Windows;
+using System.IO;
 
 namespace MvvmRar.ViewModel
 {
@@ -360,7 +361,15 @@ namespace MvvmRar.ViewModel
             //if (openFileDialog.ShowDialog() == true)
             //{
 
-            //    _RarFile.LoadF6(openFileDialog.FileName);
+            RarFormF6Formatter F6formatter = new RarFormF6Formatter();
+            if (FileName == null) return;
+            using (FileStream fileStream = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                _RarFile = (RarFormF6)F6formatter.Deserialize(fileStream);
+            }
+
+
+            //_RarFile.LoadF6(openFileDialog.FileName);
             //    TurnoverDataList = new ObservableCollection<RarTurnoverData>(_RarFile.TurnoverDataList);
             //    //_RarFile.BuyersList.Sort( (s1, s2) => String.Compare(s1.Name, s2.Name) );
             //    _RarFile.BuyersList.Sort((s1, s2) => SortStringsAsNumbers(s1.ID, s2.ID));
@@ -378,15 +387,23 @@ namespace MvvmRar.ViewModel
             //}
         }
 
-        private string _selectedPath;
-        public string SelectedPath
+
+        public string FileName
         {
-            get { return _selectedPath; }
-            set { _selectedPath = value; RaisePropertyChanged("SelectedPath"); }
+            get
+            {
+                return fileName;
+            }
+
+            set
+            {
+                fileName = value;
+                RaisePropertyChanged("FileName");
+                OpenFile();
+            }
         }
 
+        private string fileName;
 
-
-        //private IOService _ioService;
     }
 }

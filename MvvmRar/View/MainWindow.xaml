@@ -51,6 +51,7 @@
                 <TextBox HorizontalAlignment="Left"  Margin="3" Text="{Binding YearReport}" VerticalAlignment="Center" MinWidth="60"/>
                 <Label Content="Корректировка:" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
                 <TextBox HorizontalAlignment="Left"  Margin="3"  Text="{Binding CorrectionNumber}" VerticalAlignment="Center" MinWidth="60"/>
+                <TextBox Text="{Binding FileName}"/>
             </WrapPanel>
         </Border>
         <Grid DockPanel.Dock="Bottom" Visibility="{Binding WindowIsVisible}">
