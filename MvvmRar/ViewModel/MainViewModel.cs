@@ -30,8 +30,9 @@ namespace MvvmRar.ViewModel
 
         public Visibility WindowIsVisible {
             get {
-                if (SelectedPath == null) return System.Windows.Visibility.Hidden;
-                    else return System.Windows.Visibility.Visible;
+                //if (SelectedPath == null) return System.Windows.Visibility.Hidden;
+                //    else
+                    return System.Windows.Visibility.Visible;
             }
         }
 
@@ -349,11 +350,11 @@ namespace MvvmRar.ViewModel
         public RelayCommand OpenFileCommand { get; set; }
         private void OpenFile()
         {
-            SelectedPath = _ioService.OpenFileDialog(@"c:\Is.txt");
-            if (SelectedPath == null)
-            {
-                SelectedPath = string.Empty;
-            }
+            //SelectedPath = _ioService.OpenFileDialog(@"c:\Is.txt");
+            //if (SelectedPath == null)
+            //{
+            //    SelectedPath = string.Empty;
+            //}
 
             //OpenFileDialog openFileDialog = new OpenFileDialog();
             //if (openFileDialog.ShowDialog() == true)
@@ -386,6 +387,6 @@ namespace MvvmRar.ViewModel
 
 
 
-        private IOService _ioService;
+        //private IOService _ioService;
     }
 }

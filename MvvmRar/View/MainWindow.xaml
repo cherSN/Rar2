@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ignore="http://www.galasoft.ch/ignore"
+        xmlns:hlp="clr-namespace:MvvmRar.Helpers"
         mc:Ignorable="d ignore"
         Title="MVVM Light Application" Language="ru-RU"
         DataContext="{Binding rarViewModel, Source={StaticResource Locator}}">
@@ -13,7 +14,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Skins/MainSkin.xaml" />
             </ResourceDictionary.MergedDictionaries>
-          
+            <hlp:DialogHelper x:Key="helper" ViewModel="{Binding rarViewModel, Source={StaticResource Locator}}"/>
             <Style x:Key="DoubleGridColumn">
                 <Setter Property="TextBlock.TextAlignment" Value="Right" />
             </Style>
@@ -28,6 +29,7 @@
         <Menu x:Name="menu" Height="21" VerticalAlignment="Top" DockPanel.Dock="Top">
             <MenuItem Header="Файл">
                 <MenuItem Command="{Binding OpenFileCommand}" Header="Открыть"/>
+                <MenuItem Header="Open" Command="{Binding Source={StaticResource helper}, Path=OpenFile}" />
                 <!--<MenuItem Header="Сохранить контрагентов" Click="MenuItem_Click"/>
                 <MenuItem Command="{Binding SaveTurnoverFileCommand}" Header="Сохранить форму 11"/>-->
             </MenuItem>
