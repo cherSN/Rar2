@@ -19,6 +19,9 @@ namespace MvvmRar.ViewModel
     {
         #region  - Private Fields -
         private readonly IDataService _dataService;
+        private string fileName;
+        private ObservableCollection<IDialogViewModel> _Dialogs = new ObservableCollection<IDialogViewModel>();
+
 
         private RarFormF6 _RarFile;
         private ObservableCollection<string> alcoCodesList;
@@ -45,10 +48,27 @@ namespace MvvmRar.ViewModel
         //    else return System.Windows.Visibility.Visible;
         //}
 
-        private ObservableCollection<IDialogViewModel> _Dialogs = new ObservableCollection<IDialogViewModel>();
-        public ObservableCollection<IDialogViewModel> Dialogs { get { return _Dialogs; } }
+
+
 
         #region - Public Properties -
+        public ObservableCollection<IDialogViewModel> Dialogs { get { return _Dialogs; } }
+        public string FileName
+        {
+            get
+            {
+                return fileName;
+            }
+
+            set
+            {
+                fileName = value;
+                RaisePropertyChanged("FileName");
+                //OpenFile();
+            }
+        }
+
+
         public DateTime DocumentDate
         {
             get
@@ -273,7 +293,6 @@ namespace MvvmRar.ViewModel
 
         }
 
-
         public RelayCommand NewOpenFileDialogCommand { get { return new RelayCommand(OnNewOpenFileDialog); } }
         public void OnNewOpenFileDialog()
         {
@@ -286,16 +305,15 @@ namespace MvvmRar.ViewModel
 
             if (dlg.Show(this.Dialogs))
                 FileName = dlg.FileName;
-            //    MessageBox(You selected the following file: );
-            //new MessageBoxViewModel { Message = "You selected the following file: " + dlg.FileName + "." }.Show(this.Dialogs);
-            //else
-            //new MessageBoxViewModel { Message = "You didn't select a file." }.Show(this.Dialogs);
+            else
+                return;
+            RarFormF6Formatter F6formatter = new RarFormF6Formatter();
+            using (FileStream fileStream = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                _RarFile = (RarFormF6)F6formatter.Deserialize(fileStream);
+                UpdateAll();
+            }
         }
-
-
-
-
-
 
         private void UpdateAll()
         {
@@ -375,62 +393,49 @@ namespace MvvmRar.ViewModel
         }
 
 
-        public RelayCommand OpenFileCommand { get; set; }
-        private void OpenFile()
-        {
-            //SelectedPath = _ioService.OpenFileDialog(@"c:\Is.txt");
-            //if (SelectedPath == null)
-            //{
-            //    SelectedPath = string.Empty;
-            //}
+        //public RelayCommand OpenFileCommand { get; set; }
+        //private void OpenFile()
+        //{
+        //    //SelectedPath = _ioService.OpenFileDialog(@"c:\Is.txt");
+        //    //if (SelectedPath == null)
+        //    //{
+        //    //    SelectedPath = string.Empty;
+        //    //}
 
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //if (openFileDialog.ShowDialog() == true)
-            //{
+        //    //OpenFileDialog openFileDialog = new OpenFileDialog();
+        //    //if (openFileDialog.ShowDialog() == true)
+        //    //{
 
-            RarFormF6Formatter F6formatter = new RarFormF6Formatter();
-            if (FileName == null) return;
-            using (FileStream fileStream = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
-            {
-                _RarFile = (RarFormF6)F6formatter.Deserialize(fileStream);
-            }
-
-
-            //_RarFile.LoadF6(openFileDialog.FileName);
-            //    TurnoverDataList = new ObservableCollection<RarTurnoverData>(_RarFile.TurnoverDataList);
-            //    //_RarFile.BuyersList.Sort( (s1, s2) => String.Compare(s1.Name, s2.Name) );
-            //    _RarFile.BuyersList.Sort((s1, s2) => SortStringsAsNumbers(s1.ID, s2.ID));
-
-            //    BuyersList = new ObservableCollection<RarCompany>(_RarFile.BuyersList);
-
-            //    ManufacturersList = new ObservableCollection<RarCompany>(_RarFile.ManufacturersList);
-
-            //    TurnoverDataListCollectionView = new ListCollectionView(TurnoverDataList);
-            //    //TurnoverDataListCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Subdevision"));
-            //    TurnoverDataListCollectionView.SortDescriptions.Add(new SortDescription("DocumentNumber", ListSortDirection.Ascending));
-            //    TurnoverDataListCollectionView.Filter = Buyer_Filter;
-
-            //    UpdateAll();
-            //}
-        }
+        //    RarFormF6Formatter F6formatter = new RarFormF6Formatter();
+        //    if (FileName == null) return;
+        //    using (FileStream fileStream = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+        //    {
+        //        _RarFile = (RarFormF6)F6formatter.Deserialize(fileStream);
+        //    }
 
 
-        public string FileName
-        {
-            get
-            {
-                return fileName;
-            }
+        //    //_RarFile.LoadF6(openFileDialog.FileName);
+        //    //    TurnoverDataList = new ObservableCollection<RarTurnoverData>(_RarFile.TurnoverDataList);
+        //    //    //_RarFile.BuyersList.Sort( (s1, s2) => String.Compare(s1.Name, s2.Name) );
+        //    //    _RarFile.BuyersList.Sort((s1, s2) => SortStringsAsNumbers(s1.ID, s2.ID));
 
-            set
-            {
-                fileName = value;
-                RaisePropertyChanged("FileName");
-                OpenFile();
-            }
-        }
+        //    //    BuyersList = new ObservableCollection<RarCompany>(_RarFile.BuyersList);
 
-        private string fileName;
+        //    //    ManufacturersList = new ObservableCollection<RarCompany>(_RarFile.ManufacturersList);
+
+        //    //    TurnoverDataListCollectionView = new ListCollectionView(TurnoverDataList);
+        //    //    //TurnoverDataListCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Subdevision"));
+        //    //    TurnoverDataListCollectionView.SortDescriptions.Add(new SortDescription("DocumentNumber", ListSortDirection.Ascending));
+        //    //    TurnoverDataListCollectionView.Filter = Buyer_Filter;
+
+        //    //    UpdateAll();
+        //    //}
+        //}
+
+
+
+
+
 
     }
 }
