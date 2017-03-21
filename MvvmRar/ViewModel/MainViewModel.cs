@@ -11,7 +11,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows;
 using System.IO;
 using MvvmDialogs.ViewModels;
-using MvvmDialogs.FileDialogs.ViewModel;
+//using MvvmDialogs.ViewModels;
 
 namespace MvvmRar.ViewModel
 {
@@ -269,7 +269,7 @@ namespace MvvmRar.ViewModel
 
             //UpdateAll();
 
-            OpenFileCommand = new RelayCommand(OpenFile);
+            //OpenFileCommand = new RelayCommand(OpenFile);
 
         }
 
@@ -284,12 +284,12 @@ namespace MvvmRar.ViewModel
                 Multiselect = false
             };
 
-            dlg.Show(this.Dialogs);
-            //if (dlg.Show(this.Dialogs))
+            if (dlg.Show(this.Dialogs))
+                FileName = dlg.FileName;
             //    MessageBox(You selected the following file: );
             //new MessageBoxViewModel { Message = "You selected the following file: " + dlg.FileName + "." }.Show(this.Dialogs);
             //else
-                //new MessageBoxViewModel { Message = "You didn't select a file." }.Show(this.Dialogs);
+            //new MessageBoxViewModel { Message = "You didn't select a file." }.Show(this.Dialogs);
         }
 
 

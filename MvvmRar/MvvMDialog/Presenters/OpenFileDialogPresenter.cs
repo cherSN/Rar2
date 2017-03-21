@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using MvvmDialogs.FileDialogs.ViewModel;
 using MvvmDialogs.Presenters;
 using MvvmDialogs.ViewModels;
 using System;
@@ -8,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MvvmDialogs.FileDialogs.Presenters
+namespace MvvmDialogs.Presenters
 {
     public class OpenFileDialogPresenter : IDialogBoxPresenter<OpenFileDialogViewModel>
     {

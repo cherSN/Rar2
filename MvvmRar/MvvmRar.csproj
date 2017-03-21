@@ -96,7 +96,7 @@
     <Compile Include="Rar\RarTurnoverData.cs" />
     <Compile Include="Helpers\IOService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\OpenFileDialogViewModel.cs" />
+    <Compile Include="MvvMDialog\ViewModels\OpenFileDialogViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VMRarCompany.cs" />
     <Page Include="View\MainWindow.xaml">

@@ -56,7 +56,7 @@ namespace MvvmRar.Helpers
 
         public DialogHelper()
         {
-            OpenFile = new RelayCommand<object>((s)=>OpenFileAction(s));
+            //OpenFile = new RelayCommand<object>((s)=>OpenFileAction(s));
         }
 
 
@@ -64,10 +64,10 @@ namespace MvvmRar.Helpers
         {
             OpenFileDialog dlg = new OpenFileDialog();
 
-            if (dlg.ShowDialog() == true)
-            {
-                FileName = dlg.FileName;
-            }
+            //if (dlg.ShowDialog() == true)
+            //{
+            //    FileName = dlg.FileName;
+            //}
         }
     }
 }
