@@ -79,6 +79,11 @@
     <Compile Include="Helpers\DialogHelper.cs" />
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Model\IDataService.cs" />
+    <Compile Include="MvvMDialog\Behaviors\DialogBehavior.cs" />
+    <Compile Include="MvvMDialog\Presenters\IDialogBoxPresenter.cs" />
+    <Compile Include="MvvMDialog\Presenters\OpenFileDialogPresenter.cs" />
+    <Compile Include="MvvMDialog\ViewModels\IDialogViewModel..cs" />
+    <Compile Include="MvvMDialog\ViewModels\IUserDialogViewModel.cs" />
     <Compile Include="Rar\RarAdress.cs" />
     <Compile Include="Rar\RarCompaniesFormatter.cs" />
     <Compile Include="Rar\RarCompany.cs" />
@@ -91,6 +96,7 @@
     <Compile Include="Rar\RarTurnoverData.cs" />
     <Compile Include="Helpers\IOService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\OpenFileDialogViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VMRarCompany.cs" />
     <Page Include="View\MainWindow.xaml">

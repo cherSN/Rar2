@@ -10,6 +10,8 @@ using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using System.Windows;
 using System.IO;
+using MvvmDialogs.ViewModels;
+using MvvmDialogs.FileDialogs.ViewModel;
 
 namespace MvvmRar.ViewModel
 {
@@ -43,7 +45,8 @@ namespace MvvmRar.ViewModel
         //    else return System.Windows.Visibility.Visible;
         //}
 
-
+        private ObservableCollection<IDialogViewModel> _Dialogs = new ObservableCollection<IDialogViewModel>();
+        public ObservableCollection<IDialogViewModel> Dialogs { get { return _Dialogs; } }
 
         #region - Public Properties -
         public DateTime DocumentDate
@@ -269,6 +272,30 @@ namespace MvvmRar.ViewModel
             OpenFileCommand = new RelayCommand(OpenFile);
 
         }
+
+
+        public RelayCommand NewOpenFileDialogCommand { get { return new RelayCommand(OnNewOpenFileDialog); } }
+        public void OnNewOpenFileDialog()
+        {
+            var dlg = new OpenFileDialogViewModel
+            {
+                Title = "Select a file (I won't actually do anything with it)",
+                Filter = "All files (*.*)|*.*",
+                Multiselect = false
+            };
+
+            dlg.Show(this.Dialogs);
+            //if (dlg.Show(this.Dialogs))
+            //    MessageBox(You selected the following file: );
+            //new MessageBoxViewModel { Message = "You selected the following file: " + dlg.FileName + "." }.Show(this.Dialogs);
+            //else
+                //new MessageBoxViewModel { Message = "You didn't select a file." }.Show(this.Dialogs);
+        }
+
+
+
+
+
 
         private void UpdateAll()
         {
