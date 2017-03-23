@@ -37,8 +37,8 @@ namespace MvvmRar.ViewModel
         {
             get
             {
-                //if (FileName == null) return System.Windows.Visibility.Hidden;
-                //else
+                if (FileName == null) return System.Windows.Visibility.Hidden;
+                else
                     return System.Windows.Visibility.Visible;
             }
         }
