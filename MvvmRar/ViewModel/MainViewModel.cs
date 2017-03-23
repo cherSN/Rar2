@@ -19,6 +19,7 @@ namespace MvvmRar.ViewModel
     public class MainViewModel : ViewModelBase
     {
         #region  - Private Fields -
+        private string fileName;
         private readonly IDataService _dataService;
 
         private RarFormF6 _RarFile;
@@ -36,8 +37,8 @@ namespace MvvmRar.ViewModel
         {
             get
             {
-                if (FileName == null) return System.Windows.Visibility.Hidden;
-                else
+                //if (FileName == null) return System.Windows.Visibility.Hidden;
+                //else
                     return System.Windows.Visibility.Visible;
             }
         }
@@ -48,18 +49,25 @@ namespace MvvmRar.ViewModel
         public ObservableCollection<IDialogViewModel> Dialogs { get { return _Dialogs; } }
 
         #region - Public Properties -
-        public DateTime DocumentDate
+        public string FileName
         {
             get
             {
-                return _RarFile.DocumentDate;
+                return fileName;
             }
 
             set
             {
-                _RarFile.DocumentDate = value;
-                RaisePropertyChanged("DocumentDate");
+                fileName = value;
+                RaisePropertyChanged("FileName");
+                RaisePropertyChanged("WindowIsVisible");
+                OpenFile();
             }
+        }
+        public DateTime DocumentDate
+        {
+            get {  return _RarFile.DocumentDate; }
+            set { _RarFile.DocumentDate = value; RaisePropertyChanged("DocumentDate");  }
         }
         public string Version
         {
@@ -306,7 +314,7 @@ namespace MvvmRar.ViewModel
             RaisePropertyChanged("YearReport");
             RaisePropertyChanged("CorrectionNumber");
             RaisePropertyChanged("OurCompany");
-            RaisePropertyChanged("WindowIsVisible");
+            //RaisePropertyChanged("WindowIsVisible");
             //OnPropertyChanged("TurnoverDataList");
             //OnPropertyChanged("BuyersList");
 
@@ -477,22 +485,9 @@ namespace MvvmRar.ViewModel
         }
 
 
-        public string FileName
-        {
-            get
-            {
-                return fileName;
-            }
 
-            set
-            {
-                fileName = value;
-                RaisePropertyChanged("FileName");
-                OpenFile();
-            }
-        }
 
-        private string fileName;
+
 
     }
 }
