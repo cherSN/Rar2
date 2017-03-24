@@ -15,26 +15,26 @@ namespace MvvmRar.Rar
    public class RarFormF6Formatter //: IFormatter
     {
         #region -- Private Members --
-        SerializationBinder binder;
-        StreamingContext context;
-        ISurrogateSelector surrogateSelector;
+        SerializationBinder _Binder;
+        StreamingContext _Context;
+        ISurrogateSelector _SurrogateSelector;
         #endregion
 
         #region -- Public Properties --
         public ISurrogateSelector SurrogateSelector
         {
-            get { return surrogateSelector; }
-            set { surrogateSelector = value; }
+            get { return _SurrogateSelector; }
+            set { _SurrogateSelector = value; }
         }
         public SerializationBinder Binder
         {
-            get { return binder; }
-            set { binder = value; }
+            get { return _Binder; }
+            set { _Binder = value; }
         }
         public StreamingContext Context
         {
-            get { return context; }
-            set { context = value; }
+            get { return _Context; }
+            set { _Context = value; }
         }
         #endregion
 

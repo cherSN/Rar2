@@ -7,7 +7,6 @@
         mc:Ignorable="d ignore"
         Title="MVVM Light Application" Language="ru-RU"
         xmlns:dlgs="clr-namespace:MvvmDialogs.Behaviors"
-         xmlns:helpers="clr-namespace:MvvmRar.Helpers"       
  		dlgs:DialogBehavior.DialogViewModels="{Binding Dialogs}"       
         DataContext="{Binding rarViewModel, Source={StaticResource Locator}}">
     
@@ -23,7 +22,7 @@
                 <Setter Property="TextBlock.TextWrapping" Value="NoWrap"/>
                 <Setter Property="TextBlock.Margin" Value="5,0,5,0" />
             </Style>
-            <helpers:BoolenToVisibilityValueConverter x:Key="BoolenToVisibilityValueConverter" />
+            <BooleanToVisibilityConverter x:Key="BoolenToVisibilityValueConverter" />
         </ResourceDictionary>
     </Window.Resources>
 
