@@ -21,6 +21,7 @@ namespace MvvmRar.ViewModel
         #region  - Private Fields -
         private string fileName;
         private readonly IDataService _dataService;
+        private bool windowIsVisible;
 
         private RarFormF6 _RarFile;
         private ObservableCollection<string> alcoCodesList;
@@ -33,22 +34,18 @@ namespace MvvmRar.ViewModel
 
         #endregion
 
-        public Visibility WindowIsVisible
-        {
-            get
-            {
-                if (FileName == null) return System.Windows.Visibility.Hidden;
-                else
-                    return System.Windows.Visibility.Visible;
-            }
-        }
-
-
 
         private ObservableCollection<IDialogViewModel> _Dialogs = new ObservableCollection<IDialogViewModel>();
         public ObservableCollection<IDialogViewModel> Dialogs { get { return _Dialogs; } }
 
         #region - Public Properties -
+        public bool WindowIsVisible {
+            get {return windowIsVisible;}
+            set {
+                windowIsVisible = value;
+                RaisePropertyChanged("WindowIsVisible");
+            }
+        }
         public string FileName
         {
             get
@@ -60,7 +57,8 @@ namespace MvvmRar.ViewModel
             {
                 fileName = value;
                 RaisePropertyChanged("FileName");
-                RaisePropertyChanged("WindowIsVisible");
+                //RaisePropertyChanged("WindowIsVisible");
+                WindowIsVisible = true;
                 OpenFile();
             }
         }
@@ -280,7 +278,6 @@ namespace MvvmRar.ViewModel
 
         }
 
-
         public RelayCommand NewOpenFileDialogCommand { get { return new RelayCommand(OnNewOpenFileDialog); } }
         public void OnNewOpenFileDialog()
         {
@@ -446,6 +443,8 @@ namespace MvvmRar.ViewModel
 
 
         public RelayCommand OpenFileCommand { get; set; }
+
+
         private void OpenFile()
         {
             //SelectedPath = _ioService.OpenFileDialog(@"c:\Is.txt");
