@@ -53,6 +53,8 @@
                 <Label Content="Корректировка:" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
                 <TextBox HorizontalAlignment="Left"  Margin="3"  Text="{Binding CorrectionNumber}" VerticalAlignment="Center" MinWidth="60"/>
                 <TextBox Text="{Binding FileName}"/>
+                <TextBox Text="{Binding Cou}"/>
+                <Button Content="Button" Width="75" Click="Button_Click"/>
             </WrapPanel>
         </Border>
         <Grid DockPanel.Dock="Bottom" Visibility="{Binding WindowIsVisible, ConverterParameter=x:Static windows:Visibility.Collapsed, Converter={StaticResource BoolenToVisibilityValueConverter}}">
@@ -87,16 +89,34 @@
                 </ListView.View>
             </ListView>
             <GridSplitter Grid.Column="1" ShowsPreview="False" Width="4" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0" />
-            <DataGrid x:Name="dataGridF6" Grid.Column="2" ItemsSource="{Binding TurnoverDataListCollectionView}" Margin="0,0,0,0" 
+            <DataGrid x:Name="dataGridF6" Grid.Column="2" ItemsSource="{Binding TurnoverDataList}" Margin="0,0,0,0" 
                       CanUserAddRows="False" AutoGenerateColumns="False" SelectionUnit="Cell"   SelectedCellsChanged="dataGridF6_SelectedCellsChanged"   >
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Path=Subdevision.Name}" Header="Подразделение"  MinWidth="60"/>
-                    <DataGridTextColumn Binding="{Binding Path=License.SeriesNumber}" Header="Лицензия"  MinWidth="60"/>
+                    <!--<DataGridTextColumn Binding="{Binding Path=Subdevision.Name}" Header="Подразделение"  MinWidth="60"/>
+                    <DataGridTextColumn Binding="{Binding Path=License.SeriesNumber}" Header="Лицензия"  MinWidth="60"/>-->
 
-                    <DataGridComboBoxColumn ItemsSource="{Binding rarViewModel.AlcoCodesList, Source={StaticResource Locator}}" SelectedValueBinding="{Binding AlcoCode}" Header="Код"  MinWidth="40"/>
-                    <DataGridComboBoxColumn ItemsSource="{Binding rarViewModel.ManufacturersList, Source={StaticResource Locator}}" SelectedValueBinding="{Binding Manufacturer}" Header="Производитель"/>
-                    <DataGridComboBoxColumn ItemsSource="{Binding rarViewModel.BuyersList, Source={StaticResource Locator}}" SelectedValueBinding="{Binding Buyer}" Header="Покупатель"/>
+                    <DataGridComboBoxColumn Header="Код"  
+                                            ItemsSource="{Binding rarViewModel.AlcoCodeList, Source={StaticResource Locator}}" 
+                                            SelectedValueBinding="{Binding AlcoCode}" 
+                                            MinWidth="40"/>
+                    <DataGridTextColumn Binding="{Binding AlcoCode}" Header="AlcoCode"  MinWidth="60"/>
+                    <!--<DataGridComboBoxColumn ItemsSource="{Binding AlcoCodeList}" SelectedValueBinding="{Binding AlcoCode}" Header="Код"  MinWidth="40"/>-->
+
+
+
+                    <!--<DataGridComboBoxColumn Header="Производитель" DisplayMemberPath="Name"
+                                            ItemsSource="{Binding ManufacturersList}" 
+                                            SelectedValueBinding="{Binding Manufacturer}"/>-->
+                    <!--<DataGridComboBoxColumn ItemsSource="{Binding rarViewModel.ManufacturersList, Source={StaticResource Locator}}" SelectedValueBinding="{Binding Manufacturer}" Header="Производитель"/>-->
+
+                    <!--<DataGridComboBoxColumn Header="Покупатель" ItemsSource="{Binding ManufacturersList}" SelectedValueBinding="{Binding Manufacturer, Mode=OneWay}"  />-->
+                
+                    
+                    <DataGridComboBoxColumn Header="Покупатель" 
+                        ItemsSource="{Binding rarViewModel.BuyersList, Source={StaticResource Locator}}" 
+                        SelectedValueBinding="{Binding Buyer}"  />
+
                     <DataGridTemplateColumn  Header="Дата"  MinWidth="60">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

@@ -16,7 +16,7 @@ namespace MvvmRar.Design
             RarFormF6Data.ProgramName = "1С:ПРЕДПРИЯТИЕ 8.3 УТ 11.2.3.203";
             RarFormF6Data.FormNumber = "06";
             RarFormF6Data.ReportPeriod = "0";
-            RarFormF6Data.ReportYear = "2016";
+            RarFormF6Data.ReportYear = "2013";
             RarFormF6Data.CorrectionNumber = "";
 
             RarFormF6Data.OurCompany.Name = "Наша фирма";
