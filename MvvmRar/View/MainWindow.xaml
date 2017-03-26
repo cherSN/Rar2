@@ -53,7 +53,6 @@
                 <Label Content="Корректировка:" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
                 <TextBox HorizontalAlignment="Left"  Margin="3"  Text="{Binding CorrectionNumber}" VerticalAlignment="Center" MinWidth="60"/>
                 <TextBox Text="{Binding FileName}"/>
-                <Button Content="Button" Width="75" Click="Button_Click"/>
             </WrapPanel>
         </Border>
         <Grid DockPanel.Dock="Bottom" Visibility="{Binding WindowIsVisible, ConverterParameter=x:Static windows:Visibility.Collapsed, Converter={StaticResource BoolenToVisibilityValueConverter}}">
@@ -62,7 +61,7 @@
                 <ColumnDefinition Width="4"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <ListView ItemsSource="{Binding BuyersList}" Grid.Column="0"   MinWidth="200" 
+            <ListView ItemsSource="{Binding BuyerList}" Grid.Column="0"   MinWidth="200" 
                       SelectedItem="{Binding SelectedBuyer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
@@ -88,7 +87,7 @@
                 </ListView.View>
             </ListView>
             <GridSplitter Grid.Column="1" ShowsPreview="False" Width="4" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0" />
-            <DataGrid x:Name="dataGridF6" Grid.Column="2" ItemsSource="{Binding TurnoverDataList}" Margin="0,0,0,0" 
+            <DataGrid x:Name="dataGridF6" Grid.Column="2" ItemsSource="{Binding TurnoverDataListCollectionView}" Margin="0,0,0,0" 
                       CanUserAddRows="False" AutoGenerateColumns="False" SelectionUnit="Cell"   SelectedCellsChanged="dataGridF6_SelectedCellsChanged"   >
 
                 <DataGrid.Columns>
@@ -105,7 +104,7 @@
 
 
                     <DataGridComboBoxColumn Header="Производитель" 
-                                            ItemsSource="{Binding rarViewModel.ManufacturersList, Source={StaticResource Locator}}"   
+                                            ItemsSource="{Binding rarViewModel.ManufacturerList, Source={StaticResource Locator}}"   
                                             SelectedValueBinding="{Binding Manufacturer}"/>
                     <!--<DataGridComboBoxColumn ItemsSource="{Binding rarViewModel.ManufacturersList, Source={StaticResource Locator}}" SelectedValueBinding="{Binding Manufacturer}" Header="Производитель"/>-->
 
@@ -113,7 +112,7 @@
                 
                     
                     <DataGridComboBoxColumn Header="Покупатель" 
-                                            ItemsSource="{Binding rarViewModel.BuyersList, Source={StaticResource Locator}}" 
+                                            ItemsSource="{Binding rarViewModel.BuyerList, Source={StaticResource Locator}}" 
                                              SelectedValueBinding="{Binding Buyer}"  />
 
                     <DataGridTemplateColumn  Header="Дата"  MinWidth="60">

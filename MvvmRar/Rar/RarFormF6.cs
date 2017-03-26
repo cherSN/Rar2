@@ -30,24 +30,5 @@ namespace MvvmRar.Rar
             TurnoverDataList = new List<RarTurnoverData>();
         }
         #endregion
-
-        //public void LoadF6(string filename)
-        //{
-        //    BuyersList.Clear();
-        //    ManufacturersList.Clear();
-        //    TurnoverDataList.Clear();
-        //    //try
-        //    //{
-        //    ParserF6.Parse(filename, this);
-        //    //}
-        //    //catch (Exception ex)
-        //    //{
-
-        //    //    MessageBox.Show(ex.Message);
-        //    //}
-
-        //}
-
-
     }
 }
