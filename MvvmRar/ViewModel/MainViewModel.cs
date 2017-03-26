@@ -23,43 +23,29 @@ namespace MvvmRar.ViewModel
         private string _FileName;
         private readonly IDataService _DataService;
         private bool _WindowIsVisible;
-        //private ObservableCollection<IDialogViewModel> _Dialogs = new ObservableCollection<IDialogViewModel>();
-        private ObservableCollection<IDialogViewModel> _Dialogs;
+        private ObservableCollection<IDialogViewModel> _Dialogs = new ObservableCollection<IDialogViewModel>();
+
         private RarFormF6 _RarFile;
         private ObservableCollection<string> _AlcoCodeList;
         private ObservableCollection<RarCompanyViewModelWrapper> _BuyersList;
-        private ObservableCollection<RarCompany> manufacturersList;
+        private ObservableCollection<RarCompanyViewModelWrapper> _ManufacturersList;
         private ObservableCollection<RarTurnoverDataViewModelWrapper> _TurnoverDataList;
-        private ListCollectionView turnoverDataListCollectionView;
         private RarCompanyViewModelWrapper _SelectedBuyer;
+
+        private ListCollectionView turnoverDataListCollectionView;
         private ObservableCollection<RarCompany> savingCompaniesList;
 
         #endregion
 
-        private string cou;
-        public string Cou { get => cou; set  { cou = value; RaisePropertyChanged("Cou"); } }
-
-
         #region - Public Properties -
         public ObservableCollection<IDialogViewModel> Dialogs { get { return _Dialogs; } }
         public bool WindowIsVisible {
-            get {
-                return true; // _WindowIsVisible;
-            }
-            set {
-                _WindowIsVisible = value;
-                RaisePropertyChanged("WindowIsVisible");
-            }
+            get => true; // _WindowIsVisible; 
+            set {_WindowIsVisible = value;  RaisePropertyChanged("WindowIsVisible");  }
         }
-        public string FileName
-        {
-            get
-            {
-                return _FileName;
-            }
-
-            set
-            {
+        public string FileName {
+            get=>_FileName; 
+            set {
                 _FileName = value;
                 RaisePropertyChanged("FileName");
                 WindowIsVisible = true;
@@ -67,189 +53,57 @@ namespace MvvmRar.ViewModel
             }
         }
 
-        public DateTime DocumentDate
-        {
-            get {  return _RarFile.DocumentDate; }
-            set { _RarFile.DocumentDate = value; RaisePropertyChanged("DocumentDate");  }
-        }
-        public string Version
-        {
-            get
-            {
-                return _RarFile.Version;
-            }
+        public DateTime DocumentDate {get=>_RarFile.DocumentDate; set { _RarFile.DocumentDate = value; RaisePropertyChanged("DocumentDate");}}
+        public string Version {get=>  _RarFile.Version; set {_RarFile.Version = value; RaisePropertyChanged("Version");}}
+        public string ProgramName {get=>_RarFile.ProgramName; set {_RarFile.ProgramName = value; RaisePropertyChanged("ProgramName");}}
+        public string FormNumber {get=>_RarFile.FormNumber; set {_RarFile.FormNumber = value; RaisePropertyChanged("FormNumber");}}
+        public string ReportPeriod {get=>_RarFile.ReportPeriod; set {_RarFile.ReportPeriod = value; RaisePropertyChanged("ReportPeriod");}}
+        public string YearReport {get=>_RarFile.ReportYear; set {_RarFile.ReportYear = value;RaisePropertyChanged("YearReport");}}
+        public string CorrectionNumber {get=>_RarFile.CorrectionNumber; set {_RarFile.CorrectionNumber = value; RaisePropertyChanged("CorrectionNumber");}}
+        public RarOurCompany OurCompany {get=>_RarFile.OurCompany; set {_RarFile.OurCompany = value; RaisePropertyChanged("OurCompany");}}
 
-            set
-            {
-                _RarFile.Version = value;
-                RaisePropertyChanged("Version");
+        public ObservableCollection<string> AlcoCodeList { get=> _AlcoCodeList; set=>_AlcoCodeList = value;}
 
-            }
-        }
-        public string ProgramName
-        {
-            get { return _RarFile.ProgramName; }
-            set
-            {
-                _RarFile.ProgramName = value;
-                RaisePropertyChanged("ProgramName");
-            }
-        }
-        public string FormNumber
-        {
-            get { return _RarFile.FormNumber; }
-            set
-            {
-                _RarFile.FormNumber = value;
-                RaisePropertyChanged("FormNumber");
-            }
-        }
-        public string ReportPeriod
-        {
-            get { return _RarFile.ReportPeriod; }
-            set
-            {
-                _RarFile.ReportPeriod = value;
-                RaisePropertyChanged("ReportPeriod");
-            }
-        }
-        public string YearReport
-        {
-            get { return _RarFile.ReportYear; }
-            set
-            {
-                _RarFile.ReportYear = value;
-                RaisePropertyChanged("YearReport");
-            }
-        }
-        public string CorrectionNumber
-        {
-            get { return _RarFile.CorrectionNumber; }
-            set
-            {
-                _RarFile.CorrectionNumber = value;
-                RaisePropertyChanged("CorrectionNumber");
-            }
-        }
-        public RarOurCompany OurCompany
-        {
-            get
-            {
-                return _RarFile.OurCompany;
-            }
+        public ObservableCollection<RarCompanyViewModelWrapper> BuyersList {get=>_BuyersList; set=>_BuyersList = value;}
+        public ObservableCollection<RarCompanyViewModelWrapper> ManufacturersList {get=>_ManufacturersList; set=>_ManufacturersList = value;}
+        public ObservableCollection<RarTurnoverDataViewModelWrapper> TurnoverDataList {get=>_TurnoverDataList; set=>_TurnoverDataList = value;}
 
-            set
-            {
-                _RarFile.OurCompany = value;
-                RaisePropertyChanged("OurCompany");
-
-            }
-        }
-
-        public ObservableCollection<string> AlcoCodeList
-        {
-            get
-            {
-                return _AlcoCodeList;
-            }
-
-            set
-            {
-                _AlcoCodeList = value;
-            }
-        }
-        public ObservableCollection<RarCompanyViewModelWrapper> BuyersList
-        {
-            get
-            {
-                return _BuyersList;
-            }
-
-            set
-            {
-                _BuyersList = value;
-                //RaisePropertyChanged("BuyersList");
-            }
-        }
-        public ObservableCollection<RarCompany> ManufacturersList
-        {
-            get
-            {
-                return manufacturersList;
-            }
-
-            set
-            {
-                manufacturersList = value;
-                //RaisePropertyChanged("ManufacturersList");
-
-            }
-        }
-
-        public ObservableCollection<RarTurnoverDataViewModelWrapper> TurnoverDataList
-        {
-            get
-            {
-                return _TurnoverDataList;
-            }
-
-            set
-            {
-                _TurnoverDataList = value;
-                //RaisePropertyChanged("TurnoverDataList");
-
-            }
-        }
-
-        public ListCollectionView TurnoverDataListCollectionView
-        {
-            get
-            {
-                return turnoverDataListCollectionView;
-            }
-
-            set
-            {
-                turnoverDataListCollectionView = value;
-                //RaisePropertyChanged("TurnoverDataListCollectionView");
-
-            }
-        }
-        public ObservableCollection<RarCompany> SavingCompaniesList
-        {
-            get
-            {
-                return savingCompaniesList;
-            }
-
-            set
-            {
-                savingCompaniesList = value;
-                //RaisePropertyChanged("SavingCompaniesList");
-
-            }
-        }
-        public RarCompanyViewModelWrapper SelectedBuyer
-        {
-            get
-            {
-                return _SelectedBuyer;
-            }
-
-            set
-            {
-                _SelectedBuyer = value;
-                RaisePropertyChanged("SelectedBuyer");
-
-            }
-        }
+        public ListCollectionView TurnoverDataListCollectionView {get=>turnoverDataListCollectionView; set=>turnoverDataListCollectionView = value;}
+        
+        public ObservableCollection<RarCompany> SavingCompaniesList {get=>savingCompaniesList; set=>savingCompaniesList = value;}
+        public RarCompanyViewModelWrapper SelectedBuyer {get=>_SelectedBuyer; set {_SelectedBuyer = value; RaisePropertyChanged("SelectedBuyer");}}
         #endregion
+
+        private void SetupCollections()
+        {
+            List<RarCompanyViewModelWrapper> rarBuyerViewModelWrapperList = _RarFile.BuyerList.Distinct().Select(s => new RarCompanyViewModelWrapper(s)).ToList();
+            BuyersList.Clear();
+            foreach (RarCompanyViewModelWrapper item in rarBuyerViewModelWrapperList) BuyersList.Add(item);
+
+            List<RarCompanyViewModelWrapper> rarManufacturerViewModelWrapperList = _RarFile.ManufacturerList.Distinct().Select(s => new RarCompanyViewModelWrapper(s)).ToList();
+            foreach (RarCompanyViewModelWrapper item in rarManufacturerViewModelWrapperList) ManufacturersList.Add(item);
+
+            _TurnoverDataList = new ObservableCollection<RarTurnoverDataViewModelWrapper>();
+            foreach (RarTurnoverData item in _RarFile.TurnoverDataList)
+            {
+                RarTurnoverDataViewModelWrapper turnoverDataViewModelWrapper = new RarTurnoverDataViewModelWrapper(item);
+                List<RarCompanyViewModelWrapper> findedCompanyList = BuyersList.Where(s => s.Company == item.Buyer).ToList();
+                if (findedCompanyList.Count == 1)
+                {
+                    turnoverDataViewModelWrapper.Buyer = findedCompanyList.First();
+                }
+                else
+                {
+                    throw new ApplicationException("Ошибка синхронизации контрагентов");
+                }
+                TurnoverDataList.Add(turnoverDataViewModelWrapper);
+            }
+        }
+        
 
         public MainViewModel(IDataService dataService)
         {
             //WindowIsVisible = System.Windows.Visibility.Hidden;
-            _Dialogs = new ObservableCollection<IDialogViewModel>();
-
             _DataService = dataService;
             _DataService.GetData(
                 (data, error) =>
@@ -263,20 +117,14 @@ namespace MvvmRar.ViewModel
                     _RarFile = data;
                 });
 
-            //TurnoverDataList = new ObservableCollection<RarTurnoverData>(_RarFile.TurnoverDataList);
-            List<RarTurnoverDataViewModelWrapper>  TurnoverDataViewModelWrapperList = _RarFile.TurnoverDataList.Select(s=>new RarTurnoverDataViewModelWrapper(s)).ToList();
-            _TurnoverDataList = new ObservableCollection<RarTurnoverDataViewModelWrapper>(TurnoverDataViewModelWrapperList);
-
+            _BuyersList = new ObservableCollection<RarCompanyViewModelWrapper>();
+            _ManufacturersList = new ObservableCollection<RarCompanyViewModelWrapper>();
+            _TurnoverDataList = new ObservableCollection<RarTurnoverDataViewModelWrapper>();
+            SetupCollections();
             //_RarFile.BuyersList.Sort( (s1, s2) => String.Compare(s1.Name, s2.Name) );
             //_RarFile.BuyerList.Sort((s1, s2) => SortStringsAsNumbers(s1.ID, s2.ID));
 
-            List<RarCompanyViewModelWrapper> ccc = TurnoverDataList.Select(s => s.Buyer).Distinct().ToList();
 
-            List<RarCompanyViewModelWrapper> cmplst = _RarFile.BuyerList.Select(s => new RarCompanyViewModelWrapper(s)).ToList();
-            _BuyersList = new ObservableCollection<RarCompanyViewModelWrapper>(ccc);
-            //BuyersList = new ObservableCollection<RarCompany>(_RarFile.BuyerList);
-
-            manufacturersList = new ObservableCollection<RarCompany>(_RarFile.ManufacturerList);
 
             TurnoverDataListCollectionView = new ListCollectionView(TurnoverDataList);
             //TurnoverDataListCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Subdevision"));
@@ -309,28 +157,8 @@ namespace MvvmRar.ViewModel
             {
                 _RarFile = (RarFormF6)F6formatter.Deserialize(fileStream);
             }
-            Cou = _RarFile.BuyerList.Count.ToString();
-
-            BuyersList.Clear();
-            List<RarCompanyViewModelWrapper> cmplst = _RarFile.BuyerList.Select(s => new RarCompanyViewModelWrapper(s)).ToList();
-            //cmplst.Select(s=>BuyersList.Add((RarCompanyViewModelWrapper)s));
-            foreach (RarCompanyViewModelWrapper item in cmplst)
-            {
-                BuyersList.Add(item);
-            }
-
-            TurnoverDataList.Clear();
-            List<RarTurnoverDataViewModelWrapper> turnoverDataViewModelWrapperList = _RarFile.TurnoverDataList.Select(s => new RarTurnoverDataViewModelWrapper(s)).ToList();
-            foreach (RarTurnoverDataViewModelWrapper item in turnoverDataViewModelWrapperList)
-            {
-                TurnoverDataList.Add(item);
-            }
+            SetupCollections();
         }
-
-
-
-
-
 
         private void UpdateAll()
         {

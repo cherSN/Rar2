@@ -11,14 +11,14 @@ namespace MvvmRar.ViewModel
     public class RarTurnoverDataViewModelWrapper : ObservableObject
     {
         private RarTurnoverData _TurnoverData;
-        //private RarCompany _Manufacturer;
+        private RarCompanyViewModelWrapper _Manufacturer;
         private RarCompanyViewModelWrapper _Buyer;
 
         public RarTurnoverDataViewModelWrapper(RarTurnoverData turnoverData) 
         {
             _TurnoverData = turnoverData;
             //_Manufacturer = new RarCompanyViewModelWrapper(turnoverData.Manufacturer);
-            _Buyer = new RarCompanyViewModelWrapper(turnoverData.Buyer);
+            //_Buyer = new RarCompanyViewModelWrapper(turnoverData.Buyer);
         }
 
         public string AlcoCode { get => _TurnoverData.AlcoCode; set { _TurnoverData.AlcoCode = value; RaisePropertyChanged("AlcoCode"); } }
@@ -30,17 +30,7 @@ namespace MvvmRar.ViewModel
         public string CustomsDeclarationNumber { get => _TurnoverData.CustomsDeclarationNumber; set { _TurnoverData.CustomsDeclarationNumber = value; RaisePropertyChanged("CustomsDeclarationNumber"); } }
         public double Turnover { get => _TurnoverData.Turnover; set { _TurnoverData.Turnover = value; RaisePropertyChanged("Turnover"); } }
 
-        //public string BuyerTest { get { return Buyer.Name; } }
-
-        public RarCompany Manufacturer {
-            get { return _TurnoverData.Manufacturer; }
-            set { _TurnoverData.Manufacturer = value; RaisePropertyChanged("Manufacturer");  }
-        }
-        public RarCompanyViewModelWrapper Buyer
-        {
-            get =>  _Buyer;
-            set { _Buyer = value; RaisePropertyChanged("Buyer"); }
-        }
-
+        public RarCompanyViewModelWrapper Manufacturer { get => _Manufacturer; set { _Manufacturer = value; RaisePropertyChanged("Manufacturer");  } }
+        public RarCompanyViewModelWrapper Buyer { get =>  _Buyer; set { _Buyer = value; RaisePropertyChanged("Buyer"); } }
     }
 }

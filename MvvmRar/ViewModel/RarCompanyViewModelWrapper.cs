@@ -13,17 +13,19 @@ namespace MvvmRar.ViewModel
     public class RarCompanyViewModelWrapper : ObservableObject//RarCompany, INotifyPropertyChanged
     {
         private RarCompany _Company;
-
+        
         //public RarCompanyViewModelWrapper() : base() { }
 
         public RarCompanyViewModelWrapper(RarCompany company) // : base(company)
         {
-            _Company = company;
+            Company = company;
         }
 
-        public string Name { get => _Company.Name; set  { _Company.Name = value; RaisePropertyChanged("Name"); } }
-        public string INN { get => _Company.INN; set { _Company.INN = value; RaisePropertyChanged("INN"); } }
-        public string KPP { get => _Company.KPP; set { _Company.KPP = value; RaisePropertyChanged("KPP"); } }
+        public string Name { get => Company.Name; set  { Company.Name = value; RaisePropertyChanged("Name"); } }
+        public string INN { get => Company.INN; set { Company.INN = value; RaisePropertyChanged("INN"); } }
+        public string KPP { get => Company.KPP; set { Company.KPP = value; RaisePropertyChanged("KPP"); } }
+
+        public RarCompany Company { get => _Company; set => _Company = value; }
 
         public override string ToString() {
             return Name;
