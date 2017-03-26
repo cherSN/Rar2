@@ -104,17 +104,17 @@
 
 
 
-                    <!--<DataGridComboBoxColumn Header="Производитель" DisplayMemberPath="Name"
-                                            ItemsSource="{Binding ManufacturersList}" 
-                                            SelectedValueBinding="{Binding Manufacturer}"/>-->
+                    <DataGridComboBoxColumn Header="Производитель" 
+                                            ItemsSource="{Binding rarViewModel.ManufacturersList, Source={StaticResource Locator}}"   
+                                            SelectedValueBinding="{Binding Manufacturer}"/>
                     <!--<DataGridComboBoxColumn ItemsSource="{Binding rarViewModel.ManufacturersList, Source={StaticResource Locator}}" SelectedValueBinding="{Binding Manufacturer}" Header="Производитель"/>-->
 
                     <!--<DataGridComboBoxColumn Header="Покупатель" ItemsSource="{Binding ManufacturersList}" SelectedValueBinding="{Binding Manufacturer, Mode=OneWay}"  />-->
                 
                     
                     <DataGridComboBoxColumn Header="Покупатель" 
-                        ItemsSource="{Binding rarViewModel.BuyersList, Source={StaticResource Locator}}" 
-                        SelectedValueBinding="{Binding Buyer}"  />
+                                            ItemsSource="{Binding rarViewModel.BuyersList, Source={StaticResource Locator}}" 
+                                             SelectedValueBinding="{Binding Buyer}"  />
 
                     <DataGridTemplateColumn  Header="Дата"  MinWidth="60">
                         <DataGridTemplateColumn.CellTemplate>

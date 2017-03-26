@@ -28,7 +28,7 @@ namespace MvvmRar.ViewModel
         public RarCompany Company { get => _Company; set => _Company = value; }
 
         public override string ToString() {
-            return Name;
+            return Name+"; INN:"+INN+"; KPP:"+KPP;
         }
 
         //public event PropertyChangedEventHandler PropertyChanged;

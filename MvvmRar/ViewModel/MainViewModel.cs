@@ -79,23 +79,23 @@ namespace MvvmRar.ViewModel
             List<RarCompanyViewModelWrapper> rarBuyerViewModelWrapperList = _RarFile.BuyerList.Distinct().Select(s => new RarCompanyViewModelWrapper(s)).ToList();
             BuyersList.Clear();
             foreach (RarCompanyViewModelWrapper item in rarBuyerViewModelWrapperList) BuyersList.Add(item);
-
+            ManufacturersList.Clear();
             List<RarCompanyViewModelWrapper> rarManufacturerViewModelWrapperList = _RarFile.ManufacturerList.Distinct().Select(s => new RarCompanyViewModelWrapper(s)).ToList();
             foreach (RarCompanyViewModelWrapper item in rarManufacturerViewModelWrapperList) ManufacturersList.Add(item);
 
-            _TurnoverDataList = new ObservableCollection<RarTurnoverDataViewModelWrapper>();
+            TurnoverDataList.Clear();
             foreach (RarTurnoverData item in _RarFile.TurnoverDataList)
             {
                 RarTurnoverDataViewModelWrapper turnoverDataViewModelWrapper = new RarTurnoverDataViewModelWrapper(item);
-                List<RarCompanyViewModelWrapper> findedCompanyList = BuyersList.Where(s => s.Company == item.Buyer).ToList();
-                if (findedCompanyList.Count == 1)
-                {
-                    turnoverDataViewModelWrapper.Buyer = findedCompanyList.First();
-                }
-                else
-                {
-                    throw new ApplicationException("Ошибка синхронизации контрагентов");
-                }
+
+                List<RarCompanyViewModelWrapper> findedBuyerList = BuyersList.Where(s => s.Company == item.Buyer).ToList();
+                if (findedBuyerList.Count == 1) turnoverDataViewModelWrapper.Buyer = findedBuyerList.First();
+                else throw new ApplicationException("Ошибка синхронизации контрагентов");
+
+                List<RarCompanyViewModelWrapper> findedManufacturerList =ManufacturersList.Where(s => s.Company == item.Manufacturer).ToList();
+                if (findedManufacturerList.Count == 1) turnoverDataViewModelWrapper.Manufacturer = findedManufacturerList.First();
+                else throw new ApplicationException("Ошибка синхронизации контрагентов");
+
                 TurnoverDataList.Add(turnoverDataViewModelWrapper);
             }
         }
