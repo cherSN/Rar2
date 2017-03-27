@@ -13,7 +13,6 @@ using System.IO;
 using MvvmDialogs.ViewModels;
 using System.Text.RegularExpressions;
 using System.Collections.Specialized;
-//using MvvmDialogs.ViewModels;
 
 namespace MvvmRar.ViewModel
 {
@@ -136,16 +135,12 @@ namespace MvvmRar.ViewModel
 
             TurnoverDataListCollectionView = new ListCollectionView(TurnoverDataList);
             TurnoverDataListCollectionView.Filter = Buyer_Filter;
-
-            //TurnoverDataListCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Subdevision"));
-            //TurnoverDataListCollectionView.SortDescriptions.Add(new SortDescription("DocumentNumber", ListSortDirection.Ascending));
-
             //UpdateAll();
 
         }
 
-        public RelayCommand NewOpenFileDialogCommand { get { return new RelayCommand(OnNewOpenFileDialog); } }
-        public void OnNewOpenFileDialog()
+        public RelayCommand OpenFileDialogCommand { get { return new RelayCommand(OpenFileDialog); } }
+        public void OpenFileDialog()
         {
             var dlg = new OpenFileDialogViewModel
             {
@@ -307,53 +302,5 @@ namespace MvvmRar.ViewModel
             }
             return String.Compare(s1, s2);
         }
-
-
-        public RelayCommand OpenFileCommand { get; set; }
-       
-
-        //private void OpenFile()
-        //{
-        //    //SelectedPath = _ioService.OpenFileDialog(@"c:\Is.txt");
-        //    //if (SelectedPath == null)
-        //    //{
-        //    //    SelectedPath = string.Empty;
-        //    //}
-
-        //    //OpenFileDialog openFileDialog = new OpenFileDialog();
-        //    //if (openFileDialog.ShowDialog() == true)
-        //    //{
-
-        //    RarFormF6Formatter F6formatter = new RarFormF6Formatter();
-        //    if (FileName == null) return;
-        //    using (FileStream fileStream = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
-        //    {
-        //        _RarFile = (RarFormF6)F6formatter.Deserialize(fileStream);
-        //    }
-
-        //    UpdateAll();
-        //    //_RarFile.LoadF6(openFileDialog.FileName);
-        //    //    TurnoverDataList = new ObservableCollection<RarTurnoverData>(_RarFile.TurnoverDataList);
-        //    //    //_RarFile.BuyersList.Sort( (s1, s2) => String.Compare(s1.Name, s2.Name) );
-        //    //    _RarFile.BuyersList.Sort((s1, s2) => SortStringsAsNumbers(s1.ID, s2.ID));
-
-        //    //    BuyersList = new ObservableCollection<RarCompany>(_RarFile.BuyersList);
-
-        //    //    ManufacturersList = new ObservableCollection<RarCompany>(_RarFile.ManufacturersList);
-
-        //    //    TurnoverDataListCollectionView = new ListCollectionView(TurnoverDataList);
-        //    //    //TurnoverDataListCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Subdevision"));
-        //    //    TurnoverDataListCollectionView.SortDescriptions.Add(new SortDescription("DocumentNumber", ListSortDirection.Ascending));
-        //    //    TurnoverDataListCollectionView.Filter = Buyer_Filter;
-
-        //    //    UpdateAll();
-        //    //}
-        //}
-
-
-
-
-
-
-    }
+          }
 }

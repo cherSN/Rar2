@@ -29,7 +29,7 @@
     <DockPanel>
         <Menu x:Name="menu" Height="21" VerticalAlignment="Top" DockPanel.Dock="Top">
             <MenuItem Header="Файл">
-                <MenuItem Command="{Binding NewOpenFileDialogCommand}" Header="Вiдкрити"/>
+                <MenuItem Command="{Binding OpenFileDialogCommand}" Header="Вiдкрити"/>
                 <!--<MenuItem Header="Open" Command="{Binding Source={StaticResource helper}, Path=OpenFile}" />-->
                 <!--<MenuItem Header="Сохранить контрагентов" Click="MenuItem_Click"/>
                 <MenuItem Command="{Binding SaveTurnoverFileCommand}" Header="Сохранить форму 11"/>-->
