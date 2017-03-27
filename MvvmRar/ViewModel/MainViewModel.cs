@@ -74,7 +74,10 @@ namespace MvvmRar.ViewModel
             get =>_SelectedBuyer;
             set {
                 _SelectedBuyer = value;
-                RaisePropertyChanged("SelectedBuyer");}}
+                RaisePropertyChanged("SelectedBuyer");
+                TurnoverDataListCollectionView.Refresh();
+            }
+        }
         #endregion
 
         private void SetupCollections()
@@ -82,6 +85,8 @@ namespace MvvmRar.ViewModel
             List<RarCompanyViewModelWrapper> rarBuyerViewModelWrapperList = _RarFile.BuyerList.Distinct().Select(s => new RarCompanyViewModelWrapper(s)).ToList();
             BuyerList.Clear();
             foreach (RarCompanyViewModelWrapper item in rarBuyerViewModelWrapperList) BuyerList.Add(item);
+
+
             ManufacturerList.Clear();
             List<RarCompanyViewModelWrapper> rarManufacturerViewModelWrapperList = _RarFile.ManufacturerList.Distinct().Select(s => new RarCompanyViewModelWrapper(s)).ToList();
             foreach (RarCompanyViewModelWrapper item in rarManufacturerViewModelWrapperList) ManufacturerList.Add(item);
@@ -105,7 +110,6 @@ namespace MvvmRar.ViewModel
                 TurnoverDataList.Add(turnoverDataViewModelWrapper);
             }
         }
-        
 
         public MainViewModel(IDataService dataService)
         {
@@ -129,10 +133,6 @@ namespace MvvmRar.ViewModel
             _TurnoverDataList = new ObservableCollection<RarTurnoverDataViewModelWrapper>();
             SetupCollections();
 
-            //_RarFile.BuyersList.Sort( (s1, s2) => String.Compare(s1.Name, s2.Name) );
-            //BuyerList.Sort((s1, s2) => SortStringsAsNumbers(s1.ID, s2.ID));
-
-
 
             TurnoverDataListCollectionView = new ListCollectionView(TurnoverDataList);
             TurnoverDataListCollectionView.Filter = Buyer_Filter;
@@ -140,10 +140,7 @@ namespace MvvmRar.ViewModel
             //TurnoverDataListCollectionView.GroupDescriptions.Add(new PropertyGroupDescription("Subdevision"));
             //TurnoverDataListCollectionView.SortDescriptions.Add(new SortDescription("DocumentNumber", ListSortDirection.Ascending));
 
-            AlcoCodeList = new ObservableCollection<string>() { "200",  "210", "400", "410" };
-
             //UpdateAll();
-
 
         }
 
@@ -165,6 +162,7 @@ namespace MvvmRar.ViewModel
             using (FileStream fileStream = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
             {
                 _RarFile = (RarFormF6)F6formatter.Deserialize(fileStream);
+                _RarFile.BuyerList.Sort((s1, s2) => String.Compare(s1.Name, s2.Name));
             }
             SetupCollections();
         }
