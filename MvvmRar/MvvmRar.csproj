@@ -96,6 +96,7 @@
     <Compile Include="Rar\RarValidAlcoCodeList.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="MvvMDialog\ViewModels\OpenFileDialogViewModel.cs" />
+    <Compile Include="ViewModel\RarLicenseViewModelWrapper.cs" />
     <Compile Include="ViewModel\RarTurnoverDataViewModelWrapper.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\RarCompanyViewModelWrapper.cs" />

@@ -13,12 +13,13 @@ namespace MvvmRar.ViewModel
         private RarTurnoverData _TurnoverData;
         private RarCompanyViewModelWrapper _Manufacturer;
         private RarCompanyViewModelWrapper _Buyer;
+        private RarLicenseViewModelWrapper _License;
 
-        public RarTurnoverDataViewModelWrapper(RarTurnoverData turnoverData) 
-        {
+        public RarTurnoverDataViewModelWrapper(RarTurnoverData turnoverData) {
             _TurnoverData = turnoverData;
-            //_Manufacturer = new RarCompanyViewModelWrapper(turnoverData.Manufacturer);
-            //_Buyer = new RarCompanyViewModelWrapper(turnoverData.Buyer);
+            _Manufacturer = new RarCompanyViewModelWrapper(turnoverData.Manufacturer);
+            _Buyer = new RarCompanyViewModelWrapper(turnoverData.Buyer);
+            _License = new RarLicenseViewModelWrapper(turnoverData.License);
         }
 
         public string AlcoCode { get => _TurnoverData.AlcoCode; set { _TurnoverData.AlcoCode = value; RaisePropertyChanged("AlcoCode"); } }
@@ -32,5 +33,6 @@ namespace MvvmRar.ViewModel
 
         public RarCompanyViewModelWrapper Manufacturer { get => _Manufacturer; set { _Manufacturer = value; RaisePropertyChanged("Manufacturer");  } }
         public RarCompanyViewModelWrapper Buyer { get =>  _Buyer; set { _Buyer = value; RaisePropertyChanged("Buyer"); } }
+        public RarLicenseViewModelWrapper License { get => _License; set { _License = value; RaisePropertyChanged("License"); } }
     }
 }

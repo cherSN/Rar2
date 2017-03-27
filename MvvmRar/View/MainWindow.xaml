@@ -93,14 +93,14 @@
                       CanUserAddRows="False" AutoGenerateColumns="False" SelectionUnit="Cell"   SelectedCellsChanged="dataGridF6_SelectedCellsChanged" IsSynchronizedWithCurrentItem="True"   >
 
                 <DataGrid.Columns>
-                    <!--<DataGridTextColumn Binding="{Binding Path=Subdevision.Name}" Header="Подразделение"  MinWidth="60"/>
-                    <DataGridTextColumn Binding="{Binding Path=License.SeriesNumber}" Header="Лицензия"  MinWidth="60"/>-->
+                    <!--<DataGridTextColumn Binding="{Binding Path=Subdevision.Name}" Header="Подразделение"  MinWidth="60"/>-->
+                    <DataGridTextColumn Binding="{Binding Path=License}" Header="Лицензия"  MinWidth="60"/>
 
                     <DataGridComboBoxColumn Header="Код"  
                                             ItemsSource="{Binding rarViewModel.AlcoCodeList, Source={StaticResource Locator}}" 
                                             SelectedValueBinding="{Binding AlcoCode}" 
                                             MinWidth="40"/>
-                    <DataGridTextColumn Binding="{Binding AlcoCode}" Header="AlcoCode"  MinWidth="60"/>
+                    <!--<DataGridTextColumn Binding="{Binding AlcoCode}" Header="AlcoCode"  MinWidth="60"/>-->
                     <!--<DataGridComboBoxColumn ItemsSource="{Binding AlcoCodeList}" SelectedValueBinding="{Binding AlcoCode}" Header="Код"  MinWidth="40"/>-->
 
 

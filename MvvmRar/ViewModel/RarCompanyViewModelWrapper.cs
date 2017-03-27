@@ -13,8 +13,6 @@ namespace MvvmRar.ViewModel
     public class RarCompanyViewModelWrapper : ObservableObject//RarCompany, INotifyPropertyChanged
     {
         private RarCompany _Company;
-        
-        //public RarCompanyViewModelWrapper() : base() { }
 
         public RarCompanyViewModelWrapper(RarCompany company) // : base(company)
         {
@@ -31,11 +29,5 @@ namespace MvvmRar.ViewModel
             return Name+"; INN:"+INN+"; KPP:"+KPP;
         }
 
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //protected virtual void RaisePropertyChanged(string propertyName)
-        //{
-        //    if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        //}
     }
 }
