@@ -7,16 +7,21 @@ using MvvmRar.Rar;
 using System.ComponentModel;
 using System.Reflection;
 using GalaSoft.MvvmLight;
+using System.Collections.ObjectModel;
 
 namespace MvvmRar.ViewModel
 {
     public class RarCompanyViewModelWrapper : ObservableObject//RarCompany, INotifyPropertyChanged
     {
         private RarCompany _Company;
-
+        private ObservableCollection<RarLicense> _LicenseList;
         public RarCompanyViewModelWrapper(RarCompany company) // : base(company)
         {
-            _Company = company;
+            if (company != null)
+            {
+                _Company = company;
+                _LicenseList = new ObservableCollection<RarLicense>(company.LicenseList);
+            }
         }
         public RarCompany Company { get => _Company; set => _Company = value; }
         public string Name { get => Company.Name; set { Company.Name = value; RaisePropertyChanged("Name"); } }
@@ -133,8 +138,10 @@ namespace MvvmRar.ViewModel
                 Company.Adress.Apartment = value;
                 RaisePropertyChanged("Apartment");
             }
-        } 
+        }
         #endregion
+
+        public ObservableCollection<RarLicense> LicenseList { get => _LicenseList; set => _LicenseList = value; }
 
         public override string ToString()
         {

@@ -14,6 +14,7 @@ using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using MvvmRar.Model;
 
+
 namespace MvvmRar.ViewModel
 {
     /// <summary>
@@ -35,12 +36,12 @@ namespace MvvmRar.ViewModel
             }
             else
             {
-                //SimpleIoc.Default.Register<IDataService, DataService>();
-                SimpleIoc.Default.Register<IDataService, Design.DesignDataService>();
+              SimpleIoc.Default.Register<IDataService, DataService>();
 
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<RarCompanyViewModelWrapper>();
         }
 
         /// <summary>
@@ -57,6 +58,13 @@ namespace MvvmRar.ViewModel
             }
         }
 
+        public RarCompanyViewModelWrapper rarCompanyViewModelWrapper
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<RarCompanyViewModelWrapper>();
+            }
+        }
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>
