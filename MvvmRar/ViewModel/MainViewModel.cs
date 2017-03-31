@@ -26,10 +26,10 @@ namespace MvvmRar.ViewModel
 
         private RarFormF6 _RarFile;
         private ObservableCollection<string> _AlcoCodeList;
-        private ObservableCollection<RarCompanyViewModelWrapper> _BuyerList;
-        private ObservableCollection<RarCompanyViewModelWrapper> _ManufacturerList;
-        private ObservableCollection<RarTurnoverDataViewModelWrapper> _TurnoverDataList;
-        private RarCompanyViewModelWrapper _SelectedBuyer;
+        private ObservableCollection<RarCompanyWrapper> _BuyerList;
+        private ObservableCollection<RarCompanyWrapper> _ManufacturerList;
+        private ObservableCollection<RarTurnoverDataWrapper> _TurnoverDataList;
+        private RarCompanyWrapper _SelectedBuyer;
 
         private ListCollectionView turnoverDataListCollectionView;
         private ObservableCollection<RarCompany> savingCompaniesList;
@@ -62,14 +62,14 @@ namespace MvvmRar.ViewModel
 
         public ObservableCollection<string> AlcoCodeList { get=> _AlcoCodeList; set=>_AlcoCodeList = value;}
 
-        public ObservableCollection<RarCompanyViewModelWrapper> BuyerList {get=>_BuyerList; set=>_BuyerList = value;}
-        public ObservableCollection<RarCompanyViewModelWrapper> ManufacturerList {get=>_ManufacturerList; set=>_ManufacturerList = value;}
-        public ObservableCollection<RarTurnoverDataViewModelWrapper> TurnoverDataList {get=>_TurnoverDataList; set=>_TurnoverDataList = value;}
+        public ObservableCollection<RarCompanyWrapper> BuyerList {get=>_BuyerList; set=>_BuyerList = value;}
+        public ObservableCollection<RarCompanyWrapper> ManufacturerList {get=>_ManufacturerList; set=>_ManufacturerList = value;}
+        public ObservableCollection<RarTurnoverDataWrapper> TurnoverDataList {get=>_TurnoverDataList; set=>_TurnoverDataList = value;}
 
         public ListCollectionView TurnoverDataListCollectionView {get=>turnoverDataListCollectionView; set=>turnoverDataListCollectionView = value;}
         
         public ObservableCollection<RarCompany> SavingCompaniesList {get=>savingCompaniesList; set=>savingCompaniesList = value;}
-        public RarCompanyViewModelWrapper SelectedBuyer {
+        public RarCompanyWrapper SelectedBuyer {
             get =>_SelectedBuyer;
             set {
                 _SelectedBuyer = value;
@@ -81,14 +81,14 @@ namespace MvvmRar.ViewModel
 
         private void SetupCollections()
         {
-            List<RarCompanyViewModelWrapper> rarBuyerViewModelWrapperList = _RarFile.BuyerList.Distinct().Select(s => new RarCompanyViewModelWrapper(s)).ToList();
+            List<RarCompanyWrapper> rarBuyerViewModelWrapperList = _RarFile.BuyerList.Distinct().Select(s => new RarCompanyWrapper(s)).ToList();
             BuyerList.Clear();
-            foreach (RarCompanyViewModelWrapper item in rarBuyerViewModelWrapperList) BuyerList.Add(item);
+            foreach (RarCompanyWrapper item in rarBuyerViewModelWrapperList) BuyerList.Add(item);
 
 
             ManufacturerList.Clear();
-            List<RarCompanyViewModelWrapper> rarManufacturerViewModelWrapperList = _RarFile.ManufacturerList.Distinct().Select(s => new RarCompanyViewModelWrapper(s)).ToList();
-            foreach (RarCompanyViewModelWrapper item in rarManufacturerViewModelWrapperList) ManufacturerList.Add(item);
+            List<RarCompanyWrapper> rarManufacturerViewModelWrapperList = _RarFile.ManufacturerList.Distinct().Select(s => new RarCompanyWrapper(s)).ToList();
+            foreach (RarCompanyWrapper item in rarManufacturerViewModelWrapperList) ManufacturerList.Add(item);
             AlcoCodeList.Clear();
             List<string> validAlcoCodeList = RarValidAlcoCodeList.GetAlcoCodesListFromXSD();
             foreach (string item in validAlcoCodeList) AlcoCodeList.Add(item);
@@ -96,13 +96,13 @@ namespace MvvmRar.ViewModel
             TurnoverDataList.Clear();
             foreach (RarTurnoverData item in _RarFile.TurnoverDataList)
             {
-                RarTurnoverDataViewModelWrapper turnoverDataViewModelWrapper = new RarTurnoverDataViewModelWrapper(item);
+                RarTurnoverDataWrapper turnoverDataViewModelWrapper = new RarTurnoverDataWrapper(item);
 
-                List<RarCompanyViewModelWrapper> findedBuyerList = BuyerList.Where(s => s.Company == item.Buyer).ToList();
+                List<RarCompanyWrapper> findedBuyerList = BuyerList.Where(s => s.Company == item.Buyer).ToList();
                 if (findedBuyerList.Count == 1) turnoverDataViewModelWrapper.Buyer = findedBuyerList.First();
                 else throw new ApplicationException("Ошибка синхронизации контрагентов");
 
-                List<RarCompanyViewModelWrapper> findedManufacturerList =ManufacturerList.Where(s => s.Company == item.Manufacturer).ToList();
+                List<RarCompanyWrapper> findedManufacturerList =ManufacturerList.Where(s => s.Company == item.Manufacturer).ToList();
                 if (findedManufacturerList.Count == 1) turnoverDataViewModelWrapper.Manufacturer = findedManufacturerList.First();
                 else throw new ApplicationException("Ошибка синхронизации контрагентов");
 
@@ -127,9 +127,9 @@ namespace MvvmRar.ViewModel
                 });
 
             _AlcoCodeList = new ObservableCollection<string>();
-            _BuyerList = new ObservableCollection<RarCompanyViewModelWrapper>();
-            _ManufacturerList = new ObservableCollection<RarCompanyViewModelWrapper>();
-            _TurnoverDataList = new ObservableCollection<RarTurnoverDataViewModelWrapper>();
+            _BuyerList = new ObservableCollection<RarCompanyWrapper>();
+            _ManufacturerList = new ObservableCollection<RarCompanyWrapper>();
+            _TurnoverDataList = new ObservableCollection<RarTurnoverDataWrapper>();
             SetupCollections();
 
 
@@ -283,7 +283,7 @@ namespace MvvmRar.ViewModel
         private bool Buyer_Filter(object item)
         {
             if (SelectedBuyer == null) return true;
-            RarTurnoverDataViewModelWrapper dt = (RarTurnoverDataViewModelWrapper)item;
+            RarTurnoverDataWrapper dt = (RarTurnoverDataWrapper)item;
             if (dt.Buyer == SelectedBuyer) return true;
             else return false;
         }

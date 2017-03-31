@@ -54,6 +54,7 @@
                 <TextBox HorizontalAlignment="Left"  Margin="3"  Text="{Binding CorrectionNumber}" VerticalAlignment="Center" MinWidth="60"/>
                 <TextBox Text="{Binding FileName}"/>
                 <TextBox Text="{Binding SelectedBuyer.Name}"/>
+                <Button Content="Button" Width="76" Click="Button_Click"/>
 
             </WrapPanel>
         </Border>

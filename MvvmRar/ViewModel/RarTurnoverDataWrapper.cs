@@ -8,18 +8,18 @@ using MvvmRar.Rar;
 
 namespace MvvmRar.ViewModel
 {
-    public class RarTurnoverDataViewModelWrapper : ObservableObject
+    public class RarTurnoverDataWrapper : ObservableObject
     {
         private RarTurnoverData _TurnoverData;
-        private RarCompanyViewModelWrapper _Manufacturer;
-        private RarCompanyViewModelWrapper _Buyer;
-        private RarLicenseViewModelWrapper _License;
+        private RarCompanyWrapper _Manufacturer;
+        private RarCompanyWrapper _Buyer;
+        private RarLicenseWrapper _License;
 
-        public RarTurnoverDataViewModelWrapper(RarTurnoverData turnoverData) {
+        public RarTurnoverDataWrapper(RarTurnoverData turnoverData) {
             _TurnoverData = turnoverData;
-            _Manufacturer = new RarCompanyViewModelWrapper(turnoverData.Manufacturer);
-            _Buyer = new RarCompanyViewModelWrapper(turnoverData.Buyer);
-            _License = new RarLicenseViewModelWrapper(turnoverData.License);
+            _Manufacturer = new RarCompanyWrapper(turnoverData.Manufacturer);
+            _Buyer = new RarCompanyWrapper(turnoverData.Buyer);
+            _License = new RarLicenseWrapper(turnoverData.License);
         }
 
         public string AlcoCode { get => _TurnoverData.AlcoCode; set { _TurnoverData.AlcoCode = value; RaisePropertyChanged("AlcoCode"); } }
@@ -31,8 +31,8 @@ namespace MvvmRar.ViewModel
         public string CustomsDeclarationNumber { get => _TurnoverData.CustomsDeclarationNumber; set { _TurnoverData.CustomsDeclarationNumber = value; RaisePropertyChanged("CustomsDeclarationNumber"); } }
         public double Turnover { get => _TurnoverData.Turnover; set { _TurnoverData.Turnover = value; RaisePropertyChanged("Turnover"); } }
 
-        public RarCompanyViewModelWrapper Manufacturer { get => _Manufacturer; set { _Manufacturer = value; RaisePropertyChanged("Manufacturer");  } }
-        public RarCompanyViewModelWrapper Buyer { get =>  _Buyer; set { _Buyer = value; RaisePropertyChanged("Buyer"); } }
-        public RarLicenseViewModelWrapper License { get => _License; set { _License = value; RaisePropertyChanged("License"); } }
+        public RarCompanyWrapper Manufacturer { get => _Manufacturer; set { _Manufacturer = value; RaisePropertyChanged("Manufacturer");  } }
+        public RarCompanyWrapper Buyer { get =>  _Buyer; set { _Buyer = value; RaisePropertyChanged("Buyer"); } }
+        public RarLicenseWrapper License { get => _License; set { _License = value; RaisePropertyChanged("License"); } }
     }
 }

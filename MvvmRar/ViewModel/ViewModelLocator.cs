@@ -41,7 +41,7 @@ namespace MvvmRar.ViewModel
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<RarCompanyViewModelWrapper>();
+            SimpleIoc.Default.Register<RarCompanyWrapper>();
         }
 
         /// <summary>
@@ -58,11 +58,11 @@ namespace MvvmRar.ViewModel
             }
         }
 
-        public RarCompanyViewModelWrapper rarCompanyViewModelWrapper
+        public RarCompanyWrapper rarCompanyViewModelWrapper
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<RarCompanyViewModelWrapper>();
+                return ServiceLocator.Current.GetInstance<RarCompanyWrapper>();
             }
         }
         /// <summary>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MvvmRar.ViewModel
 {
-    public class RarLicenseViewModelWrapper : ObservableObject
+    public class RarLicenseWrapper : ObservableObject
     {
         private RarLicense _License;
 
@@ -19,7 +19,7 @@ namespace MvvmRar.ViewModel
         public string Issuer { get => License.Issuer; set => License.Issuer = value; }
         public string BusinesType { get => License.BusinesType; set => License.BusinesType = value; }
 
-        public RarLicenseViewModelWrapper(RarLicense license)
+        public RarLicenseWrapper(RarLicense license)
         {
             _License = license;
         }

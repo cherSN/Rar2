@@ -11,11 +11,11 @@ using System.Collections.ObjectModel;
 
 namespace MvvmRar.ViewModel
 {
-    public class RarCompanyViewModelWrapper : ObservableObject//RarCompany, INotifyPropertyChanged
+    public class RarCompanyWrapper : ObservableObject//RarCompany, INotifyPropertyChanged
     {
         private RarCompany _Company;
         private ObservableCollection<RarLicense> _LicenseList;
-        public RarCompanyViewModelWrapper(RarCompany company) // : base(company)
+        public RarCompanyWrapper(RarCompany company) // : base(company)
         {
             if (company != null)
             {
