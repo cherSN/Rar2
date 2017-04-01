@@ -79,8 +79,10 @@
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Model\IDataService.cs" />
     <Compile Include="MvvMDialog\Behaviors\DialogBehavior.cs" />
+    <Compile Include="MvvMDialog\Presenters\EditCompanyDialogPresenter.cs" />
     <Compile Include="MvvMDialog\Presenters\IDialogBoxPresenter.cs" />
     <Compile Include="MvvMDialog\Presenters\OpenFileDialogPresenter.cs" />
+    <Compile Include="MvvMDialog\ViewModels\EditCompanyDialogViewModel.cs" />
     <Compile Include="MvvMDialog\ViewModels\IDialogViewModel..cs" />
     <Compile Include="MvvMDialog\ViewModels\IUserDialogViewModel.cs" />
     <Compile Include="Rar\RarAdress.cs" />

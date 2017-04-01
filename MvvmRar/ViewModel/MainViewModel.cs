@@ -13,6 +13,8 @@ using System.IO;
 using MvvmDialogs.ViewModels;
 using System.Text.RegularExpressions;
 using System.Collections.Specialized;
+//using MvvMDialogs.ViewModels;
+//using MvvmRar.MvvMDialog.ViewModels;
 
 namespace MvvmRar.ViewModel
 {
@@ -137,6 +139,31 @@ namespace MvvmRar.ViewModel
             TurnoverDataListCollectionView.Filter = Buyer_Filter;
             //UpdateAll();
 
+        }
+
+        public RelayCommand EditCompanyDialogCommand { get { return new RelayCommand(EditCompanyDialog); } }
+        public void EditCompanyDialog()
+        {
+            var dlg = new EditCompanyDialogViewModel();
+            dlg.Show(this.Dialogs);
+            //    OpenFileDialogViewModel
+            //{
+            //    Title = "Выберите файл",
+            //    Filter = "xml files (*.xml)|*.xml",
+            //    Multiselect = false
+            //};
+
+            //if (!dlg.Show(this.Dialogs)) return;
+
+            //FileName = dlg.FileName;
+            //RarFormF6Formatter F6formatter = new RarFormF6Formatter();
+            //if (FileName == null) return;
+            //using (FileStream fileStream = new FileStream(FileName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            //{
+            //    _RarFile = (RarFormF6)F6formatter.Deserialize(fileStream);
+            //    _RarFile.BuyerList.Sort((s1, s2) => String.Compare(s1.Name, s2.Name));
+            //}
+            //SetupCollections();
         }
 
         public RelayCommand OpenFileDialogCommand { get { return new RelayCommand(OpenFileDialog); } }

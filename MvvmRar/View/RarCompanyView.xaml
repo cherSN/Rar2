@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:MvvmRar.View"
         mc:Ignorable="d"
         Title="RarCompanyView" Height="300" Width="300"
-       DataContext="{Binding rarCompanyViewModelWrapper, Source={StaticResource Locator}}" >
+       DataContext="{Binding rarViewModel, Source={StaticResource Locator}}" >
     <WrapPanel>
         <Label Content="Наименование" />
-        <TextBox   Text="{Binding Name}" />
+        <TextBox   Text="{Binding SelectedBuyer.Name}" />
 
     </WrapPanel>
 </Window>

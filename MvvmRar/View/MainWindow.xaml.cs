@@ -56,14 +56,14 @@ namespace MvvmRar
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainViewModel vm = DataContext as MainViewModel;
-            if (vm!= null && vm.SelectedBuyer!=null)
-            {
-                //RarCompanyWrapper vm2 = new RarCompanyWrapper(vm.SelectedBuyer);
-                RarCompanyView v = new RarCompanyView();
-                v.DataContext = vm.SelectedBuyer;
-                v.Show();
-            }
+            //MainViewModel vm = DataContext as MainViewModel;
+            //if (vm!= null && vm.SelectedBuyer!=null)
+            //{
+            //    //RarCompanyWrapper vm2 = new RarCompanyWrapper(vm.SelectedBuyer);
+            //    RarCompanyView v = new RarCompanyView();
+            //    v.DataContext = vm.SelectedBuyer;
+            //    v.Show();
+            //}
         }
     }
 

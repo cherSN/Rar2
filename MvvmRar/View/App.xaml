@@ -6,14 +6,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:ignore="http://www.galasoft.ch/ignore"
              xmlns:vmfd="clr-namespace:MvvmDialogs.ViewModels"            
-             xmlns:pre="clr-namespace:MvvmDialogs.Presenters"            
+             xmlns:pre="clr-namespace:MvvmDialogs.Presenters"
              StartupUri="MainWindow.xaml"
              mc:Ignorable="d ignore">
     
     <Application.Resources>
         <!--Global View Model Locator-->
         <vm:ViewModelLocator x:Key="Locator"  d:IsDataSource="True" />
-        <pre:OpenFileDialogPresenter x:Key="{x:Type vmfd:OpenFileDialogViewModel}" />
+        <pre:OpenFileDialogPresenter    x:Key="{x:Type vmfd:OpenFileDialogViewModel}" />
+        <pre:EditCompanyDialogPresenter x:Key="{x:Type vmfd:EditCompanyDialogViewModel}" />
     </Application.Resources>
     
 </Application>
