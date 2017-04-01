@@ -144,8 +144,9 @@ namespace MvvmRar.ViewModel
         public RelayCommand EditCompanyDialogCommand { get { return new RelayCommand(EditCompanyDialog); } }
         public void EditCompanyDialog()
         {
-            var dlg = new EditCompanyDialogViewModel();
-            dlg.Show(this.Dialogs);
+            Dialogs.Add(new EditCompanyDialogViewModel { Company=SelectedBuyer});
+            //var dlg = new EditCompanyDialogViewModel();
+            //dlg.Show(this.Dialogs);
             //    OpenFileDialogViewModel
             //{
             //    Title = "Выберите файл",

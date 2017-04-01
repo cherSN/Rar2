@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MvvmRar.View"
         mc:Ignorable="d"
-        Title="RarCompanyView" Height="300" Width="300"
-       DataContext="{Binding rarViewModel, Source={StaticResource Locator}}" >
+        Title="RarCompanyView" Height="300" Width="300">
+    <!--DataContext="{Binding rarViewModel, Source={StaticResource Locator}}" >-->
     <WrapPanel>
         <Label Content="Наименование" />
-        <TextBox   Text="{Binding SelectedBuyer.Name}" />
+        <TextBox   Text="{Binding Company.Name}" MinWidth="84" Padding="5" />
 
     </WrapPanel>
 </Window>

@@ -7,6 +7,7 @@
 			 xmlns:ignore="http://www.galasoft.ch/ignore"
              xmlns:vmfd="clr-namespace:MvvmDialogs.ViewModels"            
              xmlns:pre="clr-namespace:MvvmDialogs.Presenters"
+             xmlns:view="clr-namespace:MvvmRar.View"
              StartupUri="MainWindow.xaml"
              mc:Ignorable="d ignore">
     
@@ -14,7 +15,8 @@
         <!--Global View Model Locator-->
         <vm:ViewModelLocator x:Key="Locator"  d:IsDataSource="True" />
         <pre:OpenFileDialogPresenter    x:Key="{x:Type vmfd:OpenFileDialogViewModel}" />
-        <pre:EditCompanyDialogPresenter x:Key="{x:Type vmfd:EditCompanyDialogViewModel}" />
+        <!--<pre:EditCompanyDialogPresenter x:Key="{x:Type vmfd:EditCompanyDialogViewModel}" />-->
+        <view:RarCompanyView x:Key="{x:Type vmfd:EditCompanyDialogViewModel}" x:Shared="False" />
     </Application.Resources>
     
 </Application>

@@ -79,10 +79,10 @@
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Model\IDataService.cs" />
     <Compile Include="MvvMDialog\Behaviors\DialogBehavior.cs" />
-    <Compile Include="MvvMDialog\Presenters\EditCompanyDialogPresenter.cs" />
+    <Compile Include="View\EditCompanyDialogPresenter.cs" />
     <Compile Include="MvvMDialog\Presenters\IDialogBoxPresenter.cs" />
-    <Compile Include="MvvMDialog\Presenters\OpenFileDialogPresenter.cs" />
-    <Compile Include="MvvMDialog\ViewModels\EditCompanyDialogViewModel.cs" />
+    <Compile Include="View\OpenFileDialogPresenter.cs" />
+    <Compile Include="ViewModel\EditCompanyDialogViewModel.cs" />
     <Compile Include="MvvMDialog\ViewModels\IDialogViewModel..cs" />
     <Compile Include="MvvMDialog\ViewModels\IUserDialogViewModel.cs" />
     <Compile Include="Rar\RarAdress.cs" />
@@ -97,7 +97,7 @@
     <Compile Include="Rar\RarTurnoverData.cs" />
     <Compile Include="Rar\RarValidAlcoCodeList.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="MvvMDialog\ViewModels\OpenFileDialogViewModel.cs" />
+    <Compile Include="ViewModel\OpenFileDialogViewModel.cs" />
     <Compile Include="ViewModel\RarLicenseWrapper.cs" />
     <Compile Include="ViewModel\RarTurnoverDataWrapper.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
