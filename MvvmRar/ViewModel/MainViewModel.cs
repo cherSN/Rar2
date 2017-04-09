@@ -86,7 +86,7 @@ namespace MvvmRar.ViewModel
             List<RarCompanyWrapper> rarBuyerViewModelWrapperList = _RarFile.BuyerList.Distinct().Select(s => new RarCompanyWrapper(s)).ToList();
             BuyerList.Clear();
             foreach (RarCompanyWrapper item in rarBuyerViewModelWrapperList) BuyerList.Add(item);
-
+            if (BuyerList.Count > 1) _SelectedBuyer = BuyerList[0];
 
             ManufacturerList.Clear();
             List<RarCompanyWrapper> rarManufacturerViewModelWrapperList = _RarFile.ManufacturerList.Distinct().Select(s => new RarCompanyWrapper(s)).ToList();
@@ -135,8 +135,6 @@ namespace MvvmRar.ViewModel
             _ManufacturerList = new ObservableCollection<RarCompanyWrapper>();
             _TurnoverDataList = new ObservableCollection<RarTurnoverDataWrapper>();
             SetupCollections();
-            if (BuyerList.Count > 1)
-                _SelectedBuyer = BuyerList[0];
 
             TurnoverDataListCollectionView = new ListCollectionView(TurnoverDataList);
             TurnoverDataListCollectionView.Filter = Buyer_Filter;
