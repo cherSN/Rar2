@@ -7,37 +7,52 @@
         mc:Ignorable="d"
         Title="RarCompanyView" Height="300" Width="300"
     DataContext="{Binding rarViewModel.SelectedBuyer, Source={StaticResource Locator}}" >
-    <WrapPanel>
-        <Label Content="Наименование" />
-        <TextBox   Text="{Binding Company.Name}" MinWidth="84" Padding="5" />
-        <Label Content="ИНН" />
-        <TextBox   Text="{Binding Company.INN}" MinWidth="84" Padding="5" />
-        <Label Content="КПП" />
-        <TextBox   Text="{Binding Company.KPP}" MinWidth="84" Padding="5" />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
 
-        <Label Content="Код страны" />
-        <TextBox   Text="{Binding CountryId}" MinWidth="40" Padding="5" />
-        <Label Content="Индекс" />
-        <TextBox   Text="{Binding PostCode}" MinWidth="40" Padding="5" />
-        <Label Content="Код региона" />
-        <TextBox   Text="{Binding RegionId}" MinWidth="40" Padding="5" />
-        <Label Content="Район" />
-        <TextBox   Text="{Binding District}" MinWidth="40" Padding="5" />
-        <Label Content="Город" />
-        <TextBox   Text="{Binding City}" MinWidth="40" Padding="5" />
-        <Label Content="Нас пункт" />
-        <TextBox   Text="{Binding Locality}" MinWidth="40" Padding="5" />
-        <Label Content="Улица" />
-        <TextBox   Text="{Binding Street}" MinWidth="40" Padding="5" />
-        <Label Content="Здание" />
-        <TextBox   Text="{Binding Building}" MinWidth="40" Padding="5" />
-        <Label Content="Блок" />
-        <TextBox   Text="{Binding Block}" MinWidth="40" Padding="5" />
-        <Label Content="Литера" />
-        <TextBox   Text="{Binding Litera}" MinWidth="40" Padding="5" />
-        <Label Content="Квартира" />
-        <TextBox   Text="{Binding Apartment}" MinWidth="40" Padding="5" />
-        <ListView Height="100" Width="100" ItemsSource="{Binding Company.LicenseList}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+
+
+
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0"  Grid.Row="0" Content="Наименование" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0" />
+        <TextBox  Grid.Column="1"  Grid.Row="0" Text="{Binding Company.Name}" MinWidth="84" Padding="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+        <Label Grid.Column="0"  Grid.Row="1" Content="ИНН" />
+        <TextBox  Grid.Column="1"  Grid.Row="1" Text="{Binding Company.INN}" MinWidth="84" Padding="5" />
+        <Label Grid.Column="0"  Grid.Row="2" Content="КПП" />
+        <TextBox Grid.Column="1"  Grid.Row="2"  Text="{Binding Company.KPP}" MinWidth="84" Padding="5" />
+
+        <Label Content="Код страны" d:IsHidden="True" />
+        <TextBox   Text="{Binding CountryId}" MinWidth="40" Padding="5" d:IsHidden="True" />
+        <Label Content="Индекс" d:IsHidden="True" />
+        <TextBox   Text="{Binding PostCode}" MinWidth="40" Padding="5" d:IsHidden="True" />
+        <Label Content="Код региона" d:IsHidden="True" />
+        <TextBox   Text="{Binding RegionId}" MinWidth="40" Padding="5" d:IsHidden="True" />
+        <Label Content="Район" d:IsHidden="True" />
+        <TextBox   Text="{Binding District}" MinWidth="40" Padding="5" d:IsHidden="True" />
+        <Label Content="Город" d:IsHidden="True" />
+        <TextBox   Text="{Binding City}" MinWidth="40" Padding="5" d:IsHidden="True" />
+        <Label Content="Нас пункт" d:IsHidden="True" />
+        <TextBox   Text="{Binding Locality}" MinWidth="40" Padding="5" d:IsHidden="True" />
+        <Label Content="Улица" d:IsHidden="True" />
+        <TextBox   Text="{Binding Street}" MinWidth="40" Padding="5" d:IsHidden="True" />
+        <Label Content="Здание" d:IsHidden="True" />
+        <TextBox   Text="{Binding Building}" MinWidth="40" Padding="5" d:IsHidden="True" />
+        <Label Content="Блок" d:IsHidden="True" />
+        <TextBox   Text="{Binding Block}" MinWidth="40" Padding="5" d:IsHidden="True" />
+        <Label Content="Литера" d:IsHidden="True" />
+        <TextBox   Text="{Binding Litera}" MinWidth="40" Padding="5" d:IsHidden="True" />
+        <Label Content="Квартира" d:IsHidden="True" />
+        <TextBox   Text="{Binding Apartment}" MinWidth="40" Padding="5" d:IsHidden="True" />
+        <ListView Height="100" Width="100" ItemsSource="{Binding Company.LicenseList}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" d:IsHidden="True">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -45,5 +60,5 @@
             </ListView.View>
         </ListView>
 
-    </WrapPanel>
+    </Grid>
 </Window>
