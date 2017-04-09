@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
-namespace MvvmDialogs.ViewModels
+namespace MvvmRar.ViewModel
 {
    public class EditCompanyDialogViewModel : ViewModelBase, IUserDialogViewModel
     {

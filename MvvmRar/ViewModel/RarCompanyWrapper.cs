@@ -27,6 +27,7 @@ namespace MvvmRar.ViewModel
         public string Name { get => Company.Name; set { Company.Name = value; RaisePropertyChanged("Name"); } }
         public string INN { get => Company.INN; set { Company.INN = value; RaisePropertyChanged("INN"); } }
         public string KPP { get => Company.KPP; set { Company.KPP = value; RaisePropertyChanged("KPP"); } }
+        public bool IsUsed { get => _Company.IsUsed; set => _Company.IsUsed = value; }
 
         #region -Adress Properties -
         public string CountryId

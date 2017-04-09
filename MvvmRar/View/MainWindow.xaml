@@ -65,7 +65,7 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <ListView ItemsSource="{Binding BuyerList}" Grid.Column="0"   MinWidth="200" 
-                      SelectedItem="{Binding SelectedBuyer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                      SelectedItem="{Binding SelectedBuyer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Setter Property="Background" Value="White"/>

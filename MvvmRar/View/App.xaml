@@ -15,8 +15,7 @@
         <!--Global View Model Locator-->
         <vm:ViewModelLocator x:Key="Locator"  d:IsDataSource="True" />
         <view:OpenFileDialogPresenter    x:Key="{x:Type vmfd:OpenFileDialogViewModel}" />
-        <!--<pre:EditCompanyDialogPresenter x:Key="{x:Type vmfd:EditCompanyDialogViewModel}" />-->
-        <!--<view:RarCompanyView x:Key="{x:Type vmfd:EditCompanyDialogViewModel}" x:Shared="False" />-->
+        <view:RarCompanyView x:Key="{x:Type vmfd:EditCompanyDialogViewModel}" x:Shared="False" />
     </Application.Resources>
     
 </Application>
