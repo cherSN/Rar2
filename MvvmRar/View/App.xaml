@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:ignore="http://www.galasoft.ch/ignore"
-             xmlns:vmfd="clr-namespace:MvvmDialogs.ViewModels"            
+             xmlns:vmfd="clr-namespace:MvvmRar.ViewModel"            
              xmlns:pre="clr-namespace:MvvmDialogs.Presenters"
              xmlns:view="clr-namespace:MvvmRar.View"
              StartupUri="MainWindow.xaml"
@@ -14,9 +14,9 @@
     <Application.Resources>
         <!--Global View Model Locator-->
         <vm:ViewModelLocator x:Key="Locator"  d:IsDataSource="True" />
-        <pre:OpenFileDialogPresenter    x:Key="{x:Type vmfd:OpenFileDialogViewModel}" />
+        <view:OpenFileDialogPresenter    x:Key="{x:Type vmfd:OpenFileDialogViewModel}" />
         <!--<pre:EditCompanyDialogPresenter x:Key="{x:Type vmfd:EditCompanyDialogViewModel}" />-->
-        <view:RarCompanyView x:Key="{x:Type vmfd:EditCompanyDialogViewModel}" x:Shared="False" />
+        <!--<view:RarCompanyView x:Key="{x:Type vmfd:EditCompanyDialogViewModel}" x:Shared="False" />-->
     </Application.Resources>
     
 </Application>

@@ -1,13 +1,13 @@
 ﻿using Microsoft.Win32;
 using MvvmDialogs.Presenters;
-using MvvmDialogs.ViewModels;
+using MvvmRar.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MvvmDialogs.Presenters
+namespace MvvmRar.View
 {
     public class OpenFileDialogPresenter : IDialogBoxPresenter<OpenFileDialogViewModel>
     {

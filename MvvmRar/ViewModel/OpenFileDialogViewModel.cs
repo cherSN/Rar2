@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MvvmDialogs.ViewModels
+namespace MvvmRar.ViewModel
 {
     public class OpenFileDialogViewModel : IDialogViewModel
     {
