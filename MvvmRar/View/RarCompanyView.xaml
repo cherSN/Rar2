@@ -10,6 +10,40 @@
     <WrapPanel>
         <Label Content="Наименование" />
         <TextBox   Text="{Binding Company.Name}" MinWidth="84" Padding="5" />
+        <Label Content="ИНН" />
+        <TextBox   Text="{Binding Company.INN}" MinWidth="84" Padding="5" />
+        <Label Content="КПП" />
+        <TextBox   Text="{Binding Company.KPP}" MinWidth="84" Padding="5" />
+
+        <Label Content="Код страны" />
+        <TextBox   Text="{Binding CountryId}" MinWidth="40" Padding="5" />
+        <Label Content="Индекс" />
+        <TextBox   Text="{Binding PostCode}" MinWidth="40" Padding="5" />
+        <Label Content="Код региона" />
+        <TextBox   Text="{Binding RegionId}" MinWidth="40" Padding="5" />
+        <Label Content="Район" />
+        <TextBox   Text="{Binding District}" MinWidth="40" Padding="5" />
+        <Label Content="Город" />
+        <TextBox   Text="{Binding City}" MinWidth="40" Padding="5" />
+        <Label Content="Нас пункт" />
+        <TextBox   Text="{Binding Locality}" MinWidth="40" Padding="5" />
+        <Label Content="Улица" />
+        <TextBox   Text="{Binding Street}" MinWidth="40" Padding="5" />
+        <Label Content="Здание" />
+        <TextBox   Text="{Binding Building}" MinWidth="40" Padding="5" />
+        <Label Content="Блок" />
+        <TextBox   Text="{Binding Block}" MinWidth="40" Padding="5" />
+        <Label Content="Литера" />
+        <TextBox   Text="{Binding Litera}" MinWidth="40" Padding="5" />
+        <Label Content="Квартира" />
+        <TextBox   Text="{Binding Apartment}" MinWidth="40" Padding="5" />
+        <ListView Height="100" Width="100" ItemsSource="{Binding Company.LicenseList}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </WrapPanel>
 </Window>

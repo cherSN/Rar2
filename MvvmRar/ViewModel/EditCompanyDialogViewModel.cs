@@ -3,6 +3,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MvvmDialogs.ViewModels;
+using MvvmRar.Design;
 using MvvmRar.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -77,7 +78,7 @@ namespace MvvmRar.ViewModel
         public EditCompanyDialogViewModel(bool isModal = true)
         {
             this.IsModal = isModal;
-        }
+       }
 
         public void Close()
         {
