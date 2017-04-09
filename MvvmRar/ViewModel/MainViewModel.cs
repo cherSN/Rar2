@@ -110,6 +110,8 @@ namespace MvvmRar.ViewModel
 
                 TurnoverDataList.Add(turnoverDataViewModelWrapper);
             }
+
+
         }
 
         public MainViewModel(IDataService dataService)
@@ -133,7 +135,8 @@ namespace MvvmRar.ViewModel
             _ManufacturerList = new ObservableCollection<RarCompanyWrapper>();
             _TurnoverDataList = new ObservableCollection<RarTurnoverDataWrapper>();
             SetupCollections();
-
+            if (BuyerList.Count > 1)
+                _SelectedBuyer = BuyerList[0];
 
             TurnoverDataListCollectionView = new ListCollectionView(TurnoverDataList);
             TurnoverDataListCollectionView.Filter = Buyer_Filter;
