@@ -56,6 +56,7 @@ namespace MvvmRar
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             //MainViewModel vm = DataContext as MainViewModel;
             //if (vm!= null && vm.SelectedBuyer!=null)
             //{
